@@ -21,6 +21,11 @@ export const metadata: Metadata = {
   title: "Cole Bonawitz — Product + Growth Builder",
   description:
     "Duke CS student and startup operator who builds consumer products, AI tools, and distribution systems. $135K+ e-commerce revenue, 5M+ social views, 3,500+ orders shipped.",
+  icons: {
+    icon: "/images/faveconcb.png",
+    shortcut: "/images/faveconcb.png",
+    apple: "/images/faveconcb.png",
+  },
   openGraph: {
     title: "Cole Bonawitz — Product + Growth Builder",
     description:

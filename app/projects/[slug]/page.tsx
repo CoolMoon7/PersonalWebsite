@@ -7,6 +7,7 @@ import MediaGallery from "@/components/case-study/MediaGallery";
 import ResultsGrid from "./ResultsGrid";
 import LessonsList from "./LessonsList";
 import NextProject from "./NextProject";
+import ScrollToTopOnMount from "./ScrollToTopOnMount";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -45,6 +46,7 @@ export default async function ProjectPage({
 
   return (
     <>
+      <ScrollToTopOnMount />
       <CaseStudyHero project={project} />
 
       <div className="max-w-4xl mx-auto px-6 py-12 md:py-16">

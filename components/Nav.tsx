@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -55,9 +56,19 @@ export default function Nav() {
       <div className="max-w-6xl mx-auto px-6 h-[72px] flex items-center justify-between">
         <Link
           href="/"
-          className="font-display font-bold text-lg tracking-tight text-foreground hover:text-accent transition-colors"
+          className="inline-flex items-center gap-2 font-display font-bold text-2xl tracking-tight text-foreground hover:text-accent transition-colors"
         >
-          Cole Bonawitz
+          <span className="inline-flex items-center justify-center w-12 h-12 bg-background">
+            <Image
+              src="/images/cblogo.png"
+              alt="CB logo"
+              width={40}
+              height={40}
+              className="w-10 h-10 object-contain"
+              priority
+            />
+          </span>
+          <span>Cole Bonawitz</span>
         </Link>
 
         {/* Desktop links */}
@@ -76,7 +87,7 @@ export default function Nav() {
             href="/Cole_Bonawitz_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover-lift ml-3 px-4 py-2 text-sm font-medium text-accent border border-accent hover:bg-accent hover:text-white transition-colors"
+            className="hover-lift ml-3 px-4 py-2 text-sm font-medium text-accent border border-accent hover:bg-[#3a3a3a] hover:border-[#3a3a3a] hover:text-white transition-colors"
           >
             Resume
           </a>
@@ -131,7 +142,7 @@ export default function Nav() {
                 href="/Cole_Bonawitz_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-2 px-4 py-3 text-base font-medium text-accent border border-accent text-center hover:bg-accent hover:text-white transition-colors"
+                className="mt-2 px-4 py-3 text-base font-medium text-accent border border-accent text-center hover:bg-[#3a3a3a] hover:border-[#3a3a3a] hover:text-white transition-colors"
               >
                 Resume
               </a>

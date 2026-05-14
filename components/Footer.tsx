@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+import ContactForm from "./ContactForm";
 
 const footerLinks = [
   { label: "Work", href: "/#work" },
@@ -10,18 +12,43 @@ const footerLinks = [
 const socials = [
   { label: "LinkedIn", href: "https://linkedin.com/in/colebonawitz" },
   { label: "GitHub", href: "https://github.com/colebonawitz" },
-  { label: "Email", href: "mailto:cole@example.com" },
+  { label: "Email", href: "mailto:colebonawitz@gmail.com" },
 ];
 
 export default function Footer() {
   return (
     <footer id="contact" className="border-t border-border bg-background">
       <div className="max-w-6xl mx-auto px-6 py-16">
+        <div className="mb-12">
+          <h3 className="font-display font-bold text-3xl md:text-4xl text-foreground mb-3">
+            Contact
+          </h3>
+          <div className="w-16 h-px bg-accent mt-4 mb-4" />
+          <p className="text-muted text-base max-w-2xl mb-6">
+            Send me a message and it will open an email to
+            {" "}
+            <a href="mailto:colebonawitz@gmail.com" className="text-foreground hover:text-accent transition-colors">
+              colebonawitz@gmail.com
+            </a>
+            .
+          </p>
+          <ContactForm />
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           {/* Brand */}
           <div>
-            <Link href="/" className="font-display font-bold text-xl text-foreground">
-              Cole Bonawitz
+            <Link href="/" className="inline-flex items-center gap-2 font-display font-bold text-2xl text-foreground">
+              <span className="inline-flex items-center justify-center w-12 h-12 bg-background">
+                <Image
+                  src="/images/cblogo.png"
+                  alt="CB logo"
+                  width={40}
+                  height={40}
+                  className="w-10 h-10 object-contain"
+                />
+              </span>
+              <span>Cole Bonawitz</span>
             </Link>
             <p className="mt-3 text-sm text-muted leading-relaxed max-w-xs">
               Open to startup internships, founder&apos;s office roles,

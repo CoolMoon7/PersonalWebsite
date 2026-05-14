@@ -15,6 +15,9 @@ export interface Project {
   name: string;
   tagline: string;
   description: string;
+  websiteUrl?: string;
+  instagramUrl?: string;
+  projectPageImage?: string;
   tags: string[];
   metrics: ProjectMetric[];
   thumbnail: string;
@@ -32,12 +35,57 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: "wind",
+    name: "Wind",
+    tagline:
+      "Usage-based credit billing infrastructure for AI apps.",
+    description:
+      "AI products have variable compute costs, and subscriptions are a bad fit for casual users. Wind is a prepaid usage-based credit system that gives developers a clean way to monetize AI features — add credits to your app in one day.",
+    websiteUrl: "https://wind-landing.vercel.app/",
+    projectPageImage: "/images/WindLanding.png",
+    tags: ["Product Strategy", "AI", "Developer Tools", "Monetization", "Fintech"],
+    metrics: [
+      { value: "Usage-Based", label: "AI monetization model" },
+      { value: "Prepaid", label: "Credit billing system" },
+      { value: "1-Day", label: "Developer integration target" },
+      { value: "Accelerator", label: "Funding target" },
+    ],
+    thumbnail: "/images/Wind%20Logo.png",
+    color: "from-blue-500/20 to-violet-500/20",
+    sections: {
+      problem:
+        "AI apps face a unique pricing challenge: compute costs are variable and unpredictable. Flat subscriptions leave casual users overpaying and power users underserved. Pay-per-use billing is complex to build and maintain, creating friction for developers who want to focus on their product, not their payment infrastructure.",
+      built:
+        "Wind is a developer-facing billing layer that lets any AI app offer prepaid usage-based credits. Users buy credit packs, spend them as they use AI features, and top up when they run low. Developers integrate with a simple API — no complex metering infrastructure needed. The system handles credit allocation, usage tracking, low-balance alerts, and automatic top-ups.",
+      role:
+        "Led market research across 40+ AI apps to map pricing models and identify the credit billing gap. Defined the product strategy, designed the developer experience, created the landing page, and developed accelerator applications. Directed the prototype architecture and API design.",
+      growth:
+        "Positioning Wind as a developer-first billing wedge with a clear GTM: target indie AI developers and small teams building on OpenAI/Anthropic APIs. Content strategy focused on the 'AI pricing problem' through blog posts and developer community engagement. Long-term vision: become the universal credit layer for AI tools.",
+      results: [
+        { value: "40+", label: "AI apps researched", proof: "Deep market understanding" },
+        { value: "Usage-Based", label: "Credit model designed", proof: "Aligned cost to value" },
+        { value: "1-Day", label: "Integration target", proof: "Developer-first simplicity" },
+        { value: "Universal", label: "Credit layer vision", proof: "Platform potential" },
+      ],
+      lessons: [
+        "AI pricing is broken — subscriptions penalize casual users and leave money on the table for power users.",
+        "Developer tools win by reducing integration friction to near-zero. If it takes more than a day, most indie devs won't bother.",
+        "The credit model creates natural expansion revenue: as users build habits, they spend more without needing a sales conversation.",
+        "Positioning matters as much as product. 'Usage-based credits' is a feature; 'the Stripe for AI billing' is a company.",
+      ],
+    },
+    media: [],
+  },
+  {
     slug: "momnt",
     name: "Momnt",
     tagline:
       "Consumer app + NFC wearable for intentional screen-time behavior change.",
     description:
       "Momnt is a screen-time reduction product combining a physical NFC wristband with a companion mobile app. When users feel the urge to mindlessly scroll, they tap the band to log the moment and redirect their attention. Built to create a habit loop strong enough to change daily phone behavior.",
+    websiteUrl: "https://getmomnt.com/",
+    instagramUrl: "https://www.instagram.com/momnt.official/",
+    projectPageImage: "/images/momntangledblueblackdouble%20copy.png",
     tags: ["React Native", "NFC", "Hardware", "Consumer", "Meta Ads", "Behavior Design"],
     metrics: [
       { value: "600", label: "Wristbands manufactured" },
@@ -45,7 +93,7 @@ export const projects: Project[] = [
       { value: "100+", label: "Daily active testers" },
       { value: "1+ hr", label: "Avg. screen time reduced" },
     ],
-    thumbnail: "/images/momntangledblueblackdouble%20copy.png",
+    thumbnail: "/images/momntbannerportfolio.png",
     color: "from-orange-500/20 to-amber-500/20",
     sections: {
       problem:
@@ -72,53 +120,6 @@ export const projects: Project[] = [
     },
     media: [
       { type: "image", src: "/images/momntangledblueblackdouble%20copy.png", alt: "Momnt NFC wristband" },
-      { type: "image", src: "https://images.unsplash.com/photo-1434494878577-86c23bcb06b9?auto=format&fit=crop&w=800&q=80", alt: "NFC wristband" },
-      { type: "image", src: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80", alt: "Onboarding flow" },
-      { type: "image", src: "https://images.unsplash.com/photo-1563986768609-322da13575f2?auto=format&fit=crop&w=800&q=80", alt: "Meta ad creative" },
-    ],
-  },
-  {
-    slug: "wind",
-    name: "Wind",
-    tagline:
-      "Usage-based credit billing infrastructure for AI apps.",
-    description:
-      "AI products have variable compute costs, and subscriptions are a bad fit for casual users. Wind is a prepaid usage-based credit system that gives developers a clean way to monetize AI features — add credits to your app in one day.",
-    tags: ["Product Strategy", "AI", "Developer Tools", "Monetization", "Fintech"],
-    metrics: [
-      { value: "Usage-Based", label: "AI monetization model" },
-      { value: "Prepaid", label: "Credit billing system" },
-      { value: "1-Day", label: "Developer integration target" },
-      { value: "Accelerator", label: "Funding target" },
-    ],
-    thumbnail: "https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&w=800&q=80",
-    color: "from-blue-500/20 to-violet-500/20",
-    sections: {
-      problem:
-        "AI apps face a unique pricing challenge: compute costs are variable and unpredictable. Flat subscriptions leave casual users overpaying and power users underserved. Pay-per-use billing is complex to build and maintain, creating friction for developers who want to focus on their product, not their payment infrastructure.",
-      built:
-        "Wind is a developer-facing billing layer that lets any AI app offer prepaid usage-based credits. Users buy credit packs, spend them as they use AI features, and top up when they run low. Developers integrate with a simple API — no complex metering infrastructure needed. The system handles credit allocation, usage tracking, low-balance alerts, and automatic top-ups.",
-      role:
-        "Led market research across 40+ AI apps to map pricing models and identify the credit billing gap. Defined the product strategy, designed the developer experience, created the landing page, and developed accelerator applications. Directed the prototype architecture and API design.",
-      growth:
-        "Positioning Wind as a developer-first billing wedge with a clear GTM: target indie AI developers and small teams building on OpenAI/Anthropic APIs. Content strategy focused on the 'AI pricing problem' through blog posts and developer community engagement. Long-term vision: become the universal credit layer for AI tools.",
-      results: [
-        { value: "40+", label: "AI apps researched", proof: "Deep market understanding" },
-        { value: "Usage-Based", label: "Credit model designed", proof: "Aligned cost to value" },
-        { value: "1-Day", label: "Integration target", proof: "Developer-first simplicity" },
-        { value: "Universal", label: "Credit layer vision", proof: "Platform potential" },
-      ],
-      lessons: [
-        "AI pricing is broken — subscriptions penalize casual users and leave money on the table for power users.",
-        "Developer tools win by reducing integration friction to near-zero. If it takes more than a day, most indie devs won't bother.",
-        "The credit model creates natural expansion revenue: as users build habits, they spend more without needing a sales conversation.",
-        "Positioning matters as much as product. 'Usage-based credits' is a feature; 'the Stripe for AI billing' is a company.",
-      ],
-    },
-    media: [
-      { type: "image", src: "https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&w=800&q=80", alt: "Wind dashboard concept" },
-      { type: "image", src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80", alt: "API flow diagram" },
-      { type: "image", src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80", alt: "Pricing model" },
     ],
   },
   {
@@ -128,6 +129,9 @@ export const projects: Project[] = [
       "Built and scaled a 3D-printed Formula 1 wall art brand across Shopify, Etsy, and social.",
     description:
       "RizeMaps is a 3D-printed F1 circuit wall art brand I built from zero to $135K+ in revenue. I handled everything: product design, 3D modeling, operating a 12-printer production system, marketplace SEO, Meta ads, TikTok/Instagram content creation, and fulfillment for 3,500+ orders.",
+    websiteUrl: "https://rizemaps.com/",
+    instagramUrl: "https://www.instagram.com/rizemaps/",
+    projectPageImage: "/images/RizeMaps1%20copy.png",
     tags: ["Shopify", "3D Printing", "SEO", "Meta Ads", "TikTok", "UGC", "Operations"],
     metrics: [
       { value: "$135K+", label: "Revenue generated" },
@@ -135,7 +139,7 @@ export const projects: Project[] = [
       { value: "1,000+", label: "Five-star reviews" },
       { value: "12", label: "3D printers in production" },
     ],
-    thumbnail: "/images/RizeMaps1%20copy.png",
+    thumbnail: "/images/rizemapsbanner.png",
     color: "from-emerald-500/20 to-teal-500/20",
     sections: {
       problem:
@@ -164,11 +168,6 @@ export const projects: Project[] = [
     },
     media: [
       { type: "image", src: "/images/RizeMaps1%20copy.png", alt: "RizeMaps product showcase" },
-      { type: "image", src: "https://images.unsplash.com/photo-1581783898377-1c85bf937427?auto=format&fit=crop&w=800&q=80", alt: "3D printer farm" },
-      { type: "image", src: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80", alt: "Shopify store" },
-      { type: "image", src: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80", alt: "Product reviews" },
-      { type: "image", src: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=800&q=80", alt: "Social media content" },
-      { type: "image", src: "https://images.unsplash.com/photo-1586880244406-556ebe35f282?auto=format&fit=crop&w=800&q=80", alt: "Packaging and fulfillment" },
     ],
   },
   {
@@ -178,6 +177,8 @@ export const projects: Project[] = [
       "AI-assisted CRM and outreach system leveraging the Duke network for tutoring growth.",
     description:
       "Built an automated outreach and CRM system to scale a tutoring business within the Duke student network. Combined AI-assisted message generation with systematic LinkedIn and email workflows to create a repeatable GTM engine.",
+    websiteUrl: "https://www.swooptutors.com/",
+    projectPageImage: "/images/SWOOPTUTORS.png",
     tags: ["CRM", "AI", "Outreach", "Automation", "LinkedIn", "Growth"],
     metrics: [
       { value: "5,000+", label: "Outreach messages sent" },
@@ -185,7 +186,7 @@ export const projects: Project[] = [
       { value: "AI-Assisted", label: "Message automation" },
       { value: "Team", label: "Workflow system" },
     ],
-    thumbnail: "/images/SWOOPTUTORS.png",
+    thumbnail: "/images/swooptutorslogo.png",
     color: "from-cyan-500/20 to-blue-500/20",
     sections: {
       problem:
@@ -211,62 +212,16 @@ export const projects: Project[] = [
     },
     media: [
       { type: "image", src: "/images/SWOOPTUTORS.png", alt: "Swoop Tutors" },
-      { type: "image", src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80", alt: "CRM dashboard" },
-      { type: "image", src: "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=800&q=80", alt: "Outreach workflow" },
-    ],
-  },
-  {
-    slug: "web-dev",
-    name: "Web Development & AI Builds",
-    tagline:
-      "Websites, mobile apps, prototypes, and AI-assisted builds across multiple frameworks.",
-    description:
-      "A collection of web and mobile projects built with modern frameworks. From client websites to AI-powered prototypes, these builds showcase technical range across the full stack — including projects built with Claude and Cursor as AI coding partners.",
-    tags: ["Next.js", "React Native", "Firebase", "Vercel", "Python", "AI Coding"],
-    metrics: [
-      { value: "Next.js", label: "Primary framework" },
-      { value: "React Native", label: "Mobile development" },
-      { value: "Firebase", label: "Backend services" },
-      { value: "AI-Assisted", label: "Claude/Cursor workflows" },
-    ],
-    thumbnail: "/images/TenantFlowAIWebProject.png",
-    color: "from-indigo-500/20 to-purple-500/20",
-    sections: {
-      problem:
-        "Each project in this collection addressed a different need: client businesses needing web presence, startup ideas requiring rapid prototyping, or tools I built to solve my own problems. The common thread is using modern frameworks and AI-assisted coding to ship faster.",
-      built:
-        "A range of projects including: client websites for local businesses (Shopify customization, multi-page static sites), the Wind landing page (Next.js + Vercel), the Momnt companion app (React Native + Firebase), Python automation scripts, and various prototypes built with Claude Code and Cursor as AI coding assistants. Each project pushed different parts of the stack.",
-      role:
-        "Full-stack developer on all projects. Handled design, frontend, backend, deployment, and client communication. Increasingly leveraged AI coding tools (Claude, Cursor) to accelerate development velocity — treating them as pair-programming partners rather than code generators.",
-      growth:
-        "These projects served different growth goals: client websites drove local business visibility, the Momnt app supported user acquisition, and the AI-built prototypes validated product ideas in hours instead of weeks. The meta-skill was learning to ship faster with each iteration.",
-      results: [
-        { value: "Multiple", label: "Client sites launched", proof: "Delivery and client management" },
-        { value: "Full-Stack", label: "Technical range", proof: "Frontend, backend, mobile, AI" },
-        { value: "AI-Paired", label: "Development workflow", proof: "Modern tooling adoption" },
-        { value: "Rapid", label: "Prototype velocity", proof: "Idea to deployed in hours" },
-      ],
-      lessons: [
-        "AI coding tools are a multiplier, not a replacement. The best results come from knowing what to ask for and how to evaluate the output.",
-        "Shipping client work teaches you more about real-world constraints than any personal project. Deadlines, feedback, and scope management are the real skills.",
-        "Framework choice matters less than shipping speed. Pick what you know, build fast, and optimize later.",
-        "Every project is a learning budget. Even small builds teach patterns that compound across future work.",
-      ],
-    },
-    media: [
-      { type: "image", src: "/images/TenantFlowAIWebProject.png", alt: "TenantFlow AI web project" },
-      { type: "image", src: "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=800&q=80", alt: "Web development" },
-      { type: "image", src: "https://images.unsplash.com/photo-1618761714954-0b8cd0026356?auto=format&fit=crop&w=800&q=80", alt: "Mobile app" },
-      { type: "image", src: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80", alt: "AI coding tools" },
     ],
   },
   {
     slug: "dukeengage",
-    name: "DukeEngage / Makerere",
+    name: "DukeEngage in Uganda",
     tagline:
       "Low-cost medical device innovation for neonatal care in Uganda.",
     description:
       "Through the DukeEngage program at Makerere University in Kampala, Uganda, I worked on designing a low-cost medical device to reduce the burden of manual neonatal monitoring in resource-constrained hospitals. The project won first place at the Makerere innovation competition.",
+    projectPageImage: "/images/DukeEngageUganda.png",
     tags: ["Medical Device", "Social Impact", "Hardware", "Design", "Research"],
     metrics: [
       { value: "8 Weeks", label: "Intensive program" },
@@ -300,8 +255,6 @@ export const projects: Project[] = [
     },
     media: [
       { type: "image", src: "/images/DukeEngageUganda.png", alt: "DukeEngage Uganda fieldwork" },
-      { type: "image", src: "https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=800&q=80", alt: "Uganda fieldwork" },
-      { type: "image", src: "https://images.unsplash.com/photo-1582719471384-894fbb16f461?auto=format&fit=crop&w=800&q=80", alt: "Innovation competition" },
     ],
   },
 ];

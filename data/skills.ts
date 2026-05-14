@@ -7,7 +7,7 @@ export interface SkillGroup {
 export const skillGroups: SkillGroup[] = [
   {
     title: "Product & Design",
-    icon: "✦",
+    icon: "product",
     skills: [
       "Figma",
       "Framer",
@@ -19,7 +19,7 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     title: "Engineering",
-    icon: "⚡",
+    icon: "engineering",
     skills: [
       "Python",
       "JavaScript / TypeScript",
@@ -34,7 +34,7 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     title: "E-commerce & Growth",
-    icon: "📈",
+    icon: "growth",
     skills: [
       "Shopify",
       "Etsy",
@@ -51,7 +51,7 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     title: "Operations & Manufacturing",
-    icon: "🏭",
+    icon: "operations",
     skills: [
       "3D Printing",
       "CAD / 3D Modeling",
@@ -63,7 +63,7 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     title: "Analytics & Automation",
-    icon: "🔬",
+    icon: "analytics",
     skills: [
       "Firebase Analytics",
       "Meta Pixel",
@@ -72,6 +72,22 @@ export const skillGroups: SkillGroup[] = [
       "Clay",
       "CRM Building",
       "AI Workflows",
+    ],
+  },
+  {
+    title: "Sales & GTM",
+    icon: "sales",
+    skills: [
+      "Customer Discovery",
+      "Founder-Led Sales",
+      "Cold Outreach",
+      "Lead Generation",
+      "CRM Systems",
+      "User Interviews",
+      "GTM Strategy",
+      "Partnerships",
+      "Sales Calls",
+      "Clay",
     ],
   },
 ];

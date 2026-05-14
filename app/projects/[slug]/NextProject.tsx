@@ -41,7 +41,7 @@ export default function NextProject({ project }: { project: Project }) {
             </h3>
             <p className="text-muted leading-relaxed">{project.tagline}</p>
             <div className="flex items-center gap-2 mt-3 text-sm font-medium text-accent group-hover:text-accent-light transition-colors">
-              <span>View case study</span>
+              <span>View project</span>
               <svg
                 className="w-4 h-4 group-hover:translate-x-1 transition-transform"
                 fill="none"
