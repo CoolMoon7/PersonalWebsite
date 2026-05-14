@@ -34,11 +34,6 @@ export default function Hero() {
                 priority
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
-              <div className="absolute bottom-0 left-0 right-0 flex items-end">
-                <span className="font-display font-bold text-3xl md:text-4xl tracking-tight text-background w-full text-left">
-                  Cole Bonawitz
-                </span>
-              </div>
             </div>
           </motion.div>
 
