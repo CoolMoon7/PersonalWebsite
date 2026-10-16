@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: { default: site.title, template: "%s — Cole Bonawitz" },
   description: site.description,
-  icons: { icon: "/images/faveconcb.png", apple: "/images/faveconcb.png" },
+  icons: { icon: "/images/logo.png", apple: "/images/logo.png" },
   alternates: { canonical: "/" },
   openGraph: {
     title: site.title,
