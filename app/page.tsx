@@ -141,52 +141,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---------------- Method ---------------- */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-28">
-        <SectionHead id="method" index="03" kicker="Method" title="Every system runs the same loop.">
-          ICP in, meetings out, with data flowing back into targeting.
-        </SectionHead>
-        <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-px bg-line border border-line rounded-2xl overflow-hidden">
-          {method.map((m, i) => (
-            <li key={m.k} className="relative bg-white p-5">
-              <div className="flex items-center justify-between mb-6">
-                <span className="font-mono text-[11px] text-accent">{m.k}</span>
-                {i < method.length - 1 && <span className="hidden lg:block font-mono text-faint text-[12px]">→</span>}
-                {i === method.length - 1 && <span className="hidden lg:block font-mono text-faint text-[12px]">↺</span>}
-              </div>
-              <h3 className="text-[15px] font-semibold tracking-[-0.01em]">{m.title}</h3>
-              <p className="text-[13.5px] text-muted leading-relaxed mt-2">{m.body}</p>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      {/* ---------------- Writing ---------------- */}
-      {posts.length > 0 && (
-        <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-28">
-          <SectionHead index="04" kicker="Writing" title="Notes on modern outbound.">
-            <Link href="/writing" className="text-foreground underline underline-offset-4 decoration-line-2 hover:decoration-foreground">
-              All writing →
-            </Link>
-          </SectionHead>
-          <div className="border-t border-line">
-            {posts.map((p) => (
-              <Link key={p.slug} href={`/writing/${p.slug}`} className="group grid grid-cols-1 md:grid-cols-[140px_1fr_auto] gap-2 md:gap-8 py-6 border-b border-line">
-                <span className="font-mono text-[12px] text-muted pt-1">{formatDate(p.date)}</span>
-                <span>
-                  <span className="block text-[18px] font-medium tracking-[-0.01em] group-hover:text-accent transition-colors">{p.title}</span>
-                  <span className="block text-[14.5px] text-muted mt-1.5 leading-relaxed">{p.summary}</span>
-                </span>
-                <span className="hidden md:block font-mono text-[12px] text-faint pt-1">{p.readingMinutes} min</span>
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
-
       {/* ---------------- About ---------------- */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-28">
-        <SectionHead id="about" index="05" kicker="About" title="Engineer by training, operator by habit." />
+        <SectionHead id="about" index="03" kicker="About" title="Engineer by training, operator by habit." />
         <div className="grid grid-cols-1 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-6">
           <div className="panel overflow-hidden relative aspect-[4/5] md:aspect-auto md:min-h-[460px]">
             <Image
@@ -233,6 +190,49 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ---------------- Method ---------------- */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-28">
+        <SectionHead id="method" index="04" kicker="Method" title="Every system runs the same loop.">
+          ICP in, meetings out, with data flowing back into targeting.
+        </SectionHead>
+        <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-px bg-line border border-line rounded-2xl overflow-hidden">
+          {method.map((m, i) => (
+            <li key={m.k} className="relative bg-white p-5">
+              <div className="flex items-center justify-between mb-6">
+                <span className="font-mono text-[11px] text-accent">{m.k}</span>
+                {i < method.length - 1 && <span className="hidden lg:block font-mono text-faint text-[12px]">→</span>}
+                {i === method.length - 1 && <span className="hidden lg:block font-mono text-faint text-[12px]">↺</span>}
+              </div>
+              <h3 className="text-[15px] font-semibold tracking-[-0.01em]">{m.title}</h3>
+              <p className="text-[13.5px] text-muted leading-relaxed mt-2">{m.body}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      {/* ---------------- Writing ---------------- */}
+      {posts.length > 0 && (
+        <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-28">
+          <SectionHead index="05" kicker="Writing" title="Notes on modern outbound.">
+            <Link href="/writing" className="text-foreground underline underline-offset-4 decoration-line-2 hover:decoration-foreground">
+              All writing →
+            </Link>
+          </SectionHead>
+          <div className="border-t border-line">
+            {posts.map((p) => (
+              <Link key={p.slug} href={`/writing/${p.slug}`} className="group grid grid-cols-1 md:grid-cols-[140px_1fr_auto] gap-2 md:gap-8 py-6 border-b border-line">
+                <span className="font-mono text-[12px] text-muted pt-1">{formatDate(p.date)}</span>
+                <span>
+                  <span className="block text-[18px] font-medium tracking-[-0.01em] group-hover:text-accent transition-colors">{p.title}</span>
+                  <span className="block text-[14.5px] text-muted mt-1.5 leading-relaxed">{p.summary}</span>
+                </span>
+                <span className="hidden md:block font-mono text-[12px] text-faint pt-1">{p.readingMinutes} min</span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* ---------------- Contact ---------------- */}
       <section id="contact" className="scroll-mt-24 max-w-6xl mx-auto px-4 sm:px-6 mt-28">
