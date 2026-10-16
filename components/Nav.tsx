@@ -13,10 +13,7 @@ export default function Nav() {
     <header className="sticky top-0 z-50 border-b border-line/80 bg-white/75 backdrop-blur-xl">
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5 group">
-          <span className="w-7 h-7 rounded-lg bg-foreground text-white font-mono text-[11px] font-semibold flex items-center justify-center">
-            cb
-          </span>
-          <span className="text-[14px] font-medium tracking-tight">Cole Bonawitz</span>
+          <span className="text-[15px] font-semibold tracking-tight">Cole Bonawitz</span>
           <span className="hidden sm:inline font-mono text-[11px] text-faint">/ gtm engineer</span>
         </Link>
 
