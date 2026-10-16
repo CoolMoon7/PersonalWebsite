@@ -4,9 +4,9 @@ import { site } from "@/data/site";
 
 const links = [
   { label: "Systems", href: "/#systems" },
+  { label: "About", href: "/#about" },
   { label: "Method", href: "/#method" },
   { label: "Writing", href: "/writing" },
-  { label: "About", href: "/#about" },
 ];
 
 export default function Nav() {
