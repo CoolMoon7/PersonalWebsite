@@ -1,49 +1,36 @@
-import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["400", "500", "600", "700", "800", "900"],
-});
+import { site } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "Cole Bonawitz — Product + Growth Builder",
-  description:
-    "Duke CS student and startup operator who builds consumer products, AI tools, and distribution systems. $135K+ e-commerce revenue, 5M+ social views, 3,500+ orders shipped.",
-  icons: {
-    icon: "/images/faveconcb.png",
-    shortcut: "/images/faveconcb.png",
-    apple: "/images/faveconcb.png",
-  },
+  metadataBase: new URL(site.url),
+  title: { default: site.title, template: "%s — Cole Bonawitz" },
+  description: site.description,
+  icons: { icon: "/images/faveconcb.png", apple: "/images/faveconcb.png" },
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Cole Bonawitz — Product + Growth Builder",
-    description:
-      "I build, launch, and grow internet products. Duke CS student and startup operator.",
+    title: site.title,
+    description: site.description,
+    url: site.url,
+    siteName: site.name,
     type: "website",
   },
+  twitter: { card: "summary_large_image", title: site.title, description: site.description },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export const viewport: Viewport = { themeColor: "#ffffff" };
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
-      <body className="min-h-screen bg-background text-foreground antialiased">
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+      <body className="min-h-screen antialiased">
+        <div className="bg-field" aria-hidden />
         <Nav />
-        <main className="flex-1">{children}</main>
+        <main>{children}</main>
         <Footer />
       </body>
     </html>
