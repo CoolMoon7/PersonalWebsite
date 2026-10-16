@@ -328,8 +328,8 @@ export const systems: System[] = [
     name: "Retention + discovery loop",
     client: "Momnt",
     category: "Lifecycle",
-    status: "Shipped",
-    period: "Oct 2025 – May 2026",
+    status: "Live",
+    period: "Oct 2025 — present",
     role: "Co-founder · Head of Product",
     oneLiner:
       "300+ discovery interviews defined the ICP; per-session usage in Firestore plus automated win-back surveys turned a hardware + app product into 85% two-month retention.",

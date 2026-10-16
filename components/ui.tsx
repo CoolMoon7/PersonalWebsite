@@ -40,7 +40,7 @@ export function Status({ s }: { s: System["status"] }) {
   return (
     <span className={`chip ${statusStyle[s]}`}>
       {s === "Live" ? <span className="live-dot" /> : s === "Building" ? <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" /> : <span className="w-1.5 h-1.5 rounded-full bg-ink-2" />}
-      {s.toLowerCase()}
+      {s === "Live" ? "live · autopilot" : s.toLowerCase()}
     </span>
   );
 }

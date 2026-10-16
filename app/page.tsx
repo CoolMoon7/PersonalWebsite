@@ -22,7 +22,7 @@ export default function Home() {
       <section className="max-w-6xl mx-auto px-4 sm:px-6 pt-16 sm:pt-24">
         <div className="rise flex flex-wrap items-center gap-3 mb-8">
           <span className="chip">
-            <span className="live-dot" /> Open to GTM engineering roles + projects
+            <span className="live-dot" /> Systems on autopilot · open to new projects
           </span>
           <span className="chip hidden sm:inline-flex">Duke CS · &apos;28</span>
         </div>
