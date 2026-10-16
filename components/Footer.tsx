@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { site } from "@/data/site";
 
 export default function Footer() {
@@ -6,7 +7,7 @@ export default function Footer() {
     <footer className="border-t border-line mt-24">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 flex flex-col sm:flex-row gap-6 sm:items-center justify-between">
         <div className="flex items-center gap-3">
-          <span className="w-6 h-6 rounded-md bg-foreground text-white font-mono text-[10px] font-semibold flex items-center justify-center">cb</span>
+          <Image src="/images/logo.png" alt="" width={20} height={20} className="w-5 h-5" />
           <span className="font-mono text-[12px] text-muted">© {new Date().getFullYear()} Cole Bonawitz · colebonawitz.com</span>
         </div>
         <div className="flex flex-wrap gap-x-5 gap-y-2 font-mono text-[12px] text-muted">
