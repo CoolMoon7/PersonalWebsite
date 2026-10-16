@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { site } from "@/data/site";
 
 const links = [
@@ -13,6 +14,7 @@ export default function Nav() {
     <header className="sticky top-0 z-50 border-b border-line/80 bg-white/75 backdrop-blur-xl">
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5 group">
+          <Image src="/images/faveconcb.png" alt="" width={26} height={26} priority className="w-[26px] h-[26px]" />
           <span className="text-[15px] font-semibold tracking-tight">Cole Bonawitz</span>
           <span className="hidden sm:inline font-mono text-[11px] text-faint">/ gtm engineer</span>
         </Link>
