@@ -99,14 +99,44 @@ export const summary = [
   { k: "Next step", v: "One email", d: "Four short answers. I reply within 24 hours." },
 ];
 
-/** What I would build, in the order a prospect moves through it. */
-export const flow = [
-  { k: "01", title: "Find", body: "Companies and people that match your ideal customer, from public data and verified lookups." },
-  { k: "02", title: "Research", body: "A short note on each one: who they are, what changed recently, why they fit." },
-  { k: "03", title: "Draft", body: "A personal message in your voice, based on that note. Not a template." },
-  { k: "04", title: "You approve", body: "You review and approve every message. Nothing sends until you say so." },
-  { k: "05", title: "Report", body: "Each week: prospects found, messages approved, replies and meetings booked." },
+/** The pipeline, in the order a prospect moves through it. `tools` are logo keys from components/Logo. */
+export const pipelineIntro = {
+  what: "A lead pipeline is the system that turns a definition of your ideal customer into booked conversations, without you doing the list-building, research or follow-up by hand.",
+  in: "Your ideal customer",
+  out: "Booked meetings",
+};
+
+/** The agents, in the order a prospect moves through them. `tools` are logo keys from components/Logo. */
+export const agents = [
+  { k: "01", agent: "Scout", title: "Find", kind: "agent", short: "Finds companies and people that fit your ideal customer.",
+    ins: ["firecrawl", "maps", "linkedin", "x"], outs: ["apollo", "clay"], handoff: "raw accounts + people" },
+  { k: "02", agent: "Enricher", title: "Enrich + verify", kind: "agent", short: "Finds working emails and verifies every one.",
+    ins: ["clay", "apollo", "hunter"], outs: ["zerobounce", "neverbounce"], handoff: "verified contacts" },
+  { k: "03", agent: "Analyst", title: "Research + score", kind: "agent", short: "Researches each company and scores the fit.",
+    ins: ["firecrawl", "perplexity", "crunchbase"], outs: ["claude", "openai"], handoff: "ranked, with a reason" },
+  { k: "04", agent: "Writer", title: "Draft", kind: "agent", short: "Writes a personal message in your voice.",
+    ins: ["doc", "sheets"], outs: ["claude", "openai"], handoff: "drafts to review" },
+  { k: "05", agent: "You", title: "You approve", kind: "gate", short: "Approve, edit or skip. Nothing sends without you.",
+    ins: ["slack", "gmail", "notion"], outs: [], handoff: "approved only" },
+  { k: "06", agent: "Courier", title: "Send + report", kind: "agent", short: "Sends, follows up, and logs replies to your CRM.",
+    ins: ["instantly", "gmail", "n8n"], outs: ["hubspot", "calendly", "postgres"], handoff: "" },
 ];
+
+/** The weekly tuning loop shown under the diagram. */
+export const tuning = {
+  title: "I tune it every week",
+  body: "The agents learn from what actually gets replies. Once a week I read the results, fix what is off, and update the system. You get a short note on what changed.",
+  steps: [
+    { t: "Read the results", d: "Replies, meetings and bounces, per agent." },
+    { t: "Update your voice document", d: "Your phrasing, tone and examples, so drafts sound like you." },
+    { t: "Retune the prompts + scoring", d: "Sharper targeting and better drafts each week." },
+  ],
+  voice: [
+    "Short sentences. No buzzwords.",
+    "Open with something I noticed about them.",
+    "Never say \"circle back\" or \"synergy\".",
+  ],
+};
 
 /** Illustrative only. Shown with a label saying so. */
 export const example = {

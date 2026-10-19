@@ -2,6 +2,7 @@ import {
   siHubspot, siZapier, siPython, siClaude, siMeta, siTiktok, siShopify, siPostgresql,
   siReact, siN8n, siPandas, siGooglesheets, siInstagram, siFirebase, siGmail, siEtsy,
   siSqlite, siGithub, siGoogleads, siTypescript, siNextdotjs, siVercel, siAirtable,
+  siX, siGooglemaps, siPerplexity, siNotion, siCalendly, siCrunchbase, siGoogledocs,
 } from "simple-icons";
 
 type SimpleIcon = { title: string; hex: string; path: string };
@@ -12,7 +13,18 @@ const si: Record<string, SimpleIcon> = {
   pandas: siPandas, sheets: siGooglesheets, instagram: siInstagram, firebase: siFirebase,
   gmail: siGmail, etsy: siEtsy, sqlite: siSqlite, github: siGithub, googleads: siGoogleads,
   typescript: siTypescript, nextjs: siNextdotjs, vercel: siVercel, airtable: siAirtable,
+  x: siX, maps: siGooglemaps, perplexity: siPerplexity, notion: siNotion, calendly: siCalendly,
+  crunchbase: siCrunchbase, docs: siGoogledocs,
 };
+
+/** Services without a bundled mark: a lettered tile in the brand colour, always labelled in text. */
+const tiles: Record<string, { title: string; letter: string; color: string }> = {
+  firecrawl: { title: "Firecrawl", letter: "F", color: "#f97316" },
+  hunter: { title: "Hunter", letter: "H", color: "#f2541b" },
+  zerobounce: { title: "ZeroBounce", letter: "Z", color: "#1f6feb" },
+  neverbounce: { title: "NeverBounce", letter: "N", color: "#16a34a" },
+  slack: { title: "Slack", letter: "S", color: "#611f69" },
+}
 
 const img: Record<string, string> = {
   clay: "Clay", apollo: "Apollo", openai: "OpenAI", linkedin: "LinkedIn",
@@ -31,11 +43,12 @@ const glyphs: Record<string, { title: string; d: string }> = {
   web: { title: "Web", d: "M12 2a10 10 0 110 20 10 10 0 010-20zm-1.5 2.2A8 8 0 004.1 11h3.4c.1-2.6.9-5 3-6.8zM13.5 4.2c2.1 1.8 2.9 4.2 3 6.8h3.4a8 8 0 00-6.4-6.8zM9.5 11h5c-.1-2.4-1-4.4-2.5-5.9C10.5 6.6 9.6 8.6 9.5 11zm0 2c.1 2.4 1 4.4 2.5 5.9 1.5-1.5 2.4-3.5 2.5-5.9h-5zm-5.4 0a8 8 0 006.4 6.8c-2.1-1.8-2.9-4.2-3-6.8H4.1zm12.4 0c-.1 2.6-.9 5-3 6.8a8 8 0 006.4-6.8h-3.4z" },
   db: { title: "Database", d: "M12 2c4.4 0 8 1.3 8 3v14c0 1.7-3.6 3-8 3s-8-1.3-8-3V5c0-1.7 3.6-3 8-3zm6 5.3C16.6 8 14.4 8.5 12 8.5S7.4 8 6 7.3V10c0 .6 2.4 1.5 6 1.5s6-.9 6-1.5V7.3zm0 5C16.6 13 14.4 13.5 12 13.5S7.4 13 6 12.3V15c0 .6 2.4 1.5 6 1.5s6-.9 6-1.5v-2.7z" },
   video: { title: "Video", d: "M3 5h13v14H3V5zm15 4l4-2v10l-4-2V9z" },
+  doc: { title: "Voice doc", d: "M6 2h9l5 5v15H6V2zm8 1.5V8h4.5L14 3.5zM8 12h8v1.6H8V12zm0 3.4h8V17H8v-1.6zM8 8.6h4v1.6H8V8.6z" },
   loop: { title: "Feedback loop", d: "M12 4a8 8 0 017.7 6H22l-3.5 4-3.5-4h2.6A6 6 0 006.3 9.4L4.6 8.3A8 8 0 0112 4zm-6.6 6L9 14H6.4a6 6 0 0011.3.6l1.7 1.1A8 8 0 014.3 14H2l3.4-4z" },
 };
 
 export function logoTitle(key: string) {
-  return si[key]?.title ?? img[key] ?? glyphs[key]?.title ?? key;
+  return si[key]?.title ?? img[key] ?? tiles[key]?.title ?? glyphs[key]?.title ?? key;
 }
 
 export default function Logo({
@@ -77,6 +90,19 @@ export default function Logo({
         loading="lazy"
         className={`rounded-[4px] ${mono ? "logo-mono" : ""} ${className}`}
       />
+    );
+  }
+  const t = tiles[name];
+  if (t) {
+    return (
+      <span
+        role="img"
+        aria-label={t.title}
+        className={`inline-grid place-items-center rounded-[4px] text-white font-semibold leading-none ${className}`}
+        style={{ width: size, height: size, background: t.color, fontSize: size * 0.62 }}
+      >
+        {t.letter}
+      </span>
     );
   }
   const g = glyphs[name] ?? glyphs.agent;

@@ -209,6 +209,15 @@ body {
   html { scroll-behavior: auto; }
 }
 
+/* Agent diagram spine: one continuous, seamless flow behind every card */
+.spine { position: absolute; left: 50%; width: 4px; transform: translateX(-50%); background-image: radial-gradient(circle, var(--color-accent) 1.5px, transparent 2px); background-size: 4px 12px; background-repeat: repeat-y; animation: spine-flow 0.9s linear infinite; }
+.spine::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 1.25px; transform: translateX(-50%); background: #c9cdd6; z-index: -1; }
+@keyframes spine-flow { to { background-position: 0 12px; } }
+/* Agent diagram wires */
+.wire { fill: none; stroke: #c9cdd6; stroke-width: 1.25; }
+@keyframes wire-dash { to { stroke-dashoffset: -12; } }
+.wire-flow { fill: none; stroke: var(--color-accent); stroke-width: 2.6; stroke-linecap: round; stroke-dasharray: 0.1 11.9; animation: wire-dash 0.9s linear infinite; }
+
 /* NodeStrip: a light pulse travelling along the connector */
 .wf-edge-css {
   background: linear-gradient(90deg, transparent, rgba(47, 91, 255, 0.9), transparent);

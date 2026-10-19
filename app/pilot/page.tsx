@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Workflow from "@/components/Workflow";
-import Logo from "@/components/Logo";
+import AgentSystem from "@/components/AgentSystem";
+import Logo, { logoTitle } from "@/components/Logo";
 import { Co, Greeting, PilotLink, RequestLink } from "@/components/Prepared";
 import { SectionHead, Arrow } from "@/components/ui";
 import { systems } from "@/data/systems";
 import { site, telemetry } from "@/data/site";
 import {
-  pilot, goodFit, notFit, phases, safeguards, faq, requestPrompts, summary, flow, example, nextSteps,
+  pilot, goodFit, notFit, phases, safeguards, faq, requestPrompts, summary, pipelineIntro, tuning, nextSteps,
 } from "@/data/pilot";
 
 export const metadata: Metadata = {
@@ -89,51 +90,61 @@ export default function PilotPage() {
 
       {/* ---------------- What I'd build ---------------- */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-28">
-        <SectionHead id="build" index="01" kicker="The system" title="What I would build for you.">
-          The same five steps for every client, tuned to how <Co fallback="your business" /> sells.
+        <SectionHead id="build" index="01" kicker="The system" title="The lead pipeline I build for you.">
+          Five agents and one human gate, tuned to how <Co fallback="your business" /> sells.
         </SectionHead>
-        <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-px bg-line border border-line rounded-2xl overflow-hidden">
-          {flow.map((f, i) => (
-            <li key={f.k} className="bg-white p-5 sm:last:col-span-2 lg:last:col-span-1">
-              <div className="flex items-center justify-between mb-6">
-                <span className="font-mono text-[11px] text-accent">{f.k}</span>
-                {i < flow.length - 1 && <span className="hidden lg:block font-mono text-faint text-[12px]">→</span>}
-              </div>
-              <h3 className="text-[15px] font-semibold tracking-[-0.01em]">{f.title}</h3>
-              <p className="text-[13.5px] text-muted leading-relaxed mt-2">{f.body}</p>
-            </li>
-          ))}
-        </ol>
 
-        {/* An illustrative output */}
-        <div className="panel mt-4 overflow-hidden">
-          <div className="flex items-center justify-between gap-3 border-b border-line px-5 py-3 bg-surface/60">
-            <span className="font-mono text-[11.5px] text-muted">example output · one prospect</span>
-            <span className="chip !h-6">illustrative example, not a real company</span>
+        <div className="panel p-5 sm:p-6 flex flex-col md:flex-row md:items-center gap-5 md:gap-8">
+          <p className="text-[15px] text-ink-2 leading-relaxed md:flex-1">{pipelineIntro.what}</p>
+          <div className="flex items-center gap-3 font-mono text-[12px] shrink-0">
+            <span className="chip">{pipelineIntro.in}</span>
+            <span className="text-accent">⟶</span>
+            <span className="chip !border-accent/40 text-accent">{pipelineIntro.out}</span>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
-            <div className="p-5 sm:p-6 md:border-r border-line">
-              <div className="text-[17px] font-semibold tracking-[-0.01em]">{example.prospect}</div>
-              <div className="font-mono text-[11.5px] text-muted mt-1">{example.meta}</div>
-              <dl className="mt-5 space-y-4 text-[14px]">
-                <div>
-                  <dt className="eyebrow mb-1">Signal</dt>
-                  <dd className="text-ink-2">{example.signal}</dd>
-                </div>
-                <div>
-                  <dt className="eyebrow mb-1">Why they fit</dt>
-                  <dd className="text-ink-2 leading-relaxed">{example.why}</dd>
-                </div>
-              </dl>
+        </div>
+
+        <div className="panel mt-4 p-5 sm:p-8">
+          <div className="flex flex-wrap items-center gap-2 mb-8">
+            <span className="chip">5 agents</span>
+            <span className="chip !border-accent/40 text-accent">1 human gate</span>
+            <span className="font-mono text-[11.5px] text-muted ml-1">Each agent has one job and is wired to the tools that job needs.</span>
+          </div>
+          <AgentSystem />
+        </div>
+
+        {/* Weekly tuning */}
+        <div className="panel mt-4 p-5 sm:p-8 grid grid-cols-1 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] gap-8 items-center">
+          <div>
+            <div className="flex items-center gap-2.5">
+              <Logo name="loop" size={18} />
+              <h3 className="text-[19px] font-semibold tracking-[-0.02em]">{tuning.title}</h3>
             </div>
-            <div className="p-5 sm:p-6">
-              <div className="eyebrow mb-2">Draft in your voice</div>
-              <p className="text-[14.5px] text-ink-2 leading-relaxed">{example.draft}</p>
-              <div className="mt-5 flex items-center gap-2 font-mono text-[11.5px] text-muted">
-                <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                {example.status}
-              </div>
+            <p className="text-[14.5px] text-muted leading-relaxed mt-2 max-w-xl">{tuning.body}</p>
+            <ol className="mt-5 space-y-3">
+              {tuning.steps.map((t, i) => (
+                <li key={t.t} className="flex gap-3.5">
+                  <span className="font-mono text-[11px] text-accent pt-0.5">{String(i + 1).padStart(2, "0")}</span>
+                  <div>
+                    <div className="text-[14.5px] font-medium">{t.t}</div>
+                    <div className="text-[13.5px] text-muted">{t.d}</div>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+          <div className="rounded-xl border border-line-2 bg-surface/60 p-4 font-mono text-[12px] text-ink-2">
+            <div className="flex items-center gap-2 text-muted mb-3">
+              <Logo name="doc" size={14} /> customer-voice.md
+              <span className="ml-auto chip !h-5 !text-[10px]">updated weekly</span>
             </div>
+            <ul className="space-y-2 leading-relaxed">
+              {tuning.voice.map((v) => (
+                <li key={v} className="flex gap-2">
+                  <span className="text-accent">+</span>
+                  {v}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
