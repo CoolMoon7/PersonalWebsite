@@ -4,6 +4,7 @@ import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import DotField from "@/components/DotField";
 import { site } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -28,7 +29,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <body className="min-h-screen antialiased">
-        <div className="bg-field" aria-hidden />
+        <div className="bg-field" aria-hidden>
+          <DotField />
+        </div>
         <Nav />
         <main>{children}</main>
         <Footer />
