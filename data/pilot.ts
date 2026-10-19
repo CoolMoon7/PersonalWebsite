@@ -107,34 +107,47 @@ export const pipelineIntro = {
 };
 
 /** The agents, in the order a prospect moves through them. `tools` are logo keys from components/Logo. */
-export const agents = [
+export type Dir = "in" | "out";
+
+type Agent = {
+  k: string; agent: string; title: string; kind: string; short: string;
+  ins: string[]; outs: string[]; dirs: Record<string, Dir>; handoff: string;
+};
+
+export const agents: Agent[] = [
   { k: "01", agent: "Scout", title: "Find", kind: "agent", short: "Finds companies and people that fit your ideal customer.",
-    ins: ["firecrawl", "maps", "linkedin", "x"], outs: ["apollo", "clay"], handoff: "raw accounts + people" },
+    ins: ["firecrawl", "maps", "linkedin", "x"], outs: ["apollo", "clay"], dirs: { firecrawl: "in", maps: "in", linkedin: "in", x: "in", apollo: "out", clay: "out" }, handoff: "raw accounts + people" },
   { k: "02", agent: "Enricher", title: "Enrich + verify", kind: "agent", short: "Finds working emails and verifies every one.",
-    ins: ["clay", "apollo", "hunter"], outs: ["zerobounce", "neverbounce"], handoff: "verified contacts" },
+    ins: ["clay", "apollo", "hunter"], outs: ["zerobounce", "neverbounce"], dirs: { clay: "in", apollo: "in", hunter: "in", zerobounce: "in", neverbounce: "in" }, handoff: "verified contacts" },
   { k: "03", agent: "Analyst", title: "Research + score", kind: "agent", short: "Researches each company and scores the fit.",
-    ins: ["firecrawl", "perplexity", "crunchbase"], outs: ["claude", "openai"], handoff: "ranked, with a reason" },
+    ins: ["firecrawl", "perplexity", "crunchbase"], outs: ["claude", "openai"], dirs: { firecrawl: "in", perplexity: "in", crunchbase: "in", claude: "in", openai: "in" }, handoff: "ranked, with a reason" },
   { k: "04", agent: "Writer", title: "Draft", kind: "agent", short: "Writes a personal message in your voice.",
-    ins: ["doc", "sheets"], outs: ["claude", "openai"], handoff: "drafts to review" },
+    ins: ["doc", "sheets"], outs: ["claude", "openai"], dirs: { doc: "in", sheets: "in", claude: "in", openai: "in" }, handoff: "drafts to review" },
   { k: "05", agent: "You", title: "You approve", kind: "gate", short: "Approve, edit or skip. Nothing sends without you.",
-    ins: ["slack", "gmail", "notion"], outs: [], handoff: "approved only" },
+    ins: ["slack", "gmail", "notion"], outs: [], dirs: { slack: "in", gmail: "in", notion: "in" }, handoff: "approved only" },
   { k: "06", agent: "Courier", title: "Send + report", kind: "agent", short: "Sends, follows up, and logs replies to your CRM.",
-    ins: ["instantly", "gmail", "n8n"], outs: ["hubspot", "calendly", "postgres"], handoff: "" },
+    ins: ["instantly", "gmail", "n8n"], outs: ["hubspot", "calendly", "postgres"], dirs: { instantly: "out", gmail: "out", n8n: "out", hubspot: "out", calendly: "in", postgres: "out" }, handoff: "" },
 ];
 
-/** The weekly tuning loop shown under the diagram. */
+/** The ongoing work shown under the diagram: the part that makes a pipeline keep working. */
 export const tuning = {
-  title: "I tune it every week",
-  body: "The agents learn from what actually gets replies. Once a week I read the results, fix what is off, and update the system. You get a short note on what changed.",
-  steps: [
-    { t: "Read the results", d: "Replies, meetings and bounces, per agent." },
-    { t: "Update your voice document", d: "Your phrasing, tone and examples, so drafts sound like you." },
-    { t: "Retune the prompts + scoring", d: "Sharper targeting and better drafts each week." },
+  title: "Then I keep it sharp, every week.",
+  body: "Building it is half the work. AI models, data providers and email rules change constantly, and a pipeline left alone goes stale. Keeping yours current, and learning from your results, is my ongoing job.",
+  items: [
+    { when: "Ongoing", t: "Track every new model and API", d: "New Claude, OpenAI and data-provider releases are tested on your real prospects before anything changes." },
+    { when: "Weekly", t: "Read the results", d: "Replies, meetings and bounces, broken down per agent." },
+    { when: "Weekly", t: "Retune scoring and prompts", d: "Who actually replies decides who gets targeted next." },
+    { when: "Weekly", t: "Grow your voice document", d: "Every edit you make becomes a rule, so drafts sound more like you." },
+    { when: "Daily", t: "Watch deliverability", d: "Mailbox health, bounce and spam rates are monitored so you stay out of spam." },
+    { when: "As needed", t: "Fix what breaks", d: "APIs change and sites move. I patch it before you notice." },
   ],
-  voice: [
-    "Short sentences. No buzzwords.",
-    "Open with something I noticed about them.",
-    "Never say \"circle back\" or \"synergy\".",
+  logTitle: "changelog · example week",
+  log: [
+    "Upgraded Analyst to the newest model after testing it on 50 past prospects.",
+    "Dropped two industries with zero replies from the target list.",
+    "Added 6 phrases from your edits to the voice document.",
+    "Swapped an email provider whose endpoint changed.",
+    "Raised warm-up on 2 mailboxes ahead of volume.",
   ],
 };
 

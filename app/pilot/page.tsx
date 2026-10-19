@@ -50,14 +50,14 @@ export default function PilotPage() {
           </span>
         </h1>
 
-        <div className="rise mt-7 flex flex-col sm:flex-row sm:items-center gap-5" style={{ "--rd": "0.12s" } as React.CSSProperties}>
+        <div className="rise mt-7 flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-7" style={{ "--rd": "0.12s" } as React.CSSProperties}>
           <Image
             src="/images/coletalking.png"
             alt="Cole Bonawitz"
-            width={56}
-            height={56}
+            width={160}
+            height={160}
             priority
-            className="w-14 h-14 rounded-full object-cover object-top border border-line flex-none"
+            className="w-24 h-24 sm:w-32 sm:h-32 rounded-full object-cover object-top border border-line flex-none"
           />
           <p className="text-[17px] sm:text-[18px] text-ink-2 leading-relaxed max-w-2xl">
             <Greeting />I&apos;m Cole. I put this page together for <Co fallback="you" /> so you can see exactly what
@@ -107,44 +107,43 @@ export default function PilotPage() {
           <div className="flex flex-wrap items-center gap-2 mb-8">
             <span className="chip">5 agents</span>
             <span className="chip !border-accent/40 text-accent">1 human gate</span>
-            <span className="font-mono text-[11.5px] text-muted ml-1">Each agent has one job and is wired to the tools that job needs.</span>
+            <span className="font-mono text-[11.5px] text-muted ml-1">Each agent has one job. The moving dots show which way data flows.</span>
           </div>
           <AgentSystem />
         </div>
 
-        {/* Weekly tuning */}
-        <div className="panel mt-4 p-5 sm:p-8 grid grid-cols-1 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] gap-8 items-center">
-          <div>
-            <div className="flex items-center gap-2.5">
-              <Logo name="loop" size={18} />
-              <h3 className="text-[19px] font-semibold tracking-[-0.02em]">{tuning.title}</h3>
-            </div>
-            <p className="text-[14.5px] text-muted leading-relaxed mt-2 max-w-xl">{tuning.body}</p>
-            <ol className="mt-5 space-y-3">
-              {tuning.steps.map((t, i) => (
-                <li key={t.t} className="flex gap-3.5">
-                  <span className="font-mono text-[11px] text-accent pt-0.5">{String(i + 1).padStart(2, "0")}</span>
-                  <div>
-                    <div className="text-[14.5px] font-medium">{t.t}</div>
-                    <div className="text-[13.5px] text-muted">{t.d}</div>
-                  </div>
-                </li>
-              ))}
-            </ol>
+        {/* Ongoing work */}
+        <div className="panel mt-4 p-5 sm:p-8">
+          <div className="flex items-center gap-2.5">
+            <Logo name="loop" size={18} />
+            <h3 className="text-[20px] sm:text-[24px] font-semibold tracking-[-0.025em]">{tuning.title}</h3>
           </div>
-          <div className="rounded-xl border border-line-2 bg-surface/60 p-4 font-mono text-[12px] text-ink-2">
-            <div className="flex items-center gap-2 text-muted mb-3">
-              <Logo name="doc" size={14} /> customer-voice.md
-              <span className="ml-auto chip !h-5 !text-[10px]">updated weekly</span>
-            </div>
-            <ul className="space-y-2 leading-relaxed">
-              {tuning.voice.map((v) => (
-                <li key={v} className="flex gap-2">
-                  <span className="text-accent">+</span>
-                  {v}
+          <p className="text-[14.5px] text-muted leading-relaxed mt-2.5 max-w-2xl">{tuning.body}</p>
+
+          <div className="mt-8 grid grid-cols-1 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] gap-8">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 content-start">
+              {tuning.items.map((t) => (
+                <li key={t.t}>
+                  <span className="chip !h-5 !text-[10px] font-mono text-accent">{t.when}</span>
+                  <div className="text-[15px] font-medium tracking-[-0.01em] mt-2">{t.t}</div>
+                  <div className="text-[13.5px] text-muted leading-relaxed mt-1">{t.d}</div>
                 </li>
               ))}
             </ul>
+            <div className="rounded-xl border border-line-2 bg-surface/60 p-4 font-mono text-[12px] text-ink-2 self-start">
+              <div className="flex items-center gap-2 text-muted mb-3">
+                <Logo name="doc" size={14} /> {tuning.logTitle}
+                <span className="ml-auto chip !h-5 !text-[10px]">sent to you weekly</span>
+              </div>
+              <ul className="space-y-2.5 leading-relaxed">
+                {tuning.log.map((v) => (
+                  <li key={v} className="flex gap-2">
+                    <span className="text-accent">+</span>
+                    {v}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>

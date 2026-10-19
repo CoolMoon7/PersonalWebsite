@@ -1,5 +1,5 @@
 import Logo, { logoTitle } from "@/components/Logo";
-import { agents, example } from "@/data/pilot";
+import { agents, example, type Dir } from "@/data/pilot";
 
 const SQ = 56; // tool square (px)
 const PITCH = 82; // square + label + gap
@@ -10,18 +10,26 @@ const GATE_H = 300;
 const rowH = (a: (typeof agents)[number]) =>
   a.kind === "gate" ? GATE_H : Math.max(Math.max(a.ins.length, a.outs.length) * PITCH - 6, CARD_H);
 
-/** One wire per tool: tool→agent on the input side, agent→tool on the output side, so dots flow left to right. */
-function Wires({ n, h, side, single = false }: { n: number; h: number; side: "in" | "out"; single?: boolean }) {
+/**
+ * One wire per tool. Dots flow the way data actually moves: "in" toward the agent (sources and answers coming back), "out" away from it (things it sends or saves).
+ */
+function Wires({ keys, dirs, h, side, single = false }: { keys: string[]; dirs: Record<string, Dir>; h: number; side: "in" | "out"; single?: boolean }) {
+  const n = keys.length;
   const top = (h - (n * PITCH - 6)) / 2;
   return (
     <svg className="flex-1 min-w-0 w-full" style={{ height: h }} viewBox={`0 0 100 ${h}`} preserveAspectRatio="none" aria-hidden>
-      {Array.from({ length: n }, (_, i) => {
+      {keys.map((k, i) => {
         const y = single ? h / 2 : top + i * PITCH + SQ / 2;
-        const d = side === "in" ? `M0 ${y} C 55 ${y}, 45 ${h / 2}, 100 ${h / 2}` : `M0 ${h / 2} C 55 ${h / 2}, 45 ${y}, 100 ${y}`;
+        const m = h / 2;
+        // The side only sets the geometry; flow direction comes from the data.
+        const toAgent = side === "in" ? `M0 ${y} C 55 ${y}, 45 ${m}, 100 ${m}` : `M100 ${y} C 45 ${y}, 55 ${m}, 0 ${m}`;
+        const fromAgent = side === "in" ? `M100 ${m} C 45 ${m}, 55 ${y}, 0 ${y}` : `M0 ${m} C 55 ${m}, 45 ${y}, 100 ${y}`;
+        const dir = dirs[k] ?? "in";
         return (
-          <g key={i}>
-            <path d={d} className="wire" vectorEffect="non-scaling-stroke" />
-            <path d={d} className="wire-flow" vectorEffect="non-scaling-stroke" />
+          <g key={k}>
+            <path d={toAgent} className="wire" vectorEffect="non-scaling-stroke" />
+            {dir === "in" && <path d={toAgent} className="wire-flow" vectorEffect="non-scaling-stroke" />}
+            {dir === "out" && <path d={fromAgent} className="wire-flow" vectorEffect="non-scaling-stroke" />}
           </g>
         );
       })}
@@ -117,7 +125,7 @@ export default function AgentSystem() {
             <div className="grid grid-cols-1 sm:grid-cols-[minmax(0,1fr)_248px_minmax(0,1fr)] items-center gap-y-4">
               <div className="hidden sm:flex items-center" style={{ height: h }}>
                 <TileCol keys={a.ins} />
-                <Wires n={a.ins.length} h={h} side="in" />
+                <Wires keys={a.ins} dirs={a.dirs} h={h} side="in" />
               </div>
 
               <div className={`relative z-10 panel px-4 py-4 ${gate ? "!border-accent/50" : "!border-line-2"}`} style={{ minHeight: CARD_H - 8 }}>
@@ -145,15 +153,15 @@ export default function AgentSystem() {
                 <p className="text-[12.5px] text-muted leading-snug mt-2.5">{a.short}</p>
               </div>
 
-              <div className="hidden sm:flex items-center" style={{ height: h }}>
+              <div className={`hidden ${gate ? "lg:flex" : "sm:flex"} items-center`} style={{ height: h }}>
                 {gate ? (
                   <>
-                    <Wires n={1} h={h} side="out" single />
+                    <Wires keys={["approval"]} dirs={{ approval: "in" }} h={h} side="out" single />
                     <ApprovalCard />
                   </>
                 ) : (
                   <>
-                    <Wires n={a.outs.length} h={h} side="out" />
+                    <Wires keys={a.outs} dirs={a.dirs} h={h} side="out" />
                     <TileCol keys={a.outs} />
                   </>
                 )}
@@ -166,7 +174,7 @@ export default function AgentSystem() {
                 ))}
               </div>
               {gate && (
-                <div className="sm:hidden">
+                <div className="lg:hidden sm:col-span-3 sm:flex sm:justify-center">
                   <ApprovalCard />
                 </div>
               )}
