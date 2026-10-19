@@ -12,7 +12,7 @@ import {
 } from "@/data/pilot";
 
 export const metadata: Metadata = {
-  title: "A custom lead pipeline, built for you",
+  title: "I build custom lead pipelines for your business",
   description:
     "A custom lead pipeline for your business, built in two weeks. You pay only if it works. Request a fit call.",
   alternates: { canonical: "/pilot" },
@@ -42,10 +42,10 @@ export default function PilotPage() {
           className="rise text-[42px] leading-[1.02] sm:text-[64px] lg:text-[76px] font-semibold tracking-[-0.045em] max-w-4xl"
           style={{ "--rd": "0.05s" } as React.CSSProperties}
         >
-          A lead pipeline,
+          I build custom lead pipelines
           <br />
           <span className="text-faint">
-            built for <Co fallback="your business" />.
+            for <Co fallback="your business" />.
           </span>
         </h1>
 
