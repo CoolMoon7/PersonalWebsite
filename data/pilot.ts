@@ -90,3 +90,37 @@ export const requestPrompts = [
   "How you find customers today",
   "What takes the most time",
 ];
+
+/** "In 30 seconds": the whole offer as four tiles. */
+export const summary = [
+  { k: "What", v: "A custom lead pipeline", d: "Finds, researches and queues your ideal customers." },
+  { k: "How long", v: "14 days", d: "From first call to a working system." },
+  { k: "Risk", v: "None", d: "If it misses the numbers we agree, you owe nothing." },
+  { k: "Next step", v: "One email", d: "Four short answers. I reply within 24 hours." },
+];
+
+/** What I would build, in the order a prospect moves through it. */
+export const flow = [
+  { k: "01", title: "Find", body: "Companies and people that match your ideal customer, from public data and verified lookups." },
+  { k: "02", title: "Research", body: "A short note on each one: who they are, what changed recently, why they fit." },
+  { k: "03", title: "Draft", body: "A personal message in your voice, based on that note. Not a template." },
+  { k: "04", title: "You approve", body: "You review and approve every message. Nothing sends until you say so." },
+  { k: "05", title: "Report", body: "Each week: prospects found, messages approved, replies and meetings booked." },
+];
+
+/** Illustrative only. Shown with a label saying so. */
+export const example = {
+  prospect: "Northwind Staffing",
+  meta: "42 people · Chattanooga, TN",
+  signal: "Hiring 3 account executives",
+  why: "Growing sales team, no visible outbound process, matches the ideal customer profile.",
+  draft:
+    "Hi Dana, I saw Northwind is hiring three account executives. A new rep usually spends their first month finding who to call. I build a system that does that research for them, so they start with a short list and a note on each company. Open to a quick 15-minute chat?",
+  status: "Awaiting your approval",
+};
+
+export const nextSteps = [
+  { when: "Within 24 hours", what: "I reply to your request, personally." },
+  { when: "30-minute call", what: "We talk through how you find customers today. I tell you honestly if I can help." },
+  { when: "Written scope", what: "If it is a fit, you get the scope, the success numbers and the fixed setup fee in writing. You decide." },
+];

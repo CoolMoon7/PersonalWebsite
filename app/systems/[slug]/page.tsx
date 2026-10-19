@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Workflow from "@/components/Workflow";
+import BackLink from "@/components/BackLink";
 import { Status, StackRow, Arrow } from "@/components/ui";
 import { systems, getSystem } from "@/data/systems";
 import { site } from "@/data/site";
@@ -64,9 +65,7 @@ export default async function SystemPage({ params }: { params: Promise<{ slug: s
 
   return (
     <article className="max-w-6xl mx-auto px-4 sm:px-6 pt-10 sm:pt-14">
-      <Link href="/#systems" className="font-mono text-[12px] text-muted hover:text-foreground">
-        ← all systems
-      </Link>
+      <BackLink />
 
       <header className="mt-6 rise">
         <div className="flex flex-wrap items-center gap-2">
