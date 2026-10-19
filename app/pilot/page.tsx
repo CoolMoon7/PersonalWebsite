@@ -94,7 +94,7 @@ export default function PilotPage() {
         </SectionHead>
         <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-px bg-line border border-line rounded-2xl overflow-hidden">
           {flow.map((f, i) => (
-            <li key={f.k} className="bg-white p-5">
+            <li key={f.k} className="bg-white p-5 sm:last:col-span-2 lg:last:col-span-1">
               <div className="flex items-center justify-between mb-6">
                 <span className="font-mono text-[11px] text-accent">{f.k}</span>
                 {i < flow.length - 1 && <span className="hidden lg:block font-mono text-faint text-[12px]">→</span>}

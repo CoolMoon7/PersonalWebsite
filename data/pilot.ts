@@ -110,12 +110,12 @@ export const flow = [
 
 /** Illustrative only. Shown with a label saying so. */
 export const example = {
-  prospect: "Northwind Staffing",
+  prospect: "Example Staffing Co.",
   meta: "42 people · Chattanooga, TN",
   signal: "Hiring 3 account executives",
   why: "Growing sales team, no visible outbound process, matches the ideal customer profile.",
   draft:
-    "Hi Dana, I saw Northwind is hiring three account executives. A new rep usually spends their first month finding who to call. I build a system that does that research for them, so they start with a short list and a note on each company. Open to a quick 15-minute chat?",
+    "Hi Dana, I saw Example Staffing is hiring three account executives. A new rep usually spends their first month finding who to call. I build a system that does that research for them, so they start with a short list and a note on each company. Open to a quick 15-minute chat?",
   status: "Awaiting your approval",
 };
 
