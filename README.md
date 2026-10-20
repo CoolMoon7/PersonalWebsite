@@ -35,3 +35,17 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 # PersonalWebsite
+
+
+## Loom pages: `/loom/[slug]`
+
+A personalised 60 second demo page for one company, rendered on the server with no client JavaScript. The page is not indexed (`noindex, follow`) and revalidates every 60 seconds.
+
+**Content.** One Supabase row per company in table `loom_pages`: `slug`, `content` (jsonb), `status`, `loom_url`, `sent_at`, `replied_at`, `account_count`. `content` follows `schema_version` 1 (company, at least 10 sourced accounts, required `stack`, required `system`, optional dashboard, ask, meta). `stack` is 4 to 10 objects `{name, role}`; plain strings are rejected. `system` is `{where, signal, chain, approval}`: `where` (1 to 4 `{source, detail}`) is shown under the Accounts heading, `signal` appears as "What I watch for", and `chain` (3 to 6 `{step, title, body}`) drives the flow section. `flow` is only a legacy override: when present it wins over `system.chain`, so already-stored rows keep rendering, but it is not required. `outreach` and `script` are optional generator output that the page ignores. `lib/loom.ts` fetches the row over the Supabase REST API with plain `fetch` and checks its shape. A missing, malformed or unreachable row is treated as no content.
+
+**Fallback.** `/loom/sample` always renders the bundled `data/loom/sample.json`, so it works with no environment variables. Any other slug without a valid row returns 404.
+
+**Env vars** (see `.env.local.example`, set the same two in Vercel):
+
+- `SUPABASE_URL`: project URL.
+- `SUPABASE_SECRET_KEY`: server-only secret. Never use a `NEXT_PUBLIC_` prefix.

@@ -11,7 +11,7 @@ const links = [
 
 export default function Nav() {
   return (
-    <header className="sticky top-0 z-50 border-b border-line/80 bg-white/75 backdrop-blur-xl">
+    <header id="site-nav" className="sticky top-0 z-50 border-b border-line/80 bg-white/75 backdrop-blur-xl">
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5 group">
           <Image src="/images/logo.png" alt="" width={26} height={26} priority className="w-[26px] h-[26px]" />
