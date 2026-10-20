@@ -39,7 +39,20 @@
       { "step": "approve", "title": "Your approval", "body": "Every draft waits for a person. Nothing sends on its own." },
       { "step": "replies", "title": "Replies", "body": "Tags each reply and feeds the outcome back into the scoring." }
     ],
-    "approval": "A person approves every draft before it sends."
+    "approval": "A person approves every draft before it sends.",
+    "steps": [
+      { "n": "01", "stage": "Collect", "kind": "agent", "name": "Scout", "blurb": "Pulls new posts, directory changes and attendee names every morning.", "inputs": ["X", "State hospital association directory", "Conference attendee list"], "output": "raw accounts" },
+      { "n": "02", "stage": "Match", "kind": "agent", "name": "Analyst", "blurb": "Scores each hospital by bed count, role and how recent the signal is.", "inputs": ["Directory scrape"], "output": "ranked, with a reason" },
+      { "n": "03", "stage": "Find the person", "kind": "agent", "name": "Enricher", "blurb": "Finds the IT director and verifies the email before anything is drafted.", "inputs": [], "output": "verified contacts" },
+      { "n": "04", "stage": "Draft", "kind": "agent", "name": "Writer", "blurb": "Writes one line about the exact post, role or session, then the offer.", "inputs": ["Hermes agents", "Supabase"], "output": "drafts to review" },
+      { "n": "05", "stage": "Your approval", "kind": "human", "name": "You", "blurb": "Every draft waits for a person. Nothing sends on its own.", "inputs": [], "output": "approved only" },
+      { "n": "06", "stage": "Replies", "kind": "agent", "name": "Courier", "blurb": "Tags each reply and feeds the outcome back into the scoring.", "inputs": [], "output": "" }
+    ],
+    "example": {
+      "prospect": "Marlowe Regional Medical Center",
+      "signal": "IT director posted on X in September about a phishing wave that hit the billing office and asked peers what training they run.",
+      "draft": "Hi [First], this is the signal that put you on the list: IT director posted on X in September about a phishing wave that hit the billing office and asked peers what training they run. I build the system that finds and researches 100 to 500 bed mid-market hospitals, so each week starts with a short list and a note on why each account came up. Open to 15 minutes?"
+    }
   },
   "stack": [
     { "name": "Hermes agents", "role": "Runs collection, matching and drafting as separate agents" },
