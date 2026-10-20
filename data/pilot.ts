@@ -1,4 +1,5 @@
 /** Copy and settings for /pilot. Edit here; the page renders from it. */
+import type { SystemStep } from "@/components/AgentSystem";
 
 export const pilot = {
   /** Where fit-call requests go. */
@@ -128,6 +129,19 @@ export const agents: Agent[] = [
   { k: "06", agent: "Courier", title: "Send + report", kind: "agent", short: "Sends, follows up, and logs replies to your CRM.",
     ins: ["instantly", "gmail", "n8n"], outs: ["hubspot", "calendly", "postgres"], dirs: { instantly: "out", gmail: "out", n8n: "out", hubspot: "out", calendly: "in", postgres: "out" }, handoff: "" },
 ];
+
+/** The same six rows in the shape the AgentSystem component renders. */
+export const systemSteps: SystemStep[] = agents.map((a) => ({
+  n: a.k,
+  stage: a.title,
+  kind: a.kind === "gate" ? "human" : "agent",
+  name: a.agent,
+  blurb: a.short,
+  inputs: a.ins,
+  output: a.handoff,
+  outputs: a.outs,
+  dirs: a.dirs,
+}));
 
 /** The ongoing work shown under the diagram: the part that makes a pipeline keep working. */
 export const tuning = {

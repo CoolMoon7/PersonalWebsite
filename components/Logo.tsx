@@ -47,12 +47,60 @@ const glyphs: Record<string, { title: string; d: string }> = {
   loop: { title: "Feedback loop", d: "M12 4a8 8 0 017.7 6H22l-3.5 4-3.5-4h2.6A6 6 0 006.3 9.4L4.6 8.3A8 8 0 0112 4zm-6.6 6L9 14H6.4a6 6 0 0011.3.6l1.7 1.1A8 8 0 014.3 14H2l3.4-4z" },
 };
 
+/** Muted, fixed palette for monogram tiles of names we have no mark for. */
+const MONO_COLORS = ["#64748b", "#78716c", "#0f766e", "#4d7c0f", "#7c6f3a", "#6b5b95"];
+
+/**
+ * Keyword fallback for names that are not a known key, matched by whole word, first rule wins.
+ * Brands come before the generic nouns so "Gmail inbox" is Gmail, not a generic mail glyph.
+ */
+const keywordRules: [string[], string][] = [
+  [["x", "twitter"], "x"],
+  [["linkedin"], "linkedin"],
+  [["gmail"], "gmail"],
+  [["slack"], "slack"],
+  [["firecrawl"], "firecrawl"],
+  [["hunter"], "hunter"],
+  [["apollo"], "apollo"],
+  [["email", "inbox", "outlook"], "mail"],
+  [["directory", "site", "website", "web", "page", "scrape", "listing", "job", "board", "hiring", "careers"], "web"],
+  [["conference", "event", "attendee", "calendar", "session", "agenda"], "calendar"],
+  [["sheet"], "sheets"],
+  [["database", "supabase", "postgres", "crm"], "db"],
+  [["doc", "notion", "news", "press", "filing"], "doc"],
+  [["claude", "openai", "model", "llm"], "agent"],
+];
+
+const isKnown = (k: string) => !!(si[k] || img[k] || tiles[k] || glyphs[k]);
+
+/** The key whose mark represents this name, or null when only a monogram fits. */
+function resolveKey(name: string): string | null {
+  if (isKnown(name)) return name;
+  const lower = name.trim().toLowerCase();
+  if (isKnown(lower)) return lower;
+  const words = new Set(lower.split(/[^a-z0-9]+/).filter(Boolean));
+  for (const [keywords, key] of keywordRules) {
+    if (keywords.some((k) => words.has(k))) return key;
+  }
+  return null;
+}
+
+/** One initial, or two when the name is two short words ("Job board"). */
+function monogram(name: string) {
+  const words = name.trim().split(/\s+/).filter(Boolean);
+  const take = words.length === 2 && words.every((w) => w.length <= 5) ? 2 : 1;
+  const letters = words.slice(0, take).map((w) => Array.from(w)[0]).join("").toUpperCase();
+  let h = 0;
+  for (const ch of name) h = (h * 31 + ch.codePointAt(0)!) >>> 0;
+  return { letters: letters || "?", color: MONO_COLORS[h % MONO_COLORS.length] };
+}
+
 export function logoTitle(key: string) {
   return si[key]?.title ?? img[key] ?? tiles[key]?.title ?? glyphs[key]?.title ?? key;
 }
 
 export default function Logo({
-  name,
+  name: raw,
   size = 18,
   mono = false,
   className = "",
@@ -62,12 +110,16 @@ export default function Logo({
   mono?: boolean;
   className?: string;
 }) {
+  const resolved = resolveKey(raw);
+  const name = resolved ?? raw;
+  // Keep the data's own name as the accessible label when a keyword picked the glyph.
+  const label = (fallback: string) => (resolved && resolved !== raw ? raw : fallback);
   const s = si[name];
   if (s) {
     return (
       <svg
         role="img"
-        aria-label={s.title}
+        aria-label={label(s.title)}
         viewBox="0 0 24 24"
         width={size}
         height={size}
@@ -84,7 +136,7 @@ export default function Logo({
       // eslint-disable-next-line @next/next/no-img-element
       <img
         src={`/logos/${name}.png`}
-        alt={img[name]}
+        alt={label(img[name])}
         width={size}
         height={size}
         loading="lazy"
@@ -97,7 +149,7 @@ export default function Logo({
     return (
       <span
         role="img"
-        aria-label={t.title}
+        aria-label={label(t.title)}
         className={`inline-grid place-items-center rounded-[4px] text-white font-semibold leading-none ${className}`}
         style={{ width: size, height: size, background: t.color, fontSize: size * 0.62 }}
       >
@@ -105,11 +157,25 @@ export default function Logo({
       </span>
     );
   }
-  const g = glyphs[name] ?? glyphs.agent;
+  const g = glyphs[name];
+  if (!g) {
+    const m = monogram(name);
+    return (
+      <span
+        role="img"
+        aria-label={name}
+        title={name}
+        className={`inline-grid place-items-center rounded-lg text-white font-semibold leading-none ${className}`}
+        style={{ width: size, height: size, background: m.color, fontSize: size * 0.46 }}
+      >
+        {m.letters}
+      </span>
+    );
+  }
   return (
     <svg
       role="img"
-      aria-label={g.title}
+      aria-label={label(g.title)}
       viewBox="0 0 24 24"
       width={size}
       height={size}
