@@ -1,4 +1,6 @@
 import "server-only";
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 import sample from "@/data/loom/sample.json";
 
 export type LoomSignal = "funding" | "launch" | "hiring" | "competitor" | "expansion" | "other";
@@ -169,11 +171,32 @@ async function fromSupabase(slug: string): Promise<LoomContent | null> {
   }
 }
 
+async function fromSample(slug: string): Promise<LoomContent | null> {
+  return slug === "sample" && isLoomContent(sample) ? sample : null;
+}
+
+/** data/loom/<slug>.json, for pages the pipeline writes to disk. The file must carry the same slug it is named for. */
+async function fromLocalFile(slug: string): Promise<LoomContent | null> {
+  try {
+    const raw = await readFile(path.join(process.cwd(), "data", "loom", `${slug}.json`), "utf8");
+    const content: unknown = JSON.parse(raw);
+    return isLoomContent(content) && content.slug === slug ? content : null;
+  } catch {
+    return null;
+  }
+}
+
+/** Tried in order after Supabase; the first hit wins. Add a source by appending to this list. */
+const FALLBACKS: ((slug: string) => Promise<LoomContent | null>)[] = [fromSample, fromLocalFile];
+
 export async function getLoomPage(slug: string): Promise<LoomContent | null> {
   if (!SLUG.test(slug)) return null;
   const live = await fromSupabase(slug);
   if (live) return live;
-  if (slug === "sample" && isLoomContent(sample)) return sample;
+  for (const fallback of FALLBACKS) {
+    const found = await fallback(slug);
+    if (found) return found;
+  }
   return null;
 }
 
