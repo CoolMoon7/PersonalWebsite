@@ -15,11 +15,23 @@ export type LoomAccount = {
 
 export type LoomFlowStep = { step: string; title: string; body: string };
 export type LoomStackItem = { name: string; role: string };
+export type LoomSystemStep = {
+  n: string;
+  stage: string;
+  kind: "agent" | "human";
+  name: string;
+  blurb: string;
+  inputs: string[];
+  output: string;
+};
+export type LoomExample = { prospect: string; signal: string; draft: string };
 export type LoomSystem = {
   where: { source: string; detail: string }[];
   signal: string;
   chain: LoomFlowStep[];
   approval: string;
+  steps?: LoomSystemStep[];
+  example?: LoomExample;
 };
 export type LoomKpi = { label: string; value: string };
 export type LoomRow = { company: string; stage: LoomStage; note?: string };
@@ -89,6 +101,25 @@ function validSystem(s: unknown): boolean {
   return whereOk && chainOk;
 }
 
+/** Steps and example are display extras: an invalid one is dropped (see systemStepsFor), never a reason to fail the page. */
+function validStep(s: unknown): s is LoomSystemStep {
+  return (
+    isObj(s) &&
+    isStr(s.n) &&
+    isStr(s.stage) &&
+    (s.kind === "agent" || s.kind === "human") &&
+    isStr(s.name) &&
+    isStr(s.blurb) &&
+    Array.isArray(s.inputs) &&
+    s.inputs.every((i) => typeof i === "string" && i.trim().length >= 1 && i.length <= 120) &&
+    typeof s.output === "string"
+  );
+}
+
+function validExample(e: unknown): e is LoomExample {
+  return isObj(e) && isStr(e.prospect) && isStr(e.signal) && isStr(e.draft);
+}
+
 function validDashboard(d: unknown): boolean {
   if (d === undefined) return true;
   if (!isObj(d) || !optStr(d.headline) || !optStr(d.note)) return false;
@@ -144,4 +175,68 @@ export async function getLoomPage(slug: string): Promise<LoomContent | null> {
   if (live) return live;
   if (slug === "sample" && isLoomContent(sample)) return sample;
   return null;
+}
+
+/* ---------------- Agent graph input ---------------- */
+
+const ROLES: [RegExp, string][] = [
+  [/approv|review/i, "You"],
+  [/collect|find/i, "Scout"],
+  [/research|match|score/i, "Analyst"],
+  [/enrich/i, "Enricher"],
+  [/draft|write/i, "Writer"],
+  [/send|deliver|repl/i, "Courier"],
+];
+
+const OUTPUTS: [RegExp, string][] = [
+  [/approv|review/i, "approved only"],
+  [/collect|find/i, "raw accounts"],
+  [/research|match|score/i, "ranked, with a reason"],
+  [/enrich/i, "verified contacts"],
+  [/draft|write/i, "drafts to review"],
+];
+
+function roleFor(f: LoomFlowStep): string {
+  // The step slug is the reliable signal; titles are free text ("Find the person" is enrichment).
+  return ROLES.find(([re]) => re.test(f.step))?.[1] ?? ROLES.find(([re]) => re.test(f.title))?.[1] ?? f.title;
+}
+
+/** One card per chain entry, used when the page carries no valid `system.steps`. */
+function stepsFromChain(c: LoomContent): LoomSystemStep[] {
+  const sources = c.system.where.slice(0, 4).map((w) => w.source);
+  const last = c.system.chain.length - 1;
+  return c.system.chain.map((f, i) => ({
+    n: String(i + 1).padStart(2, "0"),
+    stage: f.title,
+    kind: /approv|review/i.test(`${f.step} ${f.title}`) ? "human" : "agent",
+    name: roleFor(f),
+    blurb: f.body,
+    inputs: i === 0 ? sources : [],
+    output: i === last ? "" : (OUTPUTS.find(([re]) => re.test(f.step))?.[1] ?? "handed on"),
+  }));
+}
+
+export function systemStepsFor(c: LoomContent): LoomSystemStep[] {
+  const raw = c.system.steps;
+  if (Array.isArray(raw)) {
+    let seenHuman = false;
+    const steps = raw.filter(validStep).filter((s) => {
+      if (s.kind !== "human") return true;
+      if (seenHuman) return false;
+      seenHuman = true;
+      return true;
+    });
+    if (steps.length >= 3 && steps.length <= 6) return steps;
+  }
+  return stepsFromChain(c);
+}
+
+export function exampleFor(c: LoomContent): LoomExample {
+  if (validExample(c.system.example)) return c.system.example;
+  const a = c.accounts[0];
+  return {
+    prospect: a.name,
+    signal: a.reason,
+    draft: `Hi, I saw ${a.name}: ${a.reason} I build a system that finds and researches accounts like this, so your team starts with a short list and a note on each. Open to a quick chat?`,
+  };
 }

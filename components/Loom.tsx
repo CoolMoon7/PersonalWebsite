@@ -1,6 +1,7 @@
+import AgentSystem from "@/components/AgentSystem";
 import { Arrow, SectionHead } from "@/components/ui";
 import { site } from "@/data/site";
-import type { LoomContent, LoomFlowStep, LoomSignal, LoomStage } from "@/lib/loom";
+import { exampleFor, systemStepsFor, type LoomContent, type LoomFlowStep, type LoomSignal, type LoomStage } from "@/lib/loom";
 
 export const defaultFlow: LoomFlowStep[] = [
   { step: "research", title: "Research", body: "Agents read funding, launch and hiring signals and score each account against your ICP." },
@@ -174,11 +175,20 @@ export function AccountsSection({ c }: { c: LoomContent }) {
 
 export function FlowSection({ c }: { c: LoomContent }) {
   const flow = c.flow ?? c.system?.chain ?? defaultFlow;
+  const steps = systemStepsFor(c);
   return (
     <section className={section}>
       <SectionHead id="flow" index="03" kicker="The agent flow" title="From signal to reply.">
         Each step has one job. A person approves every draft.
       </SectionHead>
+      <div className="panel p-4 sm:p-6 mb-8">
+        <div className="flex flex-wrap items-center gap-2 mb-6">
+          <span className="chip">{steps.filter((s) => s.kind === "agent").length} agents</span>
+          <span className="chip !border-accent/40 text-accent">1 human gate</span>
+          <span className="font-mono text-[11.5px] text-muted ml-1">Each agent has one job. The moving dots show which way data flows.</span>
+        </div>
+        <AgentSystem steps={steps} example={exampleFor(c)} compact />
+      </div>
       <ol className="grid grid-cols-1 lg:grid-cols-[repeat(var(--n),minmax(0,1fr))] gap-3 lg:gap-0" style={{ "--n": flow.length } as React.CSSProperties}>
         {flow.map((s, i) => (
           <li key={`${s.step}-${i}`} className="relative flex lg:block gap-4">

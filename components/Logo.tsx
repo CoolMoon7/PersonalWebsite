@@ -47,6 +47,17 @@ const glyphs: Record<string, { title: string; d: string }> = {
   loop: { title: "Feedback loop", d: "M12 4a8 8 0 017.7 6H22l-3.5 4-3.5-4h2.6A6 6 0 006.3 9.4L4.6 8.3A8 8 0 0112 4zm-6.6 6L9 14H6.4a6 6 0 0011.3.6l1.7 1.1A8 8 0 014.3 14H2l3.4-4z" },
 };
 
+/** Muted, fixed palette for monogram tiles of names we have no mark for. */
+const MONO_COLORS = ["#64748b", "#78716c", "#0f766e", "#4d7c0f", "#7c6f3a", "#6b5b95"];
+
+function monogram(name: string) {
+  const words = name.trim().split(/\s+/).filter(Boolean);
+  const letters = words.slice(0, 2).map((w) => Array.from(w)[0]).join("").toUpperCase();
+  let h = 0;
+  for (const ch of name) h = (h * 31 + ch.codePointAt(0)!) >>> 0;
+  return { letters: letters || "?", color: MONO_COLORS[h % MONO_COLORS.length] };
+}
+
 export function logoTitle(key: string) {
   return si[key]?.title ?? img[key] ?? tiles[key]?.title ?? glyphs[key]?.title ?? key;
 }
@@ -105,7 +116,21 @@ export default function Logo({
       </span>
     );
   }
-  const g = glyphs[name] ?? glyphs.agent;
+  const g = glyphs[name];
+  if (!g) {
+    const m = monogram(name);
+    return (
+      <span
+        role="img"
+        aria-label={name}
+        title={name}
+        className={`inline-grid place-items-center rounded-lg text-white font-semibold leading-none ${className}`}
+        style={{ width: size, height: size, background: m.color, fontSize: size * 0.46 }}
+      >
+        {m.letters}
+      </span>
+    );
+  }
   return (
     <svg
       role="img"
