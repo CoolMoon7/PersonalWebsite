@@ -111,11 +111,11 @@ export const system: {
 } = {
   intro: {
     what:
-      "An agent for each kind of work your office does, one queue you approve from, and a report at the end of the week. The shape is the same as the pipelines I build for outbound; the tools are the ones an agency already runs.",
+      "An agent for each kind of work your office does, one queue you approve from, and a report at the end of the week. Agents are added as your book needs them: no cap on agents, no usage meter, support included.",
     in: "Inbox, AMS, policy dates",
     out: "Sent, logged, reported",
   },
-  chips: ["5 agents", "1 human gate", "Tools you already use"],
+  chips: ["5 agents shown · we add as needed", "1 human gate", "Tools you already use"],
   agents: [
     {
       k: "01",
@@ -236,9 +236,9 @@ export const never = [
       "It reads and writes activity to the management system you already run. It does not become a second place where the truth lives.",
   },
   {
-    title: "No client data in a model you do not control",
+    title: "You know where your data goes",
     body:
-      "Policy and client detail stays inside the accounts and infrastructure I run for you. It is not used to train anything, and it is not shared.",
+      "The accounts, storage, logs and access are run by me, and set up so your service team can see what happened. A draft is written by a commercial model API, so the text of a policy or an email does pass through that provider's systems. I will name the providers and give you their retention terms in writing before you sign anything. Your book is used for your work and nothing else.",
   },
   {
     title: "Everything is logged",
