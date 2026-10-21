@@ -1,0 +1,304 @@
+{
+  "schema_version": 1,
+  "slug": "bluejay",
+  "company": {
+    "name": "Bluejay",
+    "domain": "bluejay.ai",
+    "one_liner": "QA and monitoring for AI voice and chat agents: simulated callers, production call checks, alerts.",
+    "icp_line": "Engineering and product leads running a customer-facing voice or chat agent on a named provider stack."
+  },
+  "accounts": [
+    {
+      "name": "fluxions",
+      "domain": "fluxions.ai",
+      "reason": "fluxions-ai/vui builds on LiveKit; careers page mentions voice agent.",
+      "signal": "hiring",
+      "source": "https://fluxions.ai/careers",
+      "date": "2026-10-21"
+    },
+    {
+      "name": "AttentionLabs",
+      "domain": "attentionlabs.ai",
+      "reason": "attenlabs/saa-sdk builds on ElevenLabs; careers page mentions voice AI.",
+      "signal": "hiring",
+      "source": "https://attentionlabs.ai/careers/",
+      "date": "2026-10-21"
+    },
+    {
+      "name": "Connexity-AI",
+      "domain": "connexity.ai",
+      "reason": "Connexity-AI/connexity builds on ElevenLabs; careers page mentions voice AI.",
+      "signal": "hiring",
+      "source": "https://www.connexity.ai/careers",
+      "date": "2026-10-21"
+    },
+    {
+      "name": "openspline",
+      "domain": "openspline.dev",
+      "reason": "openspline/openspline builds on ElevenLabs; homepage loads the provider script.",
+      "signal": "launch",
+      "source": "https://github.com/openspline/openspline",
+      "date": "2026-10-21"
+    },
+    {
+      "name": "Unpod",
+      "domain": "unpod.ai",
+      "reason": "unpod-ai/unpod builds on LiveKit; homepage loads the provider script.",
+      "signal": "launch",
+      "source": "https://github.com/unpod-ai/unpod",
+      "date": "2026-10-21"
+    },
+    {
+      "name": "stdapi.ai",
+      "domain": "stdapi.ai",
+      "reason": "stdapi-ai/stdapi.ai builds on LiveKit; homepage loads the provider script.",
+      "signal": "launch",
+      "source": "https://github.com/stdapi-ai/stdapi.ai",
+      "date": "2026-10-21"
+    },
+    {
+      "name": "Ubo Project",
+      "domain": "getubo.com",
+      "reason": "ubopod/ubo_app builds on Pipecat; homepage loads the provider script.",
+      "signal": "launch",
+      "source": "https://github.com/ubopod/ubo_app",
+      "date": "2026-10-21"
+    },
+    {
+      "name": "Oduist",
+      "domain": "oduist.com",
+      "reason": "oduist/connect_addons_ng builds on Pipecat; homepage loads the provider script.",
+      "signal": "launch",
+      "source": "https://github.com/oduist/connect_addons_ng",
+      "date": "2026-10-21"
+    },
+    {
+      "name": "Aplisay",
+      "domain": "aplisay.com",
+      "reason": "aplisay/llm-agent builds on Pipecat; homepage loads the provider script.",
+      "signal": "launch",
+      "source": "https://github.com/aplisay/llm-agent",
+      "date": "2026-10-21"
+    },
+    {
+      "name": "Mahimai Labs",
+      "domain": "mahimai.ca",
+      "reason": "mahimailabs/voice-ai-skills builds on Pipecat; homepage loads the provider script.",
+      "signal": "launch",
+      "source": "https://github.com/mahimailabs/voice-ai-skills",
+      "date": "2026-10-21"
+    },
+    {
+      "name": "Emergent Labs",
+      "domain": "emergentlabs.dev",
+      "reason": "emergent-lab/voice-agent builds on Pipecat; homepage loads the provider script.",
+      "signal": "launch",
+      "source": "https://github.com/emergent-lab/voice-agent",
+      "date": "2026-10-21"
+    },
+    {
+      "name": "Floe",
+      "domain": "floefinance.com",
+      "reason": "Floe-Labs/floe-guard builds on Vapi; last pushed 2026-10.",
+      "signal": "other",
+      "source": "https://github.com/Floe-Labs/floe-guard",
+      "date": "2026-10-21"
+    }
+  ],
+  "flow": [
+    {
+      "step": "collect",
+      "title": "Pull provider repos",
+      "body": "GitHub search for 8 provider stacks finds 210 organisations with a verified README mention."
+    },
+    {
+      "step": "research",
+      "title": "Read hiring and site",
+      "body": "22 Who is hiring comments, each careers page and each homepage are checked for voice agent and provider markers."
+    },
+    {
+      "step": "enrich",
+      "title": "Resolve and filter",
+      "body": "Domain, MX and vendor filters leave 63 qualified accounts, ranked by tier."
+    },
+    {
+      "step": "match",
+      "title": "Find the owner",
+      "body": "Site team pages, public org members and public commit emails name a person; a first-name guess is labelled."
+    },
+    {
+      "step": "draft",
+      "title": "Write from the signal",
+      "body": "Each draft leads with a repo, post or script only true of that account, plus a three-touch sequence."
+    },
+    {
+      "step": "approve",
+      "title": "Human approval",
+      "body": "Nothing is sent. A person reads every draft in the contacts tray and releases it."
+    }
+  ],
+  "stack": [
+    {
+      "name": "GitHub REST API",
+      "role": "searches provider repos and org members"
+    },
+    {
+      "name": "HN Firebase and Algolia",
+      "role": "reads Who is hiring threads"
+    },
+    {
+      "name": "dig MX",
+      "role": "checks a domain can receive mail"
+    },
+    {
+      "name": "Site fetch",
+      "role": "looks for provider markers on homepages"
+    },
+    {
+      "name": "Python stdlib",
+      "role": "runs every stage with no third-party code"
+    },
+    {
+      "name": "Supabase REST",
+      "role": "upserts contacts and drafts under --write"
+    }
+  ],
+  "system": {
+    "where": [
+      {
+        "source": "GitHub repo usage",
+        "detail": "Public org repos whose README names Vapi, Retell, ElevenLabs, LiveKit, Pipecat, Bland, Sierra or Dialogflow."
+      },
+      {
+        "source": "Hacker News hiring",
+        "detail": "Who is hiring comments and company careers pages that name voice AI, voice agent, telephony or contact center work."
+      },
+      {
+        "source": "Company homepage",
+        "detail": "Provider script and host markers in the live homepage HTML show the agent is in production."
+      },
+      {
+        "source": "GitHub org members",
+        "detail": "Public members and their public commit emails name the engineer who owns the agent."
+      }
+    ],
+    "signal": "A team shipping a customer-facing voice or chat agent on a named provider stack: repo usage, plus hiring intent, plus a live provider script.",
+    "chain": [
+      {
+        "step": "collect",
+        "title": "Pull provider repos",
+        "body": "GitHub search for 8 provider stacks finds 210 organisations with a verified README mention."
+      },
+      {
+        "step": "research",
+        "title": "Read hiring and site",
+        "body": "22 Who is hiring comments, each careers page and each homepage are checked for voice agent and provider markers."
+      },
+      {
+        "step": "enrich",
+        "title": "Resolve and filter",
+        "body": "Domain, MX and vendor filters leave 63 qualified accounts, ranked by tier."
+      },
+      {
+        "step": "match",
+        "title": "Find the owner",
+        "body": "Site team pages, public org members and public commit emails name a person; a first-name guess is labelled."
+      },
+      {
+        "step": "draft",
+        "title": "Write from the signal",
+        "body": "Each draft leads with a repo, post or script only true of that account, plus a three-touch sequence."
+      },
+      {
+        "step": "approve",
+        "title": "Human approval",
+        "body": "Nothing is sent. A person reads every draft in the contacts tray and releases it."
+      }
+    ],
+    "approval": "A person reviews each draft in the contacts tray before anything is sent.",
+    "steps": [
+      {
+        "n": "01",
+        "stage": "collect",
+        "kind": "agent",
+        "name": "Scout",
+        "blurb": "Finds organisations running a provider stack.",
+        "inputs": [
+          "GitHub repo usage"
+        ],
+        "output": "Verified provider repos per organisation"
+      },
+      {
+        "n": "02",
+        "stage": "research",
+        "kind": "agent",
+        "name": "Reader",
+        "blurb": "Reads hiring posts and homepages for intent and production proof.",
+        "inputs": [
+          "Hacker News hiring",
+          "Company homepage"
+        ],
+        "output": "Hiring and site evidence with source URLs"
+      },
+      {
+        "n": "03",
+        "stage": "enrich",
+        "kind": "agent",
+        "name": "Qualifier",
+        "blurb": "Drops vendors, hobbyists and dead domains, then tiers the rest.",
+        "inputs": [
+          "dig MX",
+          "Site fetch"
+        ],
+        "output": "Ranked tier 1 to 3 accounts"
+      },
+      {
+        "n": "04",
+        "stage": "match",
+        "kind": "agent",
+        "name": "Finder",
+        "blurb": "Names the person who owns the agent and labels every address.",
+        "inputs": [
+          "GitHub org members",
+          "Company homepage"
+        ],
+        "output": "Contact with email source and verified flag"
+      },
+      {
+        "n": "05",
+        "stage": "draft",
+        "kind": "agent",
+        "name": "Writer",
+        "blurb": "Writes an email, a LinkedIn note and a three-touch sequence.",
+        "inputs": [
+          "Python stdlib"
+        ],
+        "output": "Draft with a first line only true of this account"
+      },
+      {
+        "n": "06",
+        "stage": "approve",
+        "kind": "human",
+        "name": "Reviewer",
+        "blurb": "Reads every draft and releases or rejects it.",
+        "inputs": [
+          "Supabase REST"
+        ],
+        "output": "Approved drafts only"
+      }
+    ],
+    "example": {
+      "prospect": "fluxions (fluxions.ai)",
+      "signal": "your careers page at fluxions.ai mentions voice agent work, and fluxions-ai/vui already runs on LiveKit.",
+      "draft": "Harry, fluxions-ai/vui runs on LiveKit. Bluejay tests voice and chat agents with simulated calls and watches production calls for the same failures. Connecting in case that is useful."
+    }
+  },
+  "ask": {
+    "line": "Thirty minutes to walk this list and the first message, and tell me which accounts are wrong."
+  },
+  "meta": {
+    "status": "draft",
+    "generated_at": "2026-10-21T00:40:12Z",
+    "generator": "bluejay/run.py"
+  }
+}
