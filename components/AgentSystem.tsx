@@ -1,5 +1,5 @@
 import Logo, { logoTitle } from "@/components/Logo";
-import { agents, example, type Dir } from "@/data/pilot";
+import { agents as pilotAgents, example as pilotExample, type Agent, type Dir, type Example } from "@/data/pilot";
 
 const SQ = 56; // tool square (px)
 const PITCH = 82; // square + label + gap
@@ -7,7 +7,7 @@ const PAD = 22; // vertical padding of each row
 const CARD_H = 156;
 const GATE_H = 300;
 
-const rowH = (a: (typeof agents)[number]) =>
+const rowH = (a: Agent) =>
   a.kind === "gate" ? GATE_H : Math.max(Math.max(a.ins.length, a.outs.length) * PITCH - 6, CARD_H);
 
 /**
@@ -79,7 +79,7 @@ function TileCol({ keys }: { keys: string[] }) {
   );
 }
 
-function ApprovalCard() {
+function ApprovalCard({ example }: { example: Example }) {
   return (
     <div className="rounded-xl border border-line-2 bg-white shadow-[0_18px_50px_-24px_rgba(24,24,40,0.35)] overflow-hidden w-full sm:w-[280px] shrink-0">
       <div className="flex items-center gap-1.5 px-3.5 py-2.5 border-b border-line bg-surface/70">
@@ -94,7 +94,7 @@ function ApprovalCard() {
             <div className="text-[13.5px] font-semibold tracking-[-0.01em]">{example.prospect}</div>
             <div className="font-mono text-[10px] text-muted mt-0.5">{example.signal}</div>
           </div>
-          <span className="chip !h-5 !text-[10px] text-accent shrink-0">fit 92</span>
+          <span className="chip !h-5 !text-[10px] text-accent shrink-0">{example.tag}</span>
         </div>
         <p className="mt-2.5 text-[11.5px] leading-relaxed text-ink-2 rounded-lg bg-surface border border-line p-2.5">{example.draft}</p>
         <div className="mt-3 flex items-center gap-2">
@@ -107,7 +107,10 @@ function ApprovalCard() {
   );
 }
 
-export default function AgentSystem() {
+export default function AgentSystem({
+  agents = pilotAgents,
+  example = pilotExample,
+}: { agents?: Agent[]; example?: Example } = {}) {
   const last = agents.length - 1;
   return (
     <div className="relative">
@@ -157,7 +160,7 @@ export default function AgentSystem() {
                 {gate ? (
                   <>
                     <Wires keys={["approval"]} dirs={{ approval: "in" }} h={h} side="out" single />
-                    <ApprovalCard />
+                    <ApprovalCard example={example} />
                   </>
                 ) : (
                   <>
@@ -175,7 +178,7 @@ export default function AgentSystem() {
               </div>
               {gate && (
                 <div className="lg:hidden sm:col-span-3 sm:flex sm:justify-center">
-                  <ApprovalCard />
+                  <ApprovalCard example={example} />
                 </div>
               )}
             </div>

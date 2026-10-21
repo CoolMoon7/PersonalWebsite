@@ -45,6 +45,14 @@ const glyphs: Record<string, { title: string; d: string }> = {
   video: { title: "Video", d: "M3 5h13v14H3V5zm15 4l4-2v10l-4-2V9z" },
   doc: { title: "Voice doc", d: "M6 2h9l5 5v15H6V2zm8 1.5V8h4.5L14 3.5zM8 12h8v1.6H8V12zm0 3.4h8V17H8v-1.6zM8 8.6h4v1.6H8V8.6z" },
   loop: { title: "Feedback loop", d: "M12 4a8 8 0 017.7 6H22l-3.5 4-3.5-4h2.6A6 6 0 006.3 9.4L4.6 8.3A8 8 0 0112 4zm-6.6 6L9 14H6.4a6 6 0 0011.3.6l1.7 1.1A8 8 0 014.3 14H2l3.4-4z" },
+  sms: { title: "SMS", d: "M3 3h18v13H9.6L5 20.5V16H3V3zm4 8.6v-2h2v2H7zm4 0v-2h2v2h-2zm4 0v-2h2v2h-2z" },
+  ams: { title: "AMS", d: "M2 5a2 2 0 012-2h5l2 2h9a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3 5v9h14v-9H5zm2 2h10v1.6H7V12zm0 3h10v1.6H7V15z" },
+  carrier: { title: "Carrier portal", d: "M2 4h20v16H2V4zm1.5 15v-13.5h17V19h-17zM3.5 5.5h17v3.2h-17V5.5zM8 10.8h5.2V8.4l4.6 3.6-4.6 3.6v-2.4H8v-2.4z" },
+  queue: { title: "Queue", d: "M3 5h3v3H3V5zm5 .6h13v1.8H8V5.6zM3 10.5h3v3H3v-3zm5 .6h13v1.8H8v-1.8zM3 16h3v3H3v-3zm5 .6h13v1.8H8v-1.8z" },
+  list: { title: "Priority list", d: "M3 4h18v3H3V4zm0 5h13v3H3V9zm0 5h8v3H3v-3zm0 5h5v2H3v-2z" },
+  coi: { title: "COI", d: "M4 2h16v20H4V2zm2 18V4h12v16H6zm2-14h8v1.6H8V6zm0 3h8v1.6H8V9zm2 6.6a2.6 2.6 0 100 5.2 2.6 2.6 0 000-5.2z" },
+  draft: { title: "Draft", d: "M3.2 20.8l1-3.9 11.9-11.9 2.9 2.9-11.9 11.9-3.9 1zM17.1 2.3l2.4 2.4-1.6 1.6-2.4-2.4 1.6-1.6z" },
+  dates: { title: "Policy dates", d: "M7 2h2v2h6V2h2v2h3v18H4V4h3V2zm-1 8v10h12V10H6zm2 2h3v3H8v-3z" },
 };
 
 export function logoTitle(key: string) {
