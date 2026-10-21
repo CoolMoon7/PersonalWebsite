@@ -28,7 +28,7 @@ export const hero = {
   lede:
     "It works the renewals, COIs and endorsements your service team never has time for, so the accounts that should have been remarketed get remarketed.",
   intro:
-    "I'm Cole. I'm a Duke student in Durham and I build agent systems. I'm working with independent agencies around the Triangle on exactly this: the paperwork that decides whether an account renews. What follows is what I would build for your book, and what it would not do.",
+    "I'm Cole. I'm a Duke student in Durham and I build agent systems. I'm building these systems starting with independent agencies around the Triangle, on exactly this: the paperwork that decides whether an account renews. What follows is what I would build for your book, and what it would not do.",
 };
 
 export const summary = [
@@ -302,7 +302,7 @@ export const proof = {
     },
   ],
   note:
-    "One more thing, said plainly: I am a Duke student, and I am working with independent agencies around the Triangle. If you want someone who has run a service team for twenty years, that is not me yet. If you want someone who will build this around your book, sit with your service team until it is right, and answer the phone when a carrier portal changes, that is me.",
+    "One more thing, said plainly: I am a Duke student, and I am starting with independent agencies around the Triangle. If you want someone who has run a service team for twenty years, that is not me yet. If you want someone who will build this around your book, sit with your service team until it is right, and answer the phone when a carrier portal changes, that is me.",
 };
 
 /** Section 07: the only action on the page. No price, always a call. */
