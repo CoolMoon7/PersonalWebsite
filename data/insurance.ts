@@ -111,11 +111,11 @@ export const system: {
 } = {
   intro: {
     what:
-      "An agent for each kind of work your office does, one queue you approve from, and a report at the end of the week. The shape is the same as the pipelines I build for outbound; the tools are the ones an agency already runs.",
+      "An agent for each kind of work your office does, one queue you approve from, and a report at the end of the week.",
     in: "Inbox, AMS, policy dates",
     out: "Sent, logged, reported",
   },
-  chips: ["5 agents", "1 human gate", "Tools you already use"],
+  chips: ["5 agents shown", "More added as your book needs it", "1 human gate", "Tools you already use"],
   agents: [
     {
       k: "01",
@@ -236,9 +236,9 @@ export const never = [
       "It reads and writes activity to the management system you already run. It does not become a second place where the truth lives.",
   },
   {
-    title: "No client data in a model you do not control",
+    title: "Your data, and exactly where it goes",
     body:
-      "Policy and client detail stays inside the accounts and infrastructure I run for you. It is not used to train anything, and it is not shared.",
+      "Your book lives in the accounts and storage I set up for you, and you can revoke access at any time. To write a draft, the text of that request goes to the model provider I use, under business API terms that exclude training on it. Nothing else leaves, and every request is logged.",
   },
   {
     title: "Everything is logged",
@@ -268,6 +268,11 @@ export const built = [
     title: "Runs on my infrastructure",
     body:
       "I host and run it. There is no software for your office to buy, and nothing for your IT to maintain.",
+  },
+  {
+    title: "No usage caps, no seat fees",
+    body:
+      "Agents are added as your book needs them, usage is not metered, and support is included. There is no per-seat or per-email price to think about while you are deciding whether this is worth it.",
   },
   {
     title: "A report every Friday",
