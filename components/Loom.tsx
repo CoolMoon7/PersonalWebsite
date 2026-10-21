@@ -1,15 +1,7 @@
+import AgentSystem from "@/components/AgentSystem";
 import { Arrow, SectionHead } from "@/components/ui";
 import { site } from "@/data/site";
-import type { LoomContent, LoomFlowStep, LoomSignal, LoomStage } from "@/lib/loom";
-
-export const defaultFlow: LoomFlowStep[] = [
-  { step: "research", title: "Research", body: "Agents read funding, launch and hiring signals and score each account against your ICP." },
-  { step: "enrich", title: "Enrichment", body: "Finds the right person at each account and verifies the email before anything is drafted." },
-  { step: "draft", title: "Drafting", body: "Writes one line about the specific signal, then the offer." },
-  { step: "approve", title: "Human approval", body: "Every draft waits for a person. Nothing sends on its own." },
-  { step: "deliver", title: "Delivery", body: "Sends from your domain on your schedule and stops on the first reply." },
-  { step: "replies", title: "Replies", body: "Tags the outcome and feeds it back into targeting." },
-];
+import { exampleFor, systemStepsFor, type LoomContent, type LoomSignal, type LoomStage } from "@/lib/loom";
 
 const section = "max-w-6xl mx-auto px-4 sm:px-6 mt-28";
 
@@ -173,32 +165,20 @@ export function AccountsSection({ c }: { c: LoomContent }) {
 /* ---------------- 3. Flow ---------------- */
 
 export function FlowSection({ c }: { c: LoomContent }) {
-  const flow = c.flow ?? c.system?.chain ?? defaultFlow;
+  const steps = systemStepsFor(c);
   return (
     <section className={section}>
       <SectionHead id="flow" index="03" kicker="The agent flow" title="From signal to reply.">
         Each step has one job. A person approves every draft.
       </SectionHead>
-      <ol className="grid grid-cols-1 lg:grid-cols-[repeat(var(--n),minmax(0,1fr))] gap-3 lg:gap-0" style={{ "--n": flow.length } as React.CSSProperties}>
-        {flow.map((s, i) => (
-          <li key={`${s.step}-${i}`} className="relative flex lg:block gap-4">
-            {i < flow.length - 1 && (
-              <>
-                <span aria-hidden className="lg:hidden absolute left-[19px] top-10 -bottom-3 w-px bg-line-2" />
-                <span aria-hidden className="hidden lg:block absolute top-[19px] left-10 -right-0 h-px bg-line-2" />
-              </>
-            )}
-            <span className="relative z-10 flex-none w-10 h-10 rounded-full border border-line-2 bg-white flex items-center justify-center font-mono text-[11px] text-accent">
-              {String(i + 1).padStart(2, "0")}
-            </span>
-            <div className="lg:mt-5 lg:pr-4 pb-3 lg:pb-0">
-              <div className="eyebrow">{s.step}</div>
-              <h3 className="text-[16px] font-semibold tracking-[-0.01em] mt-1.5">{s.title}</h3>
-              <p className="text-[13.5px] text-muted leading-relaxed mt-2">{s.body}</p>
-            </div>
-          </li>
-        ))}
-      </ol>
+      <div className="panel p-4 sm:p-6">
+        <div className="flex flex-wrap items-center gap-2 mb-6">
+          <span className="chip">{steps.filter((s) => s.kind === "agent").length} agents</span>
+          <span className="chip !border-accent/40 text-accent">1 human gate</span>
+          <span className="font-mono text-[11.5px] text-muted ml-1">Each agent has one job. The moving dots show which way data flows.</span>
+        </div>
+        <AgentSystem steps={steps} example={exampleFor(c)} compact />
+      </div>
     </section>
   );
 }
