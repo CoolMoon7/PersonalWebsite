@@ -109,9 +109,14 @@ export const pipelineIntro = {
 /** The agents, in the order a prospect moves through them. `tools` are logo keys from components/Logo. */
 export type Dir = "in" | "out";
 
-type Agent = {
+export type Agent = {
   k: string; agent: string; title: string; kind: string; short: string;
   ins: string[]; outs: string[]; dirs: Record<string, Dir>; handoff: string;
+};
+
+/** The approval card shown at the human gate. `tag` is the mono chip in its header row. */
+export type Example = {
+  prospect: string; signal: string; draft: string; tag: string;
 };
 
 export const agents: Agent[] = [
@@ -160,6 +165,7 @@ export const example = {
   draft:
     "Hi Dana, I saw Example Staffing is hiring three account executives. A new rep usually spends their first month finding who to call. I build a system that does that research for them, so they start with a short list and a note on each company. Open to a quick 15-minute chat?",
   status: "Awaiting your approval",
+  tag: "fit 92",
 };
 
 export const nextSteps = [
