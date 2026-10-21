@@ -188,6 +188,13 @@ export default function InsurancePage() {
               <p className="text-[14px] text-muted leading-relaxed mt-2">{b.body}</p>
             </div>
           ))}
+          {/* Complete the last row, so the line-coloured grid never shows through as a grey block. */}
+          {Array.from({ length: (2 - (built.length % 2)) % 2 }).map((_, i) => (
+            <div key={`sm-fill-${i}`} aria-hidden="true" className="hidden sm:block lg:hidden bg-white" />
+          ))}
+          {Array.from({ length: (3 - (built.length % 3)) % 3 }).map((_, i) => (
+            <div key={`lg-fill-${i}`} aria-hidden="true" className="hidden lg:block bg-white" />
+          ))}
         </div>
       </section>
 
