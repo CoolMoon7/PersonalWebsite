@@ -3,12 +3,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { site, isGtmPath } from "@/data/site";
+import { site, siteMode } from "@/data/site";
+import { fde } from "@/data/fde";
 
-/** The insurance homepage and the GTM portfolio (/gtm, /systems, /writing) each get their own links. */
+/** Each audience gets its own links, résumé and contact, so the three sites never cross-link. */
 const modes = {
   insurance: {
     home: "/",
+    resume: site.resume,
     tag: "/ ai for insurance agencies",
     contact: "/#contact",
     links: [
@@ -19,6 +21,7 @@ const modes = {
   },
   gtm: {
     home: "/gtm",
+    resume: site.resume,
     tag: "/ gtm engineer",
     contact: "/gtm#contact",
     links: [
@@ -28,10 +31,21 @@ const modes = {
       { label: "Writing", href: "/writing" },
     ],
   },
+  fde: {
+    home: "/fde",
+    resume: fde.resume,
+    tag: "/ forward deployed engineer",
+    contact: "/fde#contact",
+    links: [
+      { label: "Deployments", href: "/fde#deployments" },
+      { label: "How I work", href: "/fde#method" },
+      { label: "About", href: "/fde#about" },
+    ],
+  },
 };
 
 export default function Nav() {
-  const m = modes[isGtmPath(usePathname()) ? "gtm" : "insurance"];
+  const m = modes[siteMode(usePathname())];
   const links = m.links;
   return (
     <header id="site-nav" className="sticky top-0 z-50 border-b border-line/80 bg-white/75 backdrop-blur-xl">
@@ -52,7 +66,7 @@ export default function Nav() {
               {l.label}
             </Link>
           ))}
-          <a href={site.resume} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 rounded-md text-[13.5px] text-muted hover:text-foreground hover:bg-surface transition-colors">
+          <a href={m.resume} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 rounded-md text-[13.5px] text-muted hover:text-foreground hover:bg-surface transition-colors">
             Résumé
           </a>
           <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 rounded-md text-[13.5px] text-muted hover:text-foreground hover:bg-surface transition-colors">
@@ -80,7 +94,7 @@ export default function Nav() {
                 {l.label}
               </Link>
             ))}
-            <a href={site.resume} target="_blank" rel="noopener noreferrer" className="block px-3 py-2 rounded-md text-[14px] hover:bg-surface">Résumé</a>
+            <a href={m.resume} target="_blank" rel="noopener noreferrer" className="block px-3 py-2 rounded-md text-[14px] hover:bg-surface">Résumé</a>
             <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="block px-3 py-2 rounded-md text-[14px] hover:bg-surface">LinkedIn</a>
             <a href={site.github} target="_blank" rel="noopener noreferrer" className="block px-3 py-2 rounded-md text-[14px] hover:bg-surface">GitHub</a>
             <a href={m.contact} className="btn btn-dark w-full justify-center mt-1">Get in touch</a>

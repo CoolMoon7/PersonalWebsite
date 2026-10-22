@@ -3,10 +3,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { site, isGtmPath } from "@/data/site";
+import { site, siteMode } from "@/data/site";
+import { fde } from "@/data/fde";
 
 export default function Footer() {
-  const gtm = isGtmPath(usePathname());
+  const mode = siteMode(usePathname());
+  const resume = mode === "fde" ? fde.resume : site.resume;
+  const email = mode === "fde" ? fde.email : site.email;
   return (
     <footer id="site-footer" className="border-t border-line mt-24">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 flex flex-col sm:flex-row gap-6 sm:items-center justify-between">
@@ -15,7 +18,12 @@ export default function Footer() {
           <span className="font-mono text-[12px] text-muted">© {new Date().getFullYear()} Cole Bonawitz · colebonawitz.com</span>
         </div>
         <div className="flex flex-wrap gap-x-5 gap-y-2 font-mono text-[12px] text-muted">
-          {gtm ? (
+          {mode === "fde" ? (
+            <>
+              <Link href="/fde#deployments" className="hover:text-foreground">deployments</Link>
+              <Link href="/fde#about" className="hover:text-foreground">about</Link>
+            </>
+          ) : mode === "gtm" ? (
             <>
               <Link href="/gtm#systems" className="hover:text-foreground">systems</Link>
               <Link href="/writing" className="hover:text-foreground">writing</Link>
@@ -28,8 +36,8 @@ export default function Footer() {
           )}
           <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-foreground">linkedin</a>
           <a href={site.github} target="_blank" rel="noopener noreferrer" className="hover:text-foreground">github</a>
-          <a href={site.resume} target="_blank" rel="noopener noreferrer" className="hover:text-foreground">resume</a>
-          <a href={`mailto:${site.email}`} className="hover:text-foreground">email</a>
+          <a href={resume} target="_blank" rel="noopener noreferrer" className="hover:text-foreground">resume</a>
+          <a href={`mailto:${email}`} className="hover:text-foreground">email</a>
         </div>
       </div>
     </footer>

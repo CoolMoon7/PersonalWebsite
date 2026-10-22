@@ -10,8 +10,17 @@ export const site = {
   resume: "/Cole_Bonawitz_Resume.pdf",
 };
 
-/** Pages that belong to the GTM engineering portfolio rather than the insurance homepage. */
-export const isGtmPath = (p: string | null) => /^\/(gtm|systems|writing)(\/|$)/.test(p ?? "");
+/**
+ * The site serves three audiences that never link to each other: the insurance homepage,
+ * the GTM portfolio (/gtm, /systems, /writing) and the FDE portfolio (/fde).
+ */
+export type SiteMode = "insurance" | "gtm" | "fde";
+export function siteMode(path: string | null): SiteMode {
+  const p = path ?? "";
+  if (/^\/fde(\/|$)/i.test(p)) return "fde";
+  if (/^\/(gtm|systems|writing)(\/|$)/.test(p)) return "gtm";
+  return "insurance";
+}
 
 export const facts = [
   { v: "Insurance", d: "An AI agent that drafts COIs for independent commercial P&C agencies in the Triangle" },

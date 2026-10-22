@@ -3,6 +3,7 @@ import {
   siReact, siN8n, siPandas, siGooglesheets, siInstagram, siFirebase, siGmail, siEtsy,
   siSqlite, siGithub, siGoogleads, siTypescript, siNextdotjs, siVercel, siAirtable,
   siX, siGooglemaps, siPerplexity, siNotion, siCalendly, siCrunchbase, siGoogledocs,
+  siFastapi, siSupabase, siDocker, siArduino, siGithubactions, siPytest, siModelcontextprotocol, siSwift,
 } from "simple-icons";
 
 type SimpleIcon = { title: string; hex: string; path: string };
@@ -15,6 +16,8 @@ const si: Record<string, SimpleIcon> = {
   typescript: siTypescript, nextjs: siNextdotjs, vercel: siVercel, airtable: siAirtable,
   x: siX, maps: siGooglemaps, perplexity: siPerplexity, notion: siNotion, calendly: siCalendly,
   crunchbase: siCrunchbase, docs: siGoogledocs,
+  fastapi: siFastapi, supabase: siSupabase, docker: siDocker, arduino: siArduino,
+  actions: siGithubactions, pytest: siPytest, mcp: siModelcontextprotocol, swift: siSwift,
 };
 
 /** Services without a bundled mark: a lettered tile in the brand colour, always labelled in text. */
