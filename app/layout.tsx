@@ -28,7 +28,7 @@ export const viewport: Viewport = { themeColor: "#ffffff" };
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
-      <body className="min-h-screen antialiased">
+      <body className="min-h-screen antialiased pb-16 md:pb-0">
         <div className="bg-field" aria-hidden>
           <DotField />
         </div>

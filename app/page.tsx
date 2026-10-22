@@ -1,160 +1,221 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Logo from "@/components/Logo";
+import AgentSystem from "@/components/AgentSystem";
 import { SectionHead, Arrow } from "@/components/ui";
-import { site, jobs, steps, principles, facts, experience } from "@/data/site";
+import { site, facts, experience } from "@/data/site";
+import {
+  contact, hero, summary, week, system, never, built, proof, cta,
+} from "@/data/insurance";
 
-const inbox = [
-  { t: "8:02", from: "web form", what: "Quote request · commercial auto, 6 vehicles", state: "Intake complete, 2 items requested", tone: "done" },
-  { t: "8:14", from: "email", what: "COI request · general contractor, new project", state: "Matched to policy, ready to approve", tone: "gate" },
-  { t: "8:31", from: "voicemail", what: "Add a teen driver to homeowner's auto policy", state: "Change drafted for producer", tone: "gate" },
-  { t: "9:05", from: "renewal calendar", what: "41 policies renewing in 60 days", state: "Outreach drafted, 3 at-risk flagged", tone: "done" },
-  { t: "9:40", from: "lead", what: "Old quote from March, no reply", state: "Follow-up #2 sent after approval", tone: "done" },
-];
+export const metadata: Metadata = {
+  title: { absolute: "Cole Bonawitz — AI employees for insurance agencies" },
+  description:
+    "An AI employee for independent commercial P&C agencies: it drafts COIs, renewal notices and endorsements from the policies in your AMS, and nothing sends without your approval. Built by Cole Bonawitz, Duke CS.",
+  alternates: { canonical: "/" },
+};
 
-function Social({ href, label, children }: { href: string; label: string; children: React.ReactNode }) {
-  return (
-    <a href={href} target="_blank" rel="noopener noreferrer" className="btn btn-ghost" aria-label={label}>
-      {children}
-    </a>
-  );
-}
-
-function GitHubMark() {
-  return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-      <path d="M12 .5a11.5 11.5 0 00-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 015.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.7 5.4-5.27 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0012 .5z" />
-    </svg>
-  );
-}
+const EYEBROW = "font-mono text-[11px] tracking-[0.08em] uppercase text-muted";
 
 export default function Home() {
   return (
     <>
       {/* ---------------- Hero ---------------- */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 pt-16 sm:pt-24">
-        <div className="rise flex flex-wrap items-center gap-3 mb-8">
-          <span className="chip">
-            <span className="live-dot" /> Live with my first insurance agency client
-          </span>
-          <span className="chip hidden sm:inline-flex">Duke CS · &apos;28</span>
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 pt-10 sm:pt-16">
+        <div className="rise flex flex-wrap items-center gap-2 mb-7">
+          <span className="chip"><span className="live-dot" /> {hero.chips[0]}</span>
+          <span className="chip !h-auto !whitespace-normal py-1 text-left">{hero.chips[1]}</span>
         </div>
 
-        <h1
-          className="rise text-[42px] leading-[1.02] sm:text-[64px] lg:text-[76px] font-semibold tracking-[-0.045em] max-w-4xl"
-          style={{ "--rd": "0.05s" } as React.CSSProperties}
-        >
-          An AI employee
+        <h1 className="rise text-[38px] leading-[1.03] sm:text-[56px] lg:text-[68px] font-semibold tracking-[-0.045em] max-w-4xl">
+          {hero.line1}
           <br />
-          <span className="text-faint">for insurance agencies.</span>
+          <span className="text-faint">{hero.line2}</span>
         </h1>
 
-        <div className="rise mt-7 flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-7" style={{ "--rd": "0.12s" } as React.CSSProperties}>
+        <p className="rise mt-6 text-[17px] sm:text-[19px] text-ink-2 leading-relaxed max-w-2xl">
+          {hero.lede}
+        </p>
+        <p className="rise mt-4 text-[15px] text-muted leading-relaxed max-w-2xl">
+          {hero.intro}
+        </p>
+
+        <div className="rise mt-8 flex items-center gap-4">
           <Image
             src="/images/coletalking.png"
             alt="Cole Bonawitz"
-            width={160}
-            height={160}
+            width={96}
+            height={96}
             priority
-            className="w-24 h-24 sm:w-32 sm:h-32 rounded-full object-cover object-top border border-line flex-none"
+            className="w-14 h-14 rounded-full object-cover object-top border border-line flex-none"
           />
-          <p className="text-[17px] sm:text-[18px] text-ink-2 leading-relaxed max-w-2xl">
-            I&apos;m Cole Bonawitz, a computer science student at Duke. I build automated systems that handle the
-            repetitive work of an independent agency, from quote intake to certificates to renewals, so producers
-            and account managers spend their time on clients. A licensed person approves everything that matters.
+          <p className="text-[14px] text-muted leading-snug">
+            Cole Bonawitz
+            <br />
+            Duke CS &apos;28 · Durham, NC
           </p>
         </div>
 
-        <div className="rise mt-8 flex flex-wrap gap-3" style={{ "--rd": "0.18s" } as React.CSSProperties}>
-          <a href={site.resume} target="_blank" rel="noopener noreferrer" className="btn btn-dark">
-            View résumé <Arrow />
+        <div className="rise mt-6 flex flex-wrap gap-3">
+          <a href={contact.mailto} className="btn btn-dark">
+            {cta.button} <Arrow />
           </a>
-          <Social href={site.linkedin} label="LinkedIn">
+          <a href="#week" className="btn btn-ghost">See your week, described</a>
+          <a href={site.resume} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">Résumé</a>
+          <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
             <Logo name="linkedin" size={15} /> LinkedIn
-          </Social>
-          <Social href={site.github} label="GitHub">
-            <GitHubMark /> GitHub
-          </Social>
-          <a href="#contact" className="btn btn-ghost">Talk to me</a>
+          </a>
+          <a href={site.github} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">GitHub</a>
+        </div>
+        <p className="rise font-mono text-[11.5px] text-muted mt-4">{hero.area}</p>
+
+        {/* The whole offer at a glance */}
+        <div className="rise mt-12 grid grid-cols-2 lg:grid-cols-4 gap-px bg-line border border-line rounded-2xl overflow-hidden">
+          {summary.map((s) => (
+            <div key={s.k} className="bg-white p-5">
+              <div className="eyebrow mb-3">{s.k}</div>
+              <div className="text-[17px] sm:text-[20px] font-semibold tracking-[-0.03em] leading-tight">{s.v}</div>
+              <div className="text-[13px] text-muted leading-relaxed mt-2">{s.d}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ---------------- Their week ---------------- */}
+      <section id="week" className="scroll-mt-24 max-w-6xl mx-auto px-4 sm:px-6 mt-20 sm:mt-28">
+        <SectionHead id="week" index="01" kicker="Their week" title="Your Tuesday, in your words.">
+          None of this is the insurance. It is the paper around the insurance, and it is what decides whether the account renews.
+        </SectionHead>
+
+        <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-line border border-line rounded-2xl overflow-hidden">
+          {week.items.map((w) => (
+            <li key={w.title} className="bg-white p-5 sm:p-6">
+              <div className="font-mono text-[11px] text-accent">{w.when}</div>
+              <h3 className="text-[16px] font-semibold tracking-[-0.01em] mt-2.5">{w.title}</h3>
+              <p className="text-[14px] text-muted leading-relaxed mt-2">{w.body}</p>
+            </li>
+          ))}
+        </ol>
+
+        <div className="panel mt-4 p-6 sm:p-8">
+          <div className={EYEBROW}>What it adds up to</div>
+          <ul className="mt-4 space-y-3">
+            {week.pain.map((p) => (
+              <li key={p} className="flex gap-3 text-[15.5px] sm:text-[17px] text-ink-2 leading-relaxed">
+                <span className="text-accent font-mono text-[13px] pt-1">—</span>
+                {p}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* ---------------- The system ---------------- */}
+      <section id="system" className="scroll-mt-24 max-w-6xl mx-auto px-4 sm:px-6 mt-20 sm:mt-28">
+        <SectionHead id="system" index="02" kicker="The system" title="Six steps, one human gate.">
+          The shape is the same as the pipelines I build for outbound. The tools are the ones an agency already runs.
+        </SectionHead>
+
+        <div className="panel p-5 sm:p-6 flex flex-col md:flex-row md:items-center gap-5 md:gap-8">
+          <p className="text-[15px] text-ink-2 leading-relaxed md:flex-1">{system.intro.what}</p>
+          <div className="flex flex-wrap items-center gap-3 font-mono text-[12px] shrink-0">
+            <span className="chip !h-auto !whitespace-normal py-1">{system.intro.in}</span>
+            <span className="text-accent">⟶</span>
+            <span className="chip !h-auto !whitespace-normal py-1 !border-accent/40 text-accent">{system.intro.out}</span>
+          </div>
         </div>
 
-        {/* A morning at the agency, handled */}
-        <div className="rise mt-14 sm:mt-16" style={{ "--rd": "0.26s" } as React.CSSProperties}>
-          <div className="panel overflow-hidden">
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-line bg-surface/70 font-mono text-[11.5px] text-muted">
-              <span className="live-dot" />
-              agency-ai · morning queue
-              <span className="ml-auto hidden sm:inline">illustrative example</span>
+        <div className="panel mt-4 p-4 sm:p-8">
+          <div className="flex flex-wrap items-center gap-2 mb-8">
+            {system.chips.map((c, i) => (
+              <span key={c} className={i === 1 ? "chip !border-accent/40 text-accent" : "chip"}>{c}</span>
+            ))}
+            <span className="font-mono text-[11.5px] text-muted">The moving dots show which way data flows.</span>
+          </div>
+          <AgentSystem agents={system.agents} example={system.example} />
+        </div>
+
+        <div className="panel mt-4 p-5 sm:p-8">
+          <h3 className="text-[19px] sm:text-[22px] font-semibold tracking-[-0.025em]">{system.report.title}</h3>
+          <p className="text-[14.5px] text-muted leading-relaxed mt-2.5 max-w-2xl">{system.report.body}</p>
+          <div className="mt-6 rounded-xl border border-line-2 bg-surface/60 p-4 font-mono text-[12px] text-ink-2">
+            <div className="flex flex-wrap items-center gap-2 text-muted mb-3">
+              <span>{system.report.logTitle}</span>
+              <span className="chip !h-5 !text-[10px]">example week</span>
             </div>
-            <ul className="divide-y divide-line">
-              {inbox.map((r) => (
-                <li key={r.what} className="grid grid-cols-[48px_1fr] sm:grid-cols-[56px_110px_1fr_auto] gap-x-4 gap-y-1 items-center px-4 py-3.5">
-                  <span className="font-mono text-[11.5px] text-faint">{r.t}</span>
-                  <span className="hidden sm:block font-mono text-[11.5px] text-muted">{r.from}</span>
-                  <span className="text-[14.5px] text-foreground">{r.what}</span>
-                  <span
-                    className={`col-start-2 sm:col-start-auto font-mono text-[11.5px] ${r.tone === "gate" ? "text-accent" : "text-live"}`}
-                  >
-                    {r.tone === "gate" ? "◆ " : "✓ "}
-                    {r.state}
-                  </span>
+            <ul className="space-y-2.5 leading-relaxed">
+              {system.report.log.map((v) => (
+                <li key={v} className="flex gap-2">
+                  <span className="text-accent">+</span>
+                  <span className="min-w-0">{v}</span>
                 </li>
               ))}
             </ul>
           </div>
-          <p className="font-mono text-[11.5px] text-muted mt-3 px-1">
-            <span className="text-live">✓</span> handled automatically · <span className="text-accent">◆</span> waiting
-            for a licensed person to approve
-          </p>
         </div>
       </section>
 
-      {/* ---------------- Jobs ---------------- */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-28">
-        <SectionHead id="work" index="01" kicker="What it does" title="The work it takes off your desk.">
-          Six jobs that eat an agency&apos;s week, handled in the background.
+      {/* ---------------- What it will not do ---------------- */}
+      <section id="limits" className="scroll-mt-24 max-w-6xl mx-auto px-4 sm:px-6 mt-20 sm:mt-28">
+        <SectionHead id="limits" index="03" kicker="Boundaries" title="What it will not do.">
+          Worth reading before anything else on this page. These are the reasons a compliance officer says yes.
         </SectionHead>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-line border border-line rounded-2xl overflow-hidden">
-          {jobs.map((j) => (
-            <div key={j.title} className="bg-white p-6 sm:p-7">
-              <div className="eyebrow mb-5 text-accent">{j.k}</div>
-              <h3 className="text-[17px] font-semibold tracking-[-0.015em]">{j.title}</h3>
-              <p className="text-[14.5px] text-muted leading-relaxed mt-2.5">{j.body}</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {never.map((n) => (
+            <div key={n.title} className="panel p-5 sm:p-6">
+              <h3 className="text-[15.5px] font-semibold tracking-[-0.01em]">{n.title}</h3>
+              <p className="text-[14px] text-muted leading-relaxed mt-2">{n.body}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ---------------- How ---------------- */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-28">
-        <SectionHead id="how" index="02" kicker="How it works" title="Built with you, run for you.">
-          Fixed steps, a human in the loop, and a retainer that keeps it improving.
+      {/* ---------------- How it is built and run ---------------- */}
+      <section id="built" className="scroll-mt-24 max-w-6xl mx-auto px-4 sm:px-6 mt-20 sm:mt-28">
+        <SectionHead id="built" index="04" kicker="Built and run" title="One person, your book, no new software.">
+          Built around your book and carriers, run by me, talked to by email. There is nothing for your office to install.
         </SectionHead>
-        <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-line border border-line rounded-2xl overflow-hidden">
-          {steps.map((s, i) => (
-            <li key={s.k} className="bg-white p-5 sm:p-6">
-              <div className="flex items-center justify-between mb-6">
-                <span className="font-mono text-[11px] text-accent">{s.k}</span>
-                {i < steps.length - 1 && <span className="hidden lg:block font-mono text-faint text-[12px]">→</span>}
-                {i === steps.length - 1 && <span className="hidden lg:block font-mono text-faint text-[12px]">↺</span>}
-              </div>
-              <h3 className="text-[16px] font-semibold tracking-[-0.01em]">{s.title}</h3>
-              <p className="text-[14px] text-muted leading-relaxed mt-2">{s.body}</p>
-            </li>
-          ))}
-        </ol>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-          {principles.map((p) => (
-            <div key={p.title} className="panel p-6">
-              <h3 className="text-[16px] font-semibold tracking-[-0.01em]">{p.title}</h3>
-              <p className="text-[14.5px] text-muted leading-relaxed mt-2">{p.body}</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-line border border-line rounded-2xl overflow-hidden">
+          {built.map((b) => (
+            <div key={b.title} className="bg-white p-5 sm:p-6">
+              <h3 className="text-[15.5px] font-semibold tracking-[-0.01em]">{b.title}</h3>
+              <p className="text-[14px] text-muted leading-relaxed mt-2">{b.body}</p>
             </div>
           ))}
         </div>
+      </section>
+
+      {/* ---------------- Proof ---------------- */}
+      <section id="proof" className="scroll-mt-24 max-w-6xl mx-auto px-4 sm:px-6 mt-20 sm:mt-28">
+        <SectionHead id="proof" index="05" kicker="Proof" title="What I have actually done.">
+          Two things, stated plainly. No logos, no client names, no numbers I cannot point at.
+        </SectionHead>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          {proof.items.map((p) => (
+            <div key={p.title} className="panel p-5 sm:p-7 flex flex-col">
+              <h3 className="text-[17px] font-semibold tracking-[-0.015em]">{p.title}</h3>
+              {p.figures.length > 0 && (
+                <div className="mt-4 grid grid-cols-3 gap-px bg-line border border-line rounded-xl overflow-hidden">
+                  {p.figures.map((f) => (
+                    <div key={f.l} className="bg-white px-3 py-3">
+                      <div className="text-[22px] sm:text-[26px] font-semibold tracking-[-0.04em] tabular-nums leading-none">{f.v}</div>
+                      <div className="font-mono text-[10.5px] text-muted mt-2 leading-tight">{f.l}</div>
+                    </div>
+                  ))}
+                </div>
+              )}
+              <p className="text-[14.5px] text-ink-2 leading-relaxed mt-4">{p.body}</p>
+            </div>
+          ))}
+        </div>
+        <p className="panel border-dashed p-5 sm:p-7 mt-4 text-[14.5px] text-muted leading-relaxed max-w-3xl">
+          {proof.note}
+        </p>
       </section>
 
       {/* ---------------- Background ---------------- */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-28">
-        <SectionHead id="about" index="03" kicker="Background" title="Who is building this.">
+      <section id="about" className="scroll-mt-24 max-w-6xl mx-auto px-4 sm:px-6 mt-20 sm:mt-28">
+        <SectionHead id="about" index="06" kicker="Background" title="Who is building this.">
           Engineer by training, operator by habit.
         </SectionHead>
 
@@ -169,8 +230,8 @@ export default function Home() {
 
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] gap-4 mt-4">
           <div className="panel p-6 sm:p-8">
-            <div className="eyebrow mb-6">Experience</div>
-            <ol className="space-y-7">
+            <div className={EYEBROW}>Experience</div>
+            <ol className="space-y-7 mt-6">
               {experience.map((e) => (
                 <li key={e.role + e.org} className="grid grid-cols-1 sm:grid-cols-[150px_1fr] gap-1 sm:gap-6">
                   <span className="font-mono text-[11.5px] text-muted pt-1">{e.when}</span>
@@ -187,7 +248,7 @@ export default function Home() {
 
           <div className="panel overflow-hidden flex flex-col">
             <div className="flex items-center justify-between gap-3 px-5 py-3.5 border-b border-line bg-surface/70">
-              <span className="eyebrow">Résumé</span>
+              <span className={EYEBROW}>Résumé</span>
               <a href={site.resume} target="_blank" rel="noopener noreferrer" className="font-mono text-[11.5px] text-foreground underline underline-offset-4 decoration-line-2 hover:decoration-foreground">
                 Open PDF →
               </a>
@@ -195,7 +256,7 @@ export default function Home() {
             <object data={`${site.resume}#toolbar=0&navpanes=0`} type="application/pdf" className="hidden lg:block w-full flex-1 min-h-[520px]">
               <span />
             </object>
-            <div className="lg:hidden p-6 text-[14.5px] text-muted">
+            <div className="lg:hidden p-6">
               <a href={site.resume} target="_blank" rel="noopener noreferrer" className="btn btn-dark">
                 Open résumé (PDF) <Arrow />
               </a>
@@ -204,36 +265,38 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---------------- Contact ---------------- */}
-      <section id="contact" className="scroll-mt-24 max-w-6xl mx-auto px-4 sm:px-6 mt-28">
-        <div className="relative panel overflow-hidden px-6 py-14 sm:px-14 sm:py-20 text-center">
+      {/* ---------------- CTA ---------------- */}
+      <section id="contact" className="scroll-mt-24 max-w-6xl mx-auto px-4 sm:px-6 mt-20 sm:mt-28 ">
+        <div className="relative panel overflow-hidden px-6 py-12 sm:px-14 sm:py-16">
           <div className="absolute inset-0 -z-0 opacity-60 [background-image:radial-gradient(circle_at_1px_1px,#d4d4d8_1px,transparent_0)] [background-size:18px_18px] [mask-image:radial-gradient(ellipse_at_center,#000,transparent_70%)]" />
           <div className="relative">
-            <span className="chip mb-6"><span className="live-dot" /> Replies within 24h</span>
-            <h2 className="text-[32px] sm:text-[48px] font-semibold tracking-[-0.04em] leading-[1.05] max-w-2xl mx-auto">
-              Run an agency?
-              <br />
-              <span className="text-faint">Let&apos;s give it an employee.</span>
+            <span className="chip mb-6"><span className="live-dot" /> Twenty minutes · by email or on a call</span>
+            <h2 className="text-[28px] sm:text-[40px] font-semibold tracking-[-0.04em] leading-[1.08] max-w-2xl">
+              {cta.heading}
             </h2>
-            <p className="text-[16px] text-muted mt-5 max-w-lg mx-auto">
-              Tell me where your team&apos;s week goes. I&apos;ll come back with what I would automate first and how
-              we would measure it.
-            </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <a href={`mailto:${site.email}?subject=AI%20for%20my%20agency`} className="btn btn-dark">
-                {site.email} <Arrow />
+            <p className="text-[15.5px] sm:text-[16.5px] text-muted mt-5 max-w-lg leading-relaxed">{cta.body}</p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a href={contact.mailto} className="btn btn-dark">
+                {cta.button} <Arrow />
               </a>
-              <Social href={site.linkedin} label="LinkedIn">
+              <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
                 <Logo name="linkedin" size={15} /> LinkedIn
-              </Social>
-              <Social href={site.github} label="GitHub">
-                <GitHubMark /> GitHub
-              </Social>
-              <a href={site.resume} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">Résumé (PDF)</a>
+              </a>
+              <a href={site.github} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">GitHub</a>
+              <a href={site.resume} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">Résumé</a>
             </div>
+            <p className="font-mono text-[11.5px] text-muted mt-4 break-words">{cta.note}</p>
           </div>
         </div>
+
       </section>
+
+      {/* Mobile: the one action, always in reach */}
+      <div className="md:hidden fixed bottom-0 inset-x-0 z-40 border-t border-line bg-white/90 backdrop-blur-xl px-4 py-3">
+        <a href={contact.mailto} className="btn btn-dark w-full justify-center">
+          {cta.button} <Arrow />
+        </a>
+      </div>
     </>
   );
 }

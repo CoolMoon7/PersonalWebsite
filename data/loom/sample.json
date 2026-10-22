@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "slug": "sample",
+  "company": {
+    "name": "Wardline Security",
+    "domain": "wardline.example",
+    "hq": "Columbus, OH",
+    "stage": "Seed, $5M, Feb 2026",
+    "one_liner": "Security awareness training built for hospital staff, with short modules that fit around a shift.",
+    "icp_line": "IT directors and CISOs at 100 to 500 bed mid-market hospitals who answer to a board after every phishing scare.",
+    "hiring_signal": "Hiring its first sales lead, posted 9 days ago, and the founders are still booking every demo themselves."
+  },
+  "accounts": [
+    { "name": "Marlowe Regional Medical Center", "reason": "IT director posted on X in September about a phishing wave that hit the billing office and asked peers what training they run.", "signal": "other", "source": "https://x.com/example/status/1840000000000000001", "date": "2026-09" },
+    { "name": "Calder Valley Health", "reason": "Listed in the state hospital association directory with a new CISO role created this quarter.", "signal": "hiring", "source": "https://example.com/oha/members/calder-valley-health", "date": "2026-09" },
+    { "name": "St. Aldric Community Hospital", "reason": "Two IT staff registered for the regional healthcare security conference, the first time the hospital sent anyone.", "signal": "other", "source": "https://example.com/hcsec26/attendees", "date": "2026-10" },
+    { "name": "Brightwater Health System", "reason": "Reported a ransomware incident at an affiliated clinic in August, which puts staff training on the next board agenda.", "signal": "other", "source": "https://example.com/news/brightwater-clinic-incident", "date": "2026-08" },
+    { "name": "Harlan County Memorial", "reason": "Opened a 40 bed expansion wing in June, adding about 120 staff who need onboarding training.", "signal": "expansion", "source": "https://example.com/news/harlan-memorial-wing", "date": "2026-06" },
+    { "name": "Pinecrest Medical", "reason": "IT director replied on X asking for tools that work for nurses who share workstations.", "signal": "other", "source": "https://x.com/example/status/1840000000000000002", "date": "2026-10" },
+    { "name": "Ridgeline Hospital", "reason": "Hiring a security analyst, its first dedicated security role, listed on the state association jobs board.", "signal": "hiring", "source": "https://example.com/oha/jobs/ridgeline-security-analyst", "date": "2026-09" },
+    { "name": "Eastport Health", "reason": "Joined a regional network in July, so its IT director now owns compliance for three more sites.", "signal": "expansion", "source": "https://example.com/news/eastport-network-merger", "date": "2026-07" },
+    { "name": "Summit Valley Hospital", "reason": "Conference attendee list shows its IT director registered for a session on human-layer risk.", "signal": "other", "source": "https://example.com/hcsec26/sessions/human-layer-risk", "date": "2026-10" },
+    { "name": "Lakeshore Medical Group", "reason": "Dropped its previous training vendor, mentioned in a public board packet that also asks for a replacement by Q1.", "signal": "competitor", "source": "https://example.com/boards/lakeshore-packet-2026-09", "date": "2026-09" },
+    { "name": "Oakmont Regional", "reason": "Launched a patient portal in May, which adds a new phishing surface for front desk staff.", "signal": "launch", "source": "https://example.com/news/oakmont-patient-portal", "date": "2026-05" },
+    { "name": "Fairhaven Community Health", "reason": "Raised a $12M bond for facility upgrades and the filing names cybersecurity as a funded line item.", "signal": "funding", "source": "https://example.com/filings/fairhaven-bond-2026", "date": "2026-08" }
+  ],
+  "system": {
+    "where": [
+      { "source": "X", "detail": "IT directors talking about phishing, training gaps and incidents in public posts." },
+      { "source": "State hospital association directory", "detail": "Member hospitals with bed counts, new security roles and job listings." },
+      { "source": "Conference attendee list", "detail": "Hospital staff registered for healthcare security sessions this season." }
+    ],
+    "signal": "A public post about a phishing scare, a new security hire at a hospital, or a name on the attendee list for a human-layer risk session.",
+    "chain": [
+      { "step": "collect", "title": "Collect", "body": "Pulls new posts, directory changes and attendee names every morning." },
+      { "step": "match", "title": "Match", "body": "Scores each hospital by bed count, role and how recent the signal is." },
+      { "step": "enrich", "title": "Find the person", "body": "Finds the IT director and verifies the email before anything is drafted." },
+      { "step": "draft", "title": "Draft", "body": "Writes one line about the exact post, role or session, then the offer." },
+      { "step": "approve", "title": "Your approval", "body": "Every draft waits for a person. Nothing sends on its own." },
+      { "step": "replies", "title": "Replies", "body": "Tags each reply and feeds the outcome back into the scoring." }
+    ],
+    "approval": "A person approves every draft before it sends."
+  },
+  "stack": [
+    { "name": "Hermes agents", "role": "Runs collection, matching and drafting as separate agents" },
+    { "name": "X API", "role": "Watches IT director posts about phishing and training" },
+    { "name": "Directory scrape", "role": "Reads the state hospital member list and jobs board" },
+    { "name": "Supabase", "role": "Stores accounts, drafts and status" },
+    { "name": "Claude Code", "role": "Builds and maintains the system" }
+  ],
+  "dashboard": {
+    "headline": "Your board, one screen",
+    "kpis": [
+      { "label": "Hospitals found this week", "value": "31" },
+      { "label": "Drafts waiting on you", "value": "9" },
+      { "label": "Sent", "value": "22" },
+      { "label": "Replies", "value": "3" }
+    ],
+    "rows": [
+      { "company": "Marlowe Regional Medical Center", "stage": "replied", "note": "Wants a demo next week" },
+      { "company": "Ridgeline Hospital", "stage": "draft ready", "note": "First security analyst role" },
+      { "company": "Lakeshore Medical Group", "stage": "approved", "note": "Vendor replacement by Q1" },
+      { "company": "Harlan County Memorial", "stage": "sent", "note": "Day 2 of 5" },
+      { "company": "Summit Valley Hospital", "stage": "enriched", "note": "IT director verified" },
+      { "company": "Fairhaven Community Health", "stage": "researched", "note": "Bond filing, August" }
+    ],
+    "note": "Sample data. Your board fills from your own accounts."
+  },
+  "ask": {
+    "line": "30 minutes on how you find hospital IT directors today, and whether this is worth building.",
+    "email": "cole@colebonawitz.com",
+    "linkedin": "https://www.linkedin.com/in/colebonawitz"
+  },
+  "meta": {
+    "status": "page_generated",
+    "generated_at": "2026-10-20T00:00:00Z",
+    "generator": "loom-gen 1",
+    "demo": true
+  }
+}

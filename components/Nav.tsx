@@ -3,22 +3,22 @@ import Image from "next/image";
 import { site } from "@/data/site";
 
 const links = [
-  { label: "What it does", href: "/#work" },
-  { label: "How it works", href: "/#how" },
+  { label: "Their week", href: "/#week" },
+  { label: "The system", href: "/#system" },
   { label: "Background", href: "/#about" },
 ];
 
 export default function Nav() {
   return (
-    <header className="sticky top-0 z-50 border-b border-line/80 bg-white/75 backdrop-blur-xl">
+    <header id="site-nav" className="sticky top-0 z-50 border-b border-line/80 bg-white/75 backdrop-blur-xl">
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5 group">
           <Image src="/images/logo.png" alt="" width={26} height={26} priority className="w-[26px] h-[26px]" />
           <span className="text-[15px] font-semibold tracking-tight">Cole Bonawitz</span>
-          <span className="hidden sm:inline font-mono text-[11px] text-faint">/ ai for insurance agencies</span>
+          <span className="hidden xl:inline font-mono text-[11px] text-faint">/ ai for insurance agencies</span>
         </Link>
 
-        <div className="hidden md:flex items-center gap-1">
+        <div className="hidden md:flex items-center gap-1 whitespace-nowrap">
           {links.map((l) => (
             <Link
               key={l.href}

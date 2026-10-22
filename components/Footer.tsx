@@ -4,7 +4,7 @@ import { site } from "@/data/site";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-line mt-24">
+    <footer id="site-footer" className="border-t border-line mt-24">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 flex flex-col sm:flex-row gap-6 sm:items-center justify-between">
         <div className="flex items-center gap-3">
           <Image src="/images/logo.png" alt="" width={20} height={20} className="w-5 h-5" />
