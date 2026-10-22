@@ -1,21 +1,45 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import { site } from "@/data/site";
+import { usePathname } from "next/navigation";
+import { site, isGtmPath } from "@/data/site";
 
-const links = [
-  { label: "The COI desk", href: "/#week" },
-  { label: "How it works", href: "/#system" },
-  { label: "Background", href: "/#about" },
-];
+/** The insurance homepage and the GTM portfolio (/gtm, /systems, /writing) each get their own links. */
+const modes = {
+  insurance: {
+    home: "/",
+    tag: "/ ai for insurance agencies",
+    contact: "/#contact",
+    links: [
+      { label: "The COI desk", href: "/#week" },
+      { label: "How it works", href: "/#system" },
+      { label: "Background", href: "/#about" },
+    ],
+  },
+  gtm: {
+    home: "/gtm",
+    tag: "/ gtm engineer",
+    contact: "/gtm#contact",
+    links: [
+      { label: "Systems", href: "/gtm#systems" },
+      { label: "About", href: "/gtm#about" },
+      { label: "Method", href: "/gtm#method" },
+      { label: "Writing", href: "/writing" },
+    ],
+  },
+};
 
 export default function Nav() {
+  const m = modes[isGtmPath(usePathname()) ? "gtm" : "insurance"];
+  const links = m.links;
   return (
     <header id="site-nav" className="sticky top-0 z-50 border-b border-line/80 bg-white/75 backdrop-blur-xl">
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2.5 group">
+        <Link href={m.home} className="flex items-center gap-2.5 group">
           <Image src="/images/logo.png" alt="" width={26} height={26} priority className="w-[26px] h-[26px]" />
           <span className="text-[15px] font-semibold tracking-tight">Cole Bonawitz</span>
-          <span className="hidden xl:inline font-mono text-[11px] text-faint">/ ai for insurance agencies</span>
+          <span className="hidden xl:inline font-mono text-[11px] text-faint">{m.tag}</span>
         </Link>
 
         <div className="hidden md:flex items-center gap-1 whitespace-nowrap">
@@ -37,7 +61,7 @@ export default function Nav() {
           <a href={site.github} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 rounded-md text-[13.5px] text-muted hover:text-foreground hover:bg-surface transition-colors">
             GitHub
           </a>
-          <a href="/#contact" className="btn btn-dark ml-2 !h-8 !px-3 !text-[13px]">
+          <a href={m.contact} className="btn btn-dark ml-2 !h-8 !px-3 !text-[13px]">
             Get in touch
           </a>
         </div>
@@ -59,7 +83,7 @@ export default function Nav() {
             <a href={site.resume} target="_blank" rel="noopener noreferrer" className="block px-3 py-2 rounded-md text-[14px] hover:bg-surface">Résumé</a>
             <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="block px-3 py-2 rounded-md text-[14px] hover:bg-surface">LinkedIn</a>
             <a href={site.github} target="_blank" rel="noopener noreferrer" className="block px-3 py-2 rounded-md text-[14px] hover:bg-surface">GitHub</a>
-            <a href="/#contact" className="btn btn-dark w-full justify-center mt-1">Get in touch</a>
+            <a href={m.contact} className="btn btn-dark w-full justify-center mt-1">Get in touch</a>
           </div>
         </details>
       </nav>

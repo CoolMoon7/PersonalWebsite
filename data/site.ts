@@ -10,6 +10,9 @@ export const site = {
   resume: "/Cole_Bonawitz_Resume.pdf",
 };
 
+/** Pages that belong to the GTM engineering portfolio rather than the insurance homepage. */
+export const isGtmPath = (p: string | null) => /^\/(gtm|systems|writing)(\/|$)/.test(p ?? "");
+
 export const facts = [
   { v: "Insurance", d: "An AI agent that drafts COIs for independent commercial P&C agencies in the Triangle" },
   { v: "10,000+", d: "records cleaned and enriched in a prior production outbound engine" },
