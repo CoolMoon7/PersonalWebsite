@@ -9,9 +9,9 @@ import {
 } from "@/data/insurance";
 
 export const metadata: Metadata = {
-  title: { absolute: "Cole Bonawitz — AI employees for insurance agencies" },
+  title: { absolute: "Cole Bonawitz — AI that writes COIs for insurance agencies" },
   description:
-    "An AI employee for independent commercial P&C agencies: it drafts COIs, renewal notices and endorsements from the policies in your AMS, and nothing sends without your approval. Built by Cole Bonawitz, Duke CS.",
+    "An AI agent for independent commercial P&C agencies that reads COI requests, checks them against the policy in your AMS and drafts the certificate. Nothing is issued without your approval. Built by Cole Bonawitz, Duke CS.",
   alternates: { canonical: "/" },
 };
 
@@ -36,31 +36,26 @@ export default function Home() {
         <p className="rise mt-6 text-[17px] sm:text-[19px] text-ink-2 leading-relaxed max-w-2xl">
           {hero.lede}
         </p>
-        <p className="rise mt-4 text-[15px] text-muted leading-relaxed max-w-2xl">
-          {hero.intro}
-        </p>
-
-        <div className="rise mt-8 flex items-center gap-4">
+        <div className="rise mt-8 flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-7">
           <Image
             src="/images/coletalking.png"
             alt="Cole Bonawitz"
-            width={96}
-            height={96}
+            width={160}
+            height={160}
             priority
-            className="w-14 h-14 rounded-full object-cover object-top border border-line flex-none"
+            className="w-24 h-24 sm:w-32 sm:h-32 rounded-full object-cover object-top border border-line flex-none"
           />
-          <p className="text-[14px] text-muted leading-snug">
-            Cole Bonawitz
-            <br />
-            Duke CS &apos;28 · Durham, NC
-          </p>
+          <div>
+            <p className="text-[15.5px] text-ink-2 leading-relaxed max-w-2xl">{hero.intro}</p>
+            <p className="font-mono text-[11.5px] text-muted mt-3">Cole Bonawitz · Duke CS &apos;28 · Durham, NC</p>
+          </div>
         </div>
 
-        <div className="rise mt-6 flex flex-wrap gap-3">
+        <div className="rise mt-8 flex flex-wrap gap-3">
           <a href={contact.mailto} className="btn btn-dark">
             {cta.button} <Arrow />
           </a>
-          <a href="#week" className="btn btn-ghost">See your week, described</a>
+          <a href="#system" className="btn btn-ghost">See how the agent works</a>
           <a href={site.resume} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">Résumé</a>
           <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
             <Logo name="linkedin" size={15} /> LinkedIn
@@ -83,8 +78,8 @@ export default function Home() {
 
       {/* ---------------- Their week ---------------- */}
       <section id="week" className="scroll-mt-24 max-w-6xl mx-auto px-4 sm:px-6 mt-20 sm:mt-28">
-        <SectionHead id="week" index="01" kicker="Their week" title="Your Tuesday, in your words.">
-          None of this is the insurance. It is the paper around the insurance, and it is what decides whether the account renews.
+        <SectionHead id="week" index="01" kicker="The COI desk" title="Your certificate queue, in your words.">
+          None of this is the insurance. It is the paper around the insurance, and it is what decides whether the payment releases and the account renews.
         </SectionHead>
 
         <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-line border border-line rounded-2xl overflow-hidden">
@@ -112,8 +107,8 @@ export default function Home() {
 
       {/* ---------------- The system ---------------- */}
       <section id="system" className="scroll-mt-24 max-w-6xl mx-auto px-4 sm:px-6 mt-20 sm:mt-28">
-        <SectionHead id="system" index="02" kicker="The system" title="Six steps, one human gate.">
-          The shape is the same as the pipelines I build for outbound. The tools are the ones an agency already runs.
+        <SectionHead id="system" index="02" kicker="The agent workflow" title="From COI request to issued certificate.">
+          One watcher, one sorter, one drafter, a human approval, then send and file. Built on the tools an agency already runs.
         </SectionHead>
 
         <div className="panel p-5 sm:p-6 flex flex-col md:flex-row md:items-center gap-5 md:gap-8">
@@ -130,7 +125,7 @@ export default function Home() {
             {system.chips.map((c, i) => (
               <span key={c} className={i === 1 ? "chip !border-accent/40 text-accent" : "chip"}>{c}</span>
             ))}
-            <span className="font-mono text-[11.5px] text-muted">The moving dots show which way data flows.</span>
+            <span className="font-mono text-[11.5px] text-muted">The moving dots show which way a request flows.</span>
           </div>
           <AgentSystem agents={system.agents} example={system.example} />
         </div>
@@ -215,9 +210,44 @@ export default function Home() {
 
       {/* ---------------- Background ---------------- */}
       <section id="about" className="scroll-mt-24 max-w-6xl mx-auto px-4 sm:px-6 mt-20 sm:mt-28">
-        <SectionHead id="about" index="06" kicker="Background" title="Who is building this.">
+        <SectionHead id="about" index="06" kicker="About" title="Who is building this.">
           Engineer by training, operator by habit.
         </SectionHead>
+
+        <div className="grid grid-cols-1 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-4 mb-4">
+          <div className="panel overflow-hidden relative aspect-[4/5] md:aspect-auto md:min-h-[420px]">
+            <Image
+              src="/images/coletalking.png"
+              alt="Cole Bonawitz speaking at an event"
+              fill
+              sizes="(max-width: 768px) 100vw, 40vw"
+              className="object-cover object-top"
+            />
+            <span className="absolute left-3 bottom-3 chip !bg-white/90 backdrop-blur">Chattanooga, TN → Durham, NC</span>
+          </div>
+          <div className="panel p-6 sm:p-8 flex flex-col">
+            <div className="space-y-4 text-[16px] text-ink-2 leading-relaxed">
+              <p>
+                I&apos;m Cole Bonawitz, a Computer Science student at Duke (minors in Statistical Science and
+                Philosophy) who would rather ship a system than talk about one. I founded RiZE Maps, a DTC brand that
+                reached $135K in revenue, co-founded Momnt, a hardware and iOS product, and built the first outbound
+                engine for a four-person startup.
+              </p>
+              <p>
+                Insurance is where I am putting that work now. Agency service desks are full of exactly the kind of
+                repetitive, rule-bound paperwork that agents are good at, as long as a licensed person stays in charge.
+                I start with the certificate of insurance because it is frequent, well defined and easy to check.
+              </p>
+            </div>
+            <div className="mt-auto pt-8 flex flex-wrap gap-3">
+              <a href={site.resume} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">Résumé (PDF)</a>
+              <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
+                <Logo name="linkedin" size={15} /> LinkedIn
+              </a>
+              <a href={site.github} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">GitHub</a>
+            </div>
+          </div>
+        </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-line border border-line rounded-2xl overflow-hidden">
           {facts.map((f) => (

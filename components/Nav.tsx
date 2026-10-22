@@ -3,8 +3,8 @@ import Image from "next/image";
 import { site } from "@/data/site";
 
 const links = [
-  { label: "Their week", href: "/#week" },
-  { label: "The system", href: "/#system" },
+  { label: "The COI desk", href: "/#week" },
+  { label: "How it works", href: "/#system" },
   { label: "Background", href: "/#about" },
 ];
 

@@ -1,9 +1,9 @@
 export const site = {
   name: "Cole Bonawitz",
   url: "https://colebonawitz.com",
-  title: "Cole Bonawitz — AI employees for insurance agencies",
+  title: "Cole Bonawitz — AI that writes COIs for insurance agencies",
   description:
-    "I build AI employees and automated systems for independent insurance agencies: intake, certificates, renewals and follow-up, with a licensed human approving anything that matters. Duke CS.",
+    "An AI agent that reads certificate requests, checks the policy and drafts the COI for your team to approve. Built for independent commercial P&C agencies by Cole Bonawitz, Duke CS.",
   email: "cole@colebonawitz.com",
   linkedin: "https://www.linkedin.com/in/colebonawitz",
   github: "https://github.com/CoolMoon7",
@@ -11,7 +11,7 @@ export const site = {
 };
 
 export const facts = [
-  { v: "Insurance", d: "Building AI agent systems for independent commercial P&C agencies in the Triangle" },
+  { v: "Insurance", d: "An AI agent that drafts COIs for independent commercial P&C agencies in the Triangle" },
   { v: "10,000+", d: "records cleaned and enriched in a prior production outbound engine" },
   { v: "$135K", d: "revenue driven at RiZE Maps, the DTC brand I founded" },
   { v: "1st of 100+", d: "teams at HackDuke" },
@@ -22,7 +22,7 @@ export const experience = [
     when: "2026 — present",
     role: "Builder",
     org: "AI agents for insurance agencies",
-    body: "Building an AI employee for independent commercial P&C agencies: COIs, renewals and endorsements drafted for human approval.",
+    body: "Building an AI agent that drafts certificates of insurance for independent commercial P&C agencies, with a licensed person approving every one.",
   },
   {
     when: "Oct 2025 — present",

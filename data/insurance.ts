@@ -19,89 +19,89 @@ export const contact = {
 };
 
 export const hero = {
-  chips: ["Commercial P&C · Durham and the Triangle", "One person, in Durham"],
+  chips: ["Certificates of insurance · commercial P&C", "Durham and the Triangle"],
   /** Printed under the hero buttons. Kept out of the chips so it never overflows a phone. */
   area: "Durham · Chapel Hill · Hillsborough · Morrisville · RTP",
-  /** Two lines. The second is rendered faint, as on /pilot. */
-  line1: "An AI employee",
-  line2: "for your insurance agency.",
+  /** Two lines. The second is rendered faint. */
+  line1: "An AI employee that",
+  line2: "writes your COIs.",
   lede:
-    "It works the renewals, COIs and endorsements your service team never has time for, so the accounts that should have been remarketed get remarketed.",
+    "Every certificate request that lands in your inbox is read, checked against the policy, and drafted as a finished ACORD certificate for your service team to approve. Nothing is issued until a person says so.",
   intro:
-    "I'm Cole. I'm a Duke student in Durham and I build agent systems. I'm building these systems starting with independent agencies around the Triangle, on exactly this: the paperwork that decides whether an account renews. What follows is what I would build for your book, and what it would not do.",
+    "I'm Cole, a Duke student in Durham who builds agent systems. I'm starting with independent agencies around the Triangle on the one task that hits every service desk daily: the certificate of insurance. Below is exactly how the agent works, step by step, and what it will never do.",
 };
 
 export const summary = [
   {
     k: "The job",
-    v: "An AI employee for your agency",
-    d: "Configured to your carriers, your forms and your wording.",
+    v: "Certificates of insurance",
+    d: "New certificates, reissues, holder changes and additional-insured requests.",
   },
   {
-    k: "What it covers",
-    v: "COIs, renewals, endorsements",
-    d: "Plus carrier chasing, loss runs and the dates nobody is watching.",
+    k: "Built from",
+    v: "The policy in your AMS",
+    d: "Limits, dates and endorsements are read from the policy, never typed from memory.",
   },
   {
-    k: "How you talk to it",
-    v: "Email and SMS",
-    d: "Its own address on your domain. A read-only dashboard. Nothing to install.",
+    k: "How you use it",
+    v: "Email in, approval out",
+    d: "Staff forward requests as they do today. Drafts come back for one-click approval.",
   },
   {
     k: "The gate",
-    v: "You approve everything",
-    d: "No certificate, notice or email leaves without a person.",
+    v: "You approve every certificate",
+    d: "No COI leaves the agency without a person reading it first.",
   },
 ];
 
-/** Section 02: their week, in their vocabulary. This section is the credibility test. */
+/** Section 01: the COI desk, in their vocabulary. This section is the credibility test. */
 export const week = {
   items: [
     {
       when: "7:40am",
-      title: "A COI that cannot wait",
+      title: "The certificate that cannot wait",
       body:
-        "A GC's AP department will not release a payment until a certificate with the right additional insured is in their inbox. The client forwards the request to you with 'today please' on top.",
+        "A GC's accounts payable will not release a payment until a certificate with the right additional insured is in their inbox. The client forwards the request with 'today please' on top.",
     },
     {
-      when: "This month",
-      title: "Fourteen renewals, ninety days out",
+      when: "All day",
+      title: "The same request, forty ways",
       body:
-        "Each one is a re-shop across ten to thirty carriers, a requote, a comparison, and something presentable for the insured. The accounts nobody had time to remarket are the ones that leave.",
+        "Property managers, lenders, general contractors and project owners each word it differently. Someone has to read it, work out what is really being asked and find the right policy.",
     },
     {
-      when: "Any day",
-      title: "An endorsement mid-term",
+      when: "Every request",
+      title: "Retyping the policy",
       body:
-        "A new truck, a new location, an employee added. The client emails you, you email the carrier, the carrier comes back a week later wanting a signed form and a premium change re-explained.",
+        "Insured, holder, policy numbers, limits, effective dates, description of operations. All of it already exists in the AMS, and all of it gets keyed in again.",
     },
     {
-      when: "Always",
-      title: "Chasing carriers",
+      when: "The risky ones",
+      title: "Wording the policy may not support",
       body:
-        "Quotes come back from carriers that answer when they answer. Every day a submission sits, the client asks you for status, and the client is who you lose.",
+        "Additional insured, waiver of subrogation, primary and non-contributory. A request that asks for more than the policy gives is the one that needs a person, and it is easy to miss when it is the fortieth that day.",
     },
     {
-      when: "March and September",
-      title: "Loss runs and premium audits",
+      when: "Weeks later",
+      title: "The reissue",
       body:
-        "Audit forms, loss runs for a renewal, or for a competitor someone asked to quote. Rarely urgent, always due, and nobody's favourite afternoon.",
+        "The policy renews, a holder changes address, a project adds a party. Every certificate that was issued now has to be redone, and nobody has a list of them.",
     },
     {
       when: "Silently",
-      title: "Dates that pass",
+      title: "Expired certificates",
       body:
-        "Certificates expiring, filings and audit dates that nothing in the office flags. Invisible until they cost you the account.",
+        "A certificate sitting with a GC on a policy that has since lapsed or renewed. Invisible until somebody asks, or until a loss.",
     },
   ],
   pain: [
-    "By six, the service team has answered everyone who called and moved none of the renewals forward.",
-    "The admin gets done at 9pm, because it cannot be done at 3pm.",
-    "It is not a marketing problem. The book is there. It needs someone whose only job is to chase it.",
+    "By six, the service team has turned around every certificate and moved nothing else forward.",
+    "The renewals and the remarketing get done at 9pm, because the COIs ate the afternoon.",
+    "It is not a hard task. It is a constant one, and it belongs to whoever has the least time.",
   ],
 };
 
-/** Section 03: the agent graph. Tool keys are Logo glyphs. */
+/** Section 02: the COI agent graph. Tool keys are Logo glyphs. */
 export const system: {
   intro: { what: string; in: string; out: string };
   chips: string[];
@@ -111,11 +111,11 @@ export const system: {
 } = {
   intro: {
     what:
-      "An agent for each kind of work your office does, one queue you approve from, and a report at the end of the week.",
-    in: "Inbox, AMS, policy dates",
-    out: "Sent, logged, reported",
+      "A certificate request comes in as an email. Five agents and one person turn it into an issued, filed and followed-up certificate. The agents prepare; the person approves.",
+    in: "A COI request, by email",
+    out: "An issued, logged certificate",
   },
-  chips: ["5 agents shown", "More added as your book needs it", "1 human gate", "Tools you already use"],
+  chips: ["5 agents", "1 human gate", "Reads the policy in your AMS", "Built for COIs"],
   agents: [
     {
       k: "01",
@@ -123,23 +123,23 @@ export const system: {
       title: "Watch",
       kind: "agent",
       short:
-        "Reads the agency inbox, the policy dates in your AMS and the carrier mail, all day, so nothing sits in someone's head.",
-      ins: ["mail", "dates", "carrier", "ams"],
+        "Watches the certificate inbox and the forwards your team sends it. Picks out the COI requests from the rest of the mail and keeps the attachments, contract language and holder details.",
+      ins: ["mail", "sms"],
       outs: ["queue"],
-      dirs: { mail: "in", dates: "in", carrier: "in", ams: "in", queue: "out" },
-      handoff: "everything that came in",
+      dirs: { mail: "in", sms: "in", queue: "out" },
+      handoff: "every COI request, collected",
     },
     {
       k: "02",
       agent: "Sorter",
-      title: "Triage",
+      title: "Sort",
       kind: "agent",
       short:
-        "Decides what each item is, when it is due and what happens to the account if it slips, then ranks the day.",
+        "Works out what is being asked: new certificate, reissue, holder change or additional insured. Finds the insured and the exact policy in your AMS, checks what is missing and ranks the day by deadline.",
       ins: ["queue", "ams"],
       outs: ["list"],
       dirs: { queue: "in", ams: "in", list: "out" },
-      handoff: "the day, ranked",
+      handoff: "classified, matched to a policy, ranked",
     },
     {
       k: "03",
@@ -147,11 +147,11 @@ export const system: {
       title: "Draft",
       kind: "agent",
       short:
-        "Writes the certificate, the renewal notice or the endorsement acknowledgement, working from the policy in your AMS.",
-      ins: ["coi", "ams", "mail"],
+        "Fills the ACORD certificate from the policy: insured, holder, limits, dates and description of operations. Adds additional-insured or waiver wording only where the policy has the endorsement, and flags anything it does not.",
+      ins: ["ams", "coi", "mail"],
       outs: ["draft"],
-      dirs: { coi: "in", ams: "in", mail: "in", draft: "out" },
-      handoff: "drafts, with the source policy attached",
+      dirs: { ams: "in", coi: "in", mail: "in", draft: "out" },
+      handoff: "certificate and cover email, with checks",
     },
     {
       k: "04",
@@ -159,7 +159,7 @@ export const system: {
       title: "You approve",
       kind: "gate",
       short:
-        "Read it, fix a line if you want, send it. Nothing leaves the agency without a person.",
+        "Read the certificate and the checklist, fix a line if you want, approve it. Requests the policy cannot support stop here for a person to decide.",
       ins: ["mail", "sms"],
       outs: [],
       dirs: { mail: "in", sms: "in" },
@@ -168,47 +168,47 @@ export const system: {
     {
       k: "05",
       agent: "Courier",
-      title: "Send",
+      title: "Send and chase",
       kind: "agent",
       short:
-        "Sends the certificate to the GC, the notice to the insured, the question to the underwriter. Chases what has not come back.",
+        "Sends the approved certificate to the holder, copies your service team, and follows up if the holder says it is wrong or does not acknowledge it.",
       ins: ["mail", "sms"],
-      outs: ["carrier", "ams"],
-      dirs: { mail: "out", sms: "out", carrier: "out", ams: "out" },
+      outs: ["mail", "ams"],
+      dirs: { mail: "out", sms: "out", ams: "out" },
       handoff: "sent, and followed up",
     },
     {
       k: "06",
       agent: "Ledger",
-      title: "Log and report",
+      title: "File and track",
       kind: "agent",
       short:
-        "Writes the activity back to the account, and on Friday tells you what was chased, what you approved and what is still open.",
-      ins: ["ams", "mail"],
+        "Files the certificate and the approval on the account. Remembers every holder and every expiry, so when a policy renews it tells you which certificates need reissuing before anyone asks.",
+      ins: ["ams", "dates"],
       outs: ["chart"],
-      dirs: { ams: "in", mail: "in", chart: "out" },
+      dirs: { ams: "in", dates: "in", chart: "out" },
       handoff: "",
     },
   ],
   /** Illustrative only. Shown in the approval card at the human gate. */
   example: {
     prospect: "Ridgeline Mechanical",
-    signal: "COI due today · GC holding payment",
+    signal: "COI request · GC holding payment · due today",
     draft:
-      "Attached is the certificate for Ridgeline Mechanical on the general liability policy, effective 03/01. The additional insured wording the GC requested is on the endorsement page. Copying your service team.",
+      "Certificate for Ridgeline Mechanical, general liability, holder Carolina Build Group. Checks: additional insured endorsement on policy ✓ · waiver of subrogation ✓ · primary and non-contributory ✗ not on the policy, flagged for you. Cover email drafted.",
     tag: "COI · due today",
   },
   report: {
-    title: "Friday, 8am: the week, in numbers.",
+    title: "Friday, 8am: the COI desk, in numbers.",
     body:
-      "One email. What came in, what was drafted, what you approved, what went out, what is still waiting on a carrier. Per account, not per agent.",
+      "One email. Certificates drafted, approved and sent, which requests the policy could not support, and which issued certificates need redoing because a policy renewed.",
     logTitle: "weekly report · example",
     log: [
-      "9 certificates issued, 2 waiting on you",
-      "3 renewals re-shopped, 1 quote outstanding",
-      "4 endorsements acknowledged, 1 form from the carrier",
-      "2 loss runs requested, both received",
-      "1 policy expiring in 21 days with no renewal activity",
+      "23 certificate requests received, 21 issued, 2 waiting on you",
+      "3 requests asked for wording the policy does not carry, sent to a producer",
+      "4 holders changed address, 4 certificates reissued",
+      "6 policies renewing in 30 days, 11 certificates will need reissuing",
+      "Oldest open request: 3 hours, waiting on a holder's contract language",
     ],
   },
 };
@@ -228,7 +228,7 @@ export const never = [
   {
     title: "Nothing sends without a person",
     body:
-      "Every certificate, notice, acknowledgement and email stops in an approval queue with the source policy attached. You approve, edit or skip.",
+      "Every certificate and email stops in an approval queue with the source policy attached. You approve, edit or skip.",
   },
   {
     title: "Your AMS stays the system of record",
@@ -241,9 +241,9 @@ export const never = [
       "Your book lives in the accounts and storage I set up for you, and you can revoke access at any time. To write a draft, the text of that request goes to the model provider I use, under business API terms that exclude training on it. Nothing else leaves, and every request is logged.",
   },
   {
-    title: "Everything is logged",
+    title: "It never promises more than the policy",
     body:
-      "Each action is written back to the account with what came in, what was drafted and who approved it. Nothing happens off the record.",
+      "A certificate is a record of what the policy says. The agent will not add wording, limits or parties the policy does not carry. Anything beyond the policy stops for a producer, with the gap spelled out.",
   },
 ];
 
@@ -252,7 +252,7 @@ export const built = [
   {
     title: "Built for your book",
     body:
-      "Your carriers, your policy forms, your account naming, your wording. Configured from a sample of real renewals and certificates, not from a generic template.",
+      "Your certificate holders, your policy forms, your account naming, your wording. Configured from a sample of your real certificates, not from a generic template.",
   },
   {
     title: "Email first, nothing to install",
