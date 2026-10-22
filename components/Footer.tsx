@@ -11,8 +11,8 @@ export default function Footer() {
           <span className="font-mono text-[12px] text-muted">© {new Date().getFullYear()} Cole Bonawitz · colebonawitz.com</span>
         </div>
         <div className="flex flex-wrap gap-x-5 gap-y-2 font-mono text-[12px] text-muted">
-          <Link href="/#systems" className="hover:text-foreground">systems</Link>
-          <Link href="/writing" className="hover:text-foreground">writing</Link>
+          <Link href="/#work" className="hover:text-foreground">what it does</Link>
+          <Link href="/#about" className="hover:text-foreground">background</Link>
           <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-foreground">linkedin</a>
           <a href={site.github} target="_blank" rel="noopener noreferrer" className="hover:text-foreground">github</a>
           <a href={site.resume} target="_blank" rel="noopener noreferrer" className="hover:text-foreground">resume</a>

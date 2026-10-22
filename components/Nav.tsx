@@ -3,10 +3,9 @@ import Image from "next/image";
 import { site } from "@/data/site";
 
 const links = [
-  { label: "Systems", href: "/#systems" },
-  { label: "About", href: "/#about" },
-  { label: "Method", href: "/#method" },
-  { label: "Writing", href: "/writing" },
+  { label: "What it does", href: "/#work" },
+  { label: "How it works", href: "/#how" },
+  { label: "Background", href: "/#about" },
 ];
 
 export default function Nav() {
@@ -16,7 +15,7 @@ export default function Nav() {
         <Link href="/" className="flex items-center gap-2.5 group">
           <Image src="/images/logo.png" alt="" width={26} height={26} priority className="w-[26px] h-[26px]" />
           <span className="text-[15px] font-semibold tracking-tight">Cole Bonawitz</span>
-          <span className="hidden sm:inline font-mono text-[11px] text-faint">/ gtm engineer</span>
+          <span className="hidden sm:inline font-mono text-[11px] text-faint">/ ai for insurance agencies</span>
         </Link>
 
         <div className="hidden md:flex items-center gap-1">
@@ -29,8 +28,14 @@ export default function Nav() {
               {l.label}
             </Link>
           ))}
+          <a href={site.resume} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 rounded-md text-[13.5px] text-muted hover:text-foreground hover:bg-surface transition-colors">
+            Résumé
+          </a>
           <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 rounded-md text-[13.5px] text-muted hover:text-foreground hover:bg-surface transition-colors">
             LinkedIn
+          </a>
+          <a href={site.github} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 rounded-md text-[13.5px] text-muted hover:text-foreground hover:bg-surface transition-colors">
+            GitHub
           </a>
           <a href="/#contact" className="btn btn-dark ml-2 !h-8 !px-3 !text-[13px]">
             Get in touch
@@ -51,9 +56,9 @@ export default function Nav() {
                 {l.label}
               </Link>
             ))}
-            <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="block px-3 py-2 rounded-md text-[14px] hover:bg-surface">
-              LinkedIn
-            </a>
+            <a href={site.resume} target="_blank" rel="noopener noreferrer" className="block px-3 py-2 rounded-md text-[14px] hover:bg-surface">Résumé</a>
+            <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="block px-3 py-2 rounded-md text-[14px] hover:bg-surface">LinkedIn</a>
+            <a href={site.github} target="_blank" rel="noopener noreferrer" className="block px-3 py-2 rounded-md text-[14px] hover:bg-surface">GitHub</a>
             <a href="/#contact" className="btn btn-dark w-full justify-center mt-1">Get in touch</a>
           </div>
         </details>

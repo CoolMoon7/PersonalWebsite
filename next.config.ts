@@ -6,7 +6,11 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      { source: "/projects/:slug*", destination: "/#systems", permanent: true },
+      { source: "/projects/:slug*", destination: "/", permanent: true },
+      { source: "/pilot", destination: "/", permanent: true },
+      { source: "/entrance", destination: "/", permanent: true },
+      { source: "/writing/:slug*", destination: "/", permanent: true },
+      { source: "/systems/:slug*", destination: "/", permanent: true },
     ];
   },
 };
