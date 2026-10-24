@@ -172,7 +172,7 @@ export default function AgentSystem({
 
               {/* Phones: the same tools, listed under the card */}
               <div className="sm:hidden flex flex-wrap gap-x-3 gap-y-4">
-                {[...a.ins, ...a.outs].map((t) => (
+                {[...new Set([...a.ins, ...a.outs])].map((t) => (
                   <Tile key={t} t={t} />
                 ))}
               </div>
