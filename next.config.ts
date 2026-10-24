@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
     return [
       { source: "/projects/:slug*", destination: "/gtm#systems", permanent: true },
       { source: "/insurance", destination: "/", permanent: true },
+      { source: "/services/coi-desk", destination: "/services", permanent: true },
       { source: "/pilot", destination: "/", permanent: true },
       { source: "/entrance", destination: "/", permanent: true },
     ];
