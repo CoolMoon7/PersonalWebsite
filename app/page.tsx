@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { SectionHead } from "@/components/ui";
-import {
-  CtaPair, ClosingCta, Problem, VerbCards, CadenceStrip, Timeline, ServiceGrid, Partnership, Faq, Boundaries,
-} from "@/components/sections";
-import { CoiWorkflow } from "@/components/coi";
-import { hero, problem, coiIntro, about, closing, trust } from "@/data/home";
+import { CtaPair, ClosingCta, Faq } from "@/components/sections";
+import ServiceMap from "@/components/ServiceMap";
+import Tiers from "@/components/Tiers";
+import { VerbLine, ProblemStrip, EngagementFlow, QuoteFlow, ReportMock, Limits } from "@/components/visuals";
+import { system } from "@/data/insurance";
+import { hero, about, closing } from "@/data/home";
 import { pageMeta, jsonLd } from "@/lib/meta";
 
 export const metadata: Metadata = pageMeta({
@@ -23,13 +24,15 @@ export default function Home() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd()) }} />
       <section className="max-w-6xl mx-auto px-4 sm:px-6 pt-10 sm:pt-16">
-        <div className="rise eyebrow mb-7">{hero.eyebrow}</div>
-        <h1 className="rise text-[38px] leading-[1.03] sm:text-[56px] lg:text-[68px] font-semibold tracking-[-0.045em] max-w-4xl">
+        <div className="rise eyebrow mb-6">{hero.eyebrow}</div>
+        <h1 className="rise text-[40px] leading-[1.02] sm:text-[60px] lg:text-[76px] font-semibold tracking-[-0.05em] max-w-4xl">
           {hero.line1}
           <br />
           <span className="text-faint">{hero.line2}</span>
         </h1>
-        <p className="rise mt-6 text-[17px] sm:text-[19px] text-ink-2 leading-relaxed max-w-2xl">{hero.sub}</p>
+        <p className="rise mt-6 text-[18px] sm:text-[21px] text-ink-2 leading-snug max-w-2xl">
+          I run every AI tool your agency uses. You get a report every Friday.
+        </p>
         <div className="rise mt-8 flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-7">
           <Image
             src="/images/coletalking.png"
@@ -37,87 +40,87 @@ export default function Home() {
             width={160}
             height={160}
             priority
-            className="w-24 h-24 sm:w-32 sm:h-32 rounded-full object-cover object-top border border-line flex-none"
+            className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover object-top border border-line flex-none"
           />
           <div>
             <CtaPair />
-            <p className="font-mono text-[11.5px] text-muted mt-4">{hero.byline}</p>
+            <p className="font-mono text-[11.5px] text-muted mt-3">{hero.byline}</p>
           </div>
         </div>
-        <div className="rise mt-12 grid grid-cols-2 lg:grid-cols-4 gap-px bg-line border border-line rounded-2xl overflow-hidden">
-          {hero.summary.map((s) => (
-            <div key={s.k} className="bg-white p-5">
-              <div className="eyebrow mb-3">{s.k}</div>
-              <div className="text-[17px] sm:text-[20px] font-semibold tracking-[-0.03em] leading-tight">{s.v}</div>
-              <div className="text-[13px] text-muted leading-relaxed mt-2">{s.d}</div>
-            </div>
-          ))}
+        <div className="rise mt-12">
+          <VerbLine />
         </div>
       </section>
 
-      <section id="problem" className={SECTION}>
-        <SectionHead index="01" kicker="The problem" title="Why this job exists." />
-        <Problem {...problem} />
+      <section id="problem" className={`${SECTION} !mt-14`}>
+        <div className="eyebrow mb-3">Why agencies call me</div>
+        <ProblemStrip />
+        <p className="text-[17px] sm:text-[19px] font-medium tracking-[-0.02em] mt-5">Everyone is selling you a tool. Nobody owns the result. That&apos;s the job I take on.</p>
       </section>
 
-      <section id="department" className={SECTION}>
-        <SectionHead index="02" kicker="What an AI department does" title="Choose. Connect. Run. Keep current." />
-        <VerbCards />
-        <CadenceStrip />
+      <section id="map" className={SECTION}>
+        <SectionHead index="01" kicker="What I do" title="Where I work in your agency.">Tap anything to see what I do.</SectionHead>
+        <ServiceMap />
       </section>
 
-      <section id="services" className={SECTION}>
-        <SectionHead index="03" kicker="Services at a glance" title="Pick one, or let the audit tell us which.">
-          <Link href="/services" className="underline underline-offset-4">See every service</Link>
-        </SectionHead>
-        <ServiceGrid compact />
-        <CtaPair className="mt-8" />
+      <section id="levels" className={SECTION}>
+        <SectionHead index="02" kicker="Levels" title="How far you take it.">Start anywhere. Add a level when you&apos;re ready.</SectionHead>
+        <Tiers />
       </section>
 
-      <section id="coi" className={SECTION}>
-        <SectionHead index="04" kicker="The flagship: the COI desk" title="From COI request to issued certificate.">
-          {coiIntro}
-        </SectionHead>
-        <CoiWorkflow />
-        <Link href="/services/coi-desk" className="btn btn-ghost mt-5">More on the COI desk</Link>
+      <section id="how" className={SECTION}>
+        <SectionHead index="03" kicker="How it runs" title="Audit first. Then one fixed department.">No new software for your team to learn.</SectionHead>
+        <EngagementFlow />
       </section>
 
-      <section id="sixty" className={SECTION}>
-        <SectionHead index="05" kicker="Your first 60 days" title="What the first two months look like." />
-        <Timeline />
+      <section id="report" className={SECTION}>
+        <SectionHead index="04" kicker="How you see the value" title="A report every Friday.">Plain language, from your own systems.</SectionHead>
+        <ReportMock />
+      </section>
+
+      <section id="quote" className={SECTION}>
+        <SectionHead index="05" kicker="How I quote" title="Pricing you can read before you sign.">No prices on this page. Every quote is written.</SectionHead>
+        <QuoteFlow />
       </section>
 
       <section id="limits" className={SECTION}>
-        <SectionHead index="06" kicker="Boundaries" title="What I won't do.">
-          <Link href="/trust" className="underline underline-offset-4">Read the full page</Link>
-        </SectionHead>
-        <Boundaries items={trust.items.slice(0, 6)} />
+        <SectionHead index="06" kicker="Boundaries" title="What I won't do.">Licensed people approve everything.</SectionHead>
+        <Limits />
       </section>
 
-      <section id="partnership" className={SECTION}>
-        <SectionHead index="07" kicker="The 12-month partnership" title="One fixed monthly fee, and you keep the work." />
-        <Partnership />
-      </section>
-
-      <section id="about" className={SECTION}>
-        <SectionHead index="08" kicker="Who is building this" title={about.title}>
-          <Link href="/about" className="underline underline-offset-4">More about me</Link>
-        </SectionHead>
-        <div className="panel p-6 sm:p-8">
-          <p className="text-[16px] text-ink-2 leading-relaxed max-w-3xl">{about.short}</p>
-          <div className="mt-6 grid grid-cols-2 lg:grid-cols-4 gap-px bg-line border border-line rounded-xl overflow-hidden">
-            {about.stats.map((f) => (
-              <div key={f.v} className="bg-white p-4 sm:p-5">
-                <div className="text-[24px] sm:text-[30px] font-semibold tracking-[-0.04em] leading-none">{f.v}</div>
-                <div className="text-[13px] text-muted leading-relaxed mt-3">{f.d}</div>
-              </div>
+      <section id="coi" className={SECTION}>
+        <SectionHead index="07" kicker="Flagship" title="The COI desk, end to end.">The first workflow I built.</SectionHead>
+        <div className="panel p-5 sm:p-7">
+          <ol className="grid grid-cols-2 md:grid-cols-6 gap-3">
+            {system.agents.map((a) => (
+              <li key={a.k} className={`rounded-[10px] border px-3 py-3 ${a.kind === "gate" ? "border-accent/50 border-dashed" : "border-line-2"}`}>
+                <div className="font-mono text-[10.5px] text-muted">{a.k}</div>
+                <div className="text-[15px] font-semibold tracking-[-0.02em] mt-1">{a.title}</div>
+                {a.kind === "gate" && <div className="font-mono text-[10.5px] text-accent mt-1">a person</div>}
+              </li>
             ))}
-          </div>
+          </ol>
+          <Link href="/services/coi-desk" className="btn btn-ghost mt-5">Watch it work</Link>
         </div>
       </section>
 
+      <section id="about" className={SECTION}>
+        <SectionHead index="08" kicker="Who" title="Cole Bonawitz.">
+          <Link href="/about" className="underline underline-offset-4">More about me</Link>
+        </SectionHead>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-line border border-line rounded-2xl overflow-hidden">
+          {about.stats.map((f) => (
+            <div key={f.v} className="bg-white p-4 sm:p-5">
+              <div className="text-[26px] sm:text-[32px] font-semibold tracking-[-0.04em] leading-none">{f.v}</div>
+              <div className="text-[13px] text-muted leading-relaxed mt-3">{f.d}</div>
+            </div>
+          ))}
+        </div>
+        <p className="text-[15px] text-muted mt-4 max-w-3xl">Duke CS student in Durham. Starting with Triangle agencies, and I&apos;ll tell you when something isn&apos;t a fit.</p>
+      </section>
+
       <section id="faq" className={SECTION}>
-        <SectionHead index="09" kicker="FAQ" title="Questions I get asked." />
+        <SectionHead index="09" kicker="FAQ" title="Quick answers." />
         <Faq />
       </section>
 

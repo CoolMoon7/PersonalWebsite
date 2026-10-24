@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { SectionHead } from "@/components/ui";
-import { PageHeader, VerbCards, CadenceStrip, WeeklyReport, PricingCard, Partnership, ClosingCta } from "@/components/sections";
-import { steps, closing } from "@/data/home";
+import { PageHeader, VerbCards, CadenceStrip, PricingCard, Partnership, ClosingCta } from "@/components/sections";
+import { closing } from "@/data/home";
 import { built } from "@/data/insurance";
+import { EngagementFlow, ReportMock, QuoteFlow } from "@/components/visuals";
 import { pageMeta } from "@/lib/meta";
 
 export const metadata: Metadata = pageMeta({
@@ -28,21 +29,13 @@ export default function HowItWorks() {
       </section>
 
       <section className={SECTION}>
-        <SectionHead index="02" kicker="The engagement" title="Three steps." />
-        <ol className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {steps.map((s) => (
-            <li key={s.k} className="panel p-5 sm:p-6">
-              <div className="font-mono text-[11px] text-accent">{s.k}</div>
-              <h3 className="text-[18px] font-semibold tracking-[-0.02em] mt-2">{s.title}</h3>
-              <p className="text-[14px] text-muted leading-relaxed mt-2">{s.body}</p>
-            </li>
-          ))}
-        </ol>
+        <SectionHead index="02" kicker="The engagement" title="Audit first. Then one fixed department." />
+        <EngagementFlow />
       </section>
 
       <section className={SECTION}>
         <SectionHead index="03" kicker="The weekly report" title="What you read on Friday." />
-        <WeeklyReport />
+        <ReportMock />
       </section>
 
       <section className={SECTION}>
@@ -64,7 +57,8 @@ export default function HowItWorks() {
 
       <section className={SECTION}>
         <SectionHead index="06" kicker="How pricing works" title="Pricing you can read before you sign." />
-        <PricingCard />
+        <QuoteFlow />
+        <div className="mt-6"><PricingCard /></div>
       </section>
 
       <section className={SECTION}>
