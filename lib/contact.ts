@@ -12,7 +12,6 @@ export const contactSchema = z.object({
   teamSize: z.enum(teamSizes).optional(),
   ams: z.enum(amsOptions).optional(),
   lines: z.array(z.enum(lines)).default([]),
-  timeSinks: z.array(z.enum(serviceValues)).default([]),
   interested: z.array(z.enum(serviceValues)).default([]),
   message: z.string().trim().max(1000, "Keep it under 1,000 characters.").optional().default(""),
   /** Honeypot: real visitors never fill this. */

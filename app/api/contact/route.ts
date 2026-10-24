@@ -57,8 +57,7 @@ export async function POST(req: NextRequest) {
     `Team size: ${d.teamSize ?? "-"}`,
     `Management system: ${d.ams ?? "-"}`,
     `Lines: ${d.lines.join(", ") || "-"}`,
-    `Most time today: ${d.timeSinks.map(nameOf).join(", ") || "-"}`,
-    `Interested in: ${d.interested.map(nameOf).join(", ") || "-"}`,
+    `Services interested in: ${d.interested.map(nameOf).join(", ") || "-"}`,
     "",
     d.message || "(no message)",
   ];

@@ -43,7 +43,6 @@ export default function ContactForm({ intent: intentParam, service: preService }
     name: "", agency: "", email: "", phone: "", role: "", teamSize: "", ams: "", message: "", website: "",
   });
   const [lineSel, setLineSel] = useState<string[]>([]);
-  const [timeSinks, setTimeSinks] = useState<string[]>([]);
   const [interested, setInterested] = useState<string[]>(
     preService && services.some((s) => s.slug === preService) ? [preService] : [],
   );
@@ -79,8 +78,7 @@ export default function ContactForm({ intent: intentParam, service: preService }
       teamSize: form.teamSize || undefined,
       ams: form.ams || undefined,
       lines: lineSel,
-      timeSinks,
-      interested: intent === "quote" ? interested : [],
+      interested,
       startedAt: startedAt.current,
     };
     // zod loads on first submit, keeping it out of the page's initial JavaScript.
@@ -203,10 +201,7 @@ export default function ContactForm({ intent: intentParam, service: preService }
       </div>
 
       <Checks name="lines" legend="Lines you write" options={lines.map((l) => ({ value: l, label: l }))} value={lineSel} onChange={setLineSel} />
-      <Checks name="timeSinks" legend="What takes the most time today" options={serviceOptions} value={timeSinks} onChange={setTimeSinks} />
-      {intent === "quote" && (
-        <Checks name="interested" legend="Services you're interested in" options={serviceOptions} value={interested} onChange={setInterested} />
-      )}
+      <Checks name="interested" legend="What services are you interested in?" options={serviceOptions} value={interested} onChange={setInterested} />
 
       <div>
         <label htmlFor="message" className={LABEL}>Anything else <span className="text-muted font-normal">(optional)</span></label>
