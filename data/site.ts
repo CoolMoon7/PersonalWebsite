@@ -1,9 +1,9 @@
 export const site = {
   name: "Cole Bonawitz",
   url: "https://colebonawitz.com",
-  title: "Cole Bonawitz — AI that writes COIs for insurance agencies",
+  title: "Cole Bonawitz | Your agency's AI department",
   description:
-    "An AI agent that reads certificate requests, checks the policy and drafts the COI for your team to approve. Built for independent commercial P&C agencies by Cole Bonawitz, Duke CS.",
+    "AI operations for independent insurance agencies in the Triangle. I choose, connect, run and keep current every AI tool you use, with a report every Friday. Based in Durham, NC.",
   email: "cole@colebonawitz.com",
   linkedin: "https://www.linkedin.com/in/colebonawitz",
   github: "https://github.com/CoolMoon7",
@@ -23,7 +23,7 @@ export function siteMode(path: string | null): SiteMode {
 }
 
 export const facts = [
-  { v: "Insurance", d: "An AI agent that drafts COIs for independent commercial P&C agencies in the Triangle" },
+  { v: "Insurance", d: "The AI department for independent agencies in the Triangle: I choose, connect, run and keep current every tool" },
   { v: "10,000+", d: "records cleaned and enriched in a prior production outbound engine" },
   { v: "$135K", d: "revenue driven at RiZE Maps, the DTC brand I founded" },
   { v: "1st of 100+", d: "teams at HackDuke" },
@@ -32,9 +32,9 @@ export const facts = [
 export const experience = [
   {
     when: "2026 — present",
-    role: "Builder",
-    org: "AI agents for insurance agencies",
-    body: "Building an AI agent that drafts certificates of insurance for independent commercial P&C agencies, with a licensed person approving every one.",
+    role: "Founder",
+    org: "AI operations for insurance agencies",
+    body: "Running the AI department for independent insurance agencies: choosing, connecting, running and updating their AI tools, with licensed staff approving what goes out.",
   },
   {
     when: "Oct 2025 — present",

@@ -12,11 +12,15 @@ const modes = {
     home: "/",
     resume: site.resume,
     tag: "/ ai for insurance agencies",
-    contact: "/#contact",
+    contact: "/contact?intent=audit",
+    cta: "Book an AI audit",
+    socials: false,
     links: [
-      { label: "The COI desk", href: "/#week" },
-      { label: "How it works", href: "/#system" },
-      { label: "Background", href: "/#about" },
+      { label: "Services", href: "/services" },
+      { label: "How it works", href: "/how-it-works" },
+      { label: "The COI desk", href: "/services/coi-desk" },
+      { label: "Trust", href: "/trust" },
+      { label: "About", href: "/about" },
     ],
   },
   gtm: {
@@ -24,6 +28,8 @@ const modes = {
     resume: site.resume,
     tag: "/ gtm engineer",
     contact: "/gtm#contact",
+    cta: "Get in touch",
+    socials: true,
     links: [
       { label: "Systems", href: "/gtm#systems" },
       { label: "About", href: "/gtm#about" },
@@ -36,6 +42,8 @@ const modes = {
     resume: fde.resume,
     tag: "/ forward deployed engineer",
     contact: "/fde#contact",
+    cta: "Get in touch",
+    socials: true,
     links: [
       { label: "Deployments", href: "/fde#deployments" },
       { label: "How I work", href: "/fde#method" },
@@ -66,6 +74,8 @@ export default function Nav() {
               {l.label}
             </Link>
           ))}
+          {m.socials && (
+            <>
           <a href={m.resume} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 rounded-md text-[13.5px] text-muted hover:text-foreground hover:bg-surface transition-colors">
             Résumé
           </a>
@@ -75,8 +85,10 @@ export default function Nav() {
           <a href={site.github} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 rounded-md text-[13.5px] text-muted hover:text-foreground hover:bg-surface transition-colors">
             GitHub
           </a>
+            </>
+          )}
           <a href={m.contact} className="btn btn-dark ml-2 !h-8 !px-3 !text-[13px]">
-            Get in touch
+            {m.cta}
           </a>
         </div>
 
@@ -94,10 +106,14 @@ export default function Nav() {
                 {l.label}
               </Link>
             ))}
+            {m.socials && (
+              <>
             <a href={m.resume} target="_blank" rel="noopener noreferrer" className="block px-3 py-2 rounded-md text-[14px] hover:bg-surface">Résumé</a>
             <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="block px-3 py-2 rounded-md text-[14px] hover:bg-surface">LinkedIn</a>
             <a href={site.github} target="_blank" rel="noopener noreferrer" className="block px-3 py-2 rounded-md text-[14px] hover:bg-surface">GitHub</a>
-            <a href={m.contact} className="btn btn-dark w-full justify-center mt-1">Get in touch</a>
+              </>
+            )}
+            <a href={m.contact} className="btn btn-dark w-full justify-center mt-1">{m.cta}</a>
           </div>
         </details>
       </nav>

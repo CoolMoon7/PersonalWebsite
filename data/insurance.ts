@@ -270,20 +270,11 @@ export const built = [
       "I host and run it. There is no software for your office to buy, and nothing for your IT to maintain.",
   },
   {
-    title: "No usage caps, no seat fees",
-    body:
-      "Agents are added as your book needs them, usage is not metered, and support is included. There is no per-seat or per-email price to think about while you are deciding whether this is worth it.",
-  },
-  {
     title: "A report every Friday",
     body:
       "What came in, what was drafted, what you approved, what is still open. In numbers, per account. If a renewal is going nowhere, it says so.",
   },
-  {
-    title: "Same-day fixes",
-    body:
-      "A carrier changes a form, a template reads wrong, a date is off: you tell me and it is fixed that day, not at the next release.",
-  },
+  // TODO(Cole): "Same-day fixes" removed until you confirm you can promise it. Pricing is now a fixed fee set by team size plus per-service fees.
 ];
 
 /** Section 06: proof. Only what is true and checkable. */
