@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageHeader, ServiceGrid, ClosingCta } from "@/components/sections";
 import { SectionHead } from "@/components/ui";
+import { SystemsStrip } from "@/components/Marks";
 import ServiceMap from "@/components/ServiceMap";
 import Tiers from "@/components/Tiers";
 import { pageMeta } from "@/lib/meta";
@@ -25,7 +26,11 @@ export default function Services() {
         <Tiers />
       </section>
       <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-20">
-        <SectionHead index="03" kicker="Every service" title="The full list." />
+        <SectionHead index="03" kicker="Your stack" title="I work around the system you run." />
+        <SystemsStrip />
+      </section>
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-20">
+        <SectionHead index="04" kicker="Every service" title="The full list." />
         <ServiceGrid groupLevel={2} />
       </section>
       <ClosingCta title="Not on the list? If your workflow needs something custom, that's what I build." />

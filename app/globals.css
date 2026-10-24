@@ -212,6 +212,8 @@ a.panel, .panel[data-hover] { transition: border-color 0.15s, box-shadow 0.15s; 
 .btn:active { transform: translateY(1px); }
 
 @media (prefers-reduced-motion: reduce) {
+  .marquee-track { width: auto; flex-wrap: wrap; }
+  .marquee-copy[aria-hidden] { display: none; }
   .reveal { animation: none !important; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }

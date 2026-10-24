@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { SectionHead, Arrow } from "@/components/ui";
+import { MarkMarquee, CaseStudies } from "@/components/Marks";
 import { PageHeader, EYEBROW, ClosingCta } from "@/components/sections";
 import { about, closing } from "@/data/home";
 import { site, experience } from "@/data/site";
@@ -49,7 +50,17 @@ export default function About() {
       </section>
 
       <section className={SECTION}>
-        <SectionHead index="01" kicker="Proof" title="What I have actually done.">
+        <div className="eyebrow mb-4 text-center">Studied, built and worked at</div>
+        <MarkMarquee />
+      </section>
+
+      <section className={SECTION}>
+        <SectionHead index="01" kicker="Work" title="Systems I&apos;ve built." />
+        <CaseStudies />
+      </section>
+
+      <section className={SECTION}>
+        <SectionHead index="02" kicker="Proof" title="What I have actually done.">
           Two things, stated plainly. No logos, no client names, no numbers I cannot point at.
         </SectionHead>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
