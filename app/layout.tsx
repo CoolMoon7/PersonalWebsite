@@ -4,6 +4,7 @@ import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import StickyCta from "@/components/StickyCta";
 import DotField from "@/components/DotField";
 import { site } from "@/data/site";
 
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Nav />
         <main>{children}</main>
         <Footer />
+        <StickyCta />
       </body>
     </html>
   );
