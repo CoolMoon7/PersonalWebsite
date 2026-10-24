@@ -85,7 +85,7 @@ export function QuoteFlow() {
     <div className="panel overflow-hidden">
       <ul className="divide-y divide-line">
         {rows.map((r, i) => (
-          <li key={r.t} className="grid grid-cols-[28px_1fr] sm:grid-cols-[28px_1fr_auto_auto] gap-x-4 gap-y-1 items-center px-4 sm:px-6 py-4">
+          <li key={r.t} className="grid grid-cols-[28px_1fr] sm:grid-cols-[28px_1fr_190px_190px] gap-x-4 gap-y-1 items-center px-4 sm:px-6 py-4">
             <span className="font-mono text-[12px] text-accent">0{i + 1}</span>
             <span className="text-[16px] sm:text-[17px] font-semibold tracking-[-0.02em]">{r.t}</span>
             <span className="chip col-start-2 sm:col-start-auto justify-self-start">{r.tag}</span>
@@ -104,9 +104,9 @@ export function QuoteFlow() {
 function Bars({ values }: { values: number[] }) {
   const max = Math.max(...values);
   return (
-    <svg viewBox="0 0 70 28" className="w-full h-7" aria-hidden>
+    <svg viewBox="0 0 70 28" preserveAspectRatio="none" className="w-full h-9" aria-hidden>
       {values.map((v, i) => (
-        <rect key={i} x={i * 10 + 1} y={28 - (v / max) * 26} width="7" height={(v / max) * 26} rx="1.5" className={i === values.length - 1 ? "fill-[#2f5bff]" : "fill-[#d4d4d8]"} />
+        <rect key={i} x={i * 10 + 1.5} y={28 - (v / max) * 26} width="7" height={(v / max) * 26} rx="1.5" className={i === values.length - 1 ? "fill-[#2f5bff]" : "fill-[#d4d4d8]"} />
       ))}
     </svg>
   );
