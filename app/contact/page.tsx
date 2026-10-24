@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import { PageHeader } from "@/components/sections";
 import ContactForm from "@/components/ContactForm";
 import { site } from "@/data/site";
@@ -12,15 +11,14 @@ export const metadata: Metadata = pageMeta({
   path: "/contact",
 });
 
-export default function Contact() {
+export default async function Contact({ searchParams }: { searchParams: Promise<{ intent?: string; service?: string }> }) {
+  const { intent, service } = await searchParams;
   const booking = process.env.NEXT_PUBLIC_BOOKING_URL;
   return (
     <>
       <PageHeader eyebrow="Contact" title="Book an audit, request a quote, or just talk." />
       <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-10 grid grid-cols-1 lg:grid-cols-[minmax(0,7fr)_minmax(0,4fr)] gap-6 items-start">
-        <Suspense fallback={<div className="panel p-8 text-muted">Loading the form…</div>}>
-          <ContactForm />
-        </Suspense>
+        <ContactForm intent={intent} service={service} />
         <aside className="panel p-6 text-[15px] text-ink-2 leading-relaxed">
           <div className="eyebrow mb-3">Or write to me</div>
           <a className="text-accent underline underline-offset-4 break-all" href={`mailto:${site.email}`}>{site.email}</a>

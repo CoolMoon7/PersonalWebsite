@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { contactSchema, intents } from "@/lib/contact";
+import { contactSchema } from "@/lib/contact";
+import { intents } from "@/lib/contact-options";
 import { services } from "@/content/services";
 import { site } from "@/data/site";
 

@@ -1,12 +1,9 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import { services } from "@/content/services";
 import { site } from "@/data/site";
-import {
-  amsOptions, contactSchema, intents, lines, NOT_SURE, roles, teamSizes, type Intent,
-} from "@/lib/contact";
+import { amsOptions, intents, lines, NOT_SURE, roles, teamSizes, type Intent } from "@/lib/contact-options";
 
 type Errors = Record<string, string>;
 type Status = "idle" | "sending" | "done" | "fallback";
@@ -38,10 +35,8 @@ function Checks({ name, legend, options, value, onChange }: {
   );
 }
 
-export default function ContactForm() {
-  const params = useSearchParams();
-  const initialIntent = (intents.find((i) => i.value === params.get("intent"))?.value ?? "audit") as Intent;
-  const preService = params.get("service");
+export default function ContactForm({ intent: intentParam, service: preService }: { intent?: string; service?: string }) {
+  const initialIntent = (intents.find((i) => i.value === intentParam)?.value ?? "audit") as Intent;
 
   const [intent, setIntent] = useState<Intent>(initialIntent);
   const [form, setForm] = useState({
@@ -88,6 +83,8 @@ export default function ContactForm() {
       interested: intent === "quote" ? interested : [],
       startedAt: startedAt.current,
     };
+    // zod loads on first submit, keeping it out of the page's initial JavaScript.
+    const { contactSchema } = await import("@/lib/contact");
     const parsed = contactSchema.safeParse(payload);
     if (!parsed.success) {
       const next: Errors = {};

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Logo from "@/components/Logo";
 import { SectionHead, Arrow } from "@/components/ui";
 import { PageHeader, EYEBROW, ClosingCta } from "@/components/sections";
 import { about, closing } from "@/data/home";
@@ -34,7 +33,7 @@ export default function About() {
             </div>
             <div className="mt-auto pt-8 flex flex-wrap gap-3">
               <a href={site.resume} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">Résumé (PDF)</a>
-              <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="btn btn-ghost"><Logo name="linkedin" size={15} /> LinkedIn</a>
+              <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">LinkedIn</a>
               <a href={site.github} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">GitHub</a>
             </div>
           </div>

@@ -88,13 +88,15 @@ export function Timeline() {
   );
 }
 
-export function ServiceGrid({ compact = false }: { compact?: boolean }) {
+export function ServiceGrid({ compact = false, groupLevel = 3 }: { compact?: boolean; groupLevel?: 2 | 3 }) {
+  const GroupH = (groupLevel === 2 ? "h2" : "h3") as "h2" | "h3";
+  const CardH = (groupLevel === 2 ? "h3" : "h4") as "h3" | "h4";
   return (
     <div className="space-y-10">
       {serviceGroups.map((g) => (
         <div key={g.group}>
           <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 mb-4">
-            <h3 className="text-[18px] font-semibold tracking-[-0.02em]">{g.group}</h3>
+            <GroupH className="text-[18px] font-semibold tracking-[-0.02em]">{g.group}</GroupH>
             <p className="text-[13.5px] text-muted">{g.blurb}</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -102,7 +104,7 @@ export function ServiceGrid({ compact = false }: { compact?: boolean }) {
               .filter((s) => s.group === g.group)
               .map((s) => (
                 <div key={s.slug} className="panel p-5 sm:p-6 flex flex-col hover:border-[#d4d4d8] transition-colors">
-                  <h4 className="text-[16px] font-semibold tracking-[-0.01em]">{s.name}</h4>
+                  <CardH className="text-[16px] font-semibold tracking-[-0.01em]">{s.name}</CardH>
                   <p className="text-[14px] text-ink-2 leading-relaxed mt-2">{s.problem}</p>
                   {!compact && <p className="text-[14px] text-muted leading-relaxed mt-2">{s.does}</p>}
                   <div className="mt-auto pt-4 flex flex-wrap gap-x-5 gap-y-1 text-[13.5px]">
@@ -236,12 +238,13 @@ export function WeeklyReport() {
   );
 }
 
-export function Boundaries({ items }: { items: { title: string; body: string }[] }) {
+export function Boundaries({ items, level = 3 }: { items: { title: string; body: string }[]; level?: 2 | 3 }) {
+  const H = (level === 2 ? "h2" : "h3") as "h2" | "h3";
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {items.map((n) => (
         <div key={n.title} className="panel p-5 sm:p-6">
-          <h3 className="text-[15.5px] font-semibold tracking-[-0.01em]">{n.title}</h3>
+          <H className="text-[15.5px] font-semibold tracking-[-0.01em]">{n.title}</H>
           <p className="text-[14px] text-muted leading-relaxed mt-2">{n.body}</p>
         </div>
       ))}

@@ -7,7 +7,7 @@ import {
 } from "@/components/sections";
 import { CoiWorkflow } from "@/components/coi";
 import { hero, problem, coiIntro, about, closing, trust } from "@/data/home";
-import { pageMeta } from "@/lib/meta";
+import { pageMeta, jsonLd } from "@/lib/meta";
 
 export const metadata: Metadata = pageMeta({
   title: "Cole Bonawitz | Your agency's AI department",
@@ -21,6 +21,7 @@ const SECTION = "scroll-mt-24 max-w-6xl mx-auto px-4 sm:px-6 mt-20 sm:mt-28";
 export default function Home() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd()) }} />
       <section className="max-w-6xl mx-auto px-4 sm:px-6 pt-10 sm:pt-16">
         <div className="rise eyebrow mb-7">{hero.eyebrow}</div>
         <h1 className="rise text-[38px] leading-[1.03] sm:text-[56px] lg:text-[68px] font-semibold tracking-[-0.045em] max-w-4xl">

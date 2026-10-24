@@ -15,7 +15,7 @@ export default function Trust() {
     <>
       <PageHeader eyebrow="Trust" title={trust.title} lede={trust.lede} />
       <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-14">
-        <Boundaries items={trust.items} />
+        <Boundaries items={trust.items} level={2} />
         <p className="panel border-dashed p-5 sm:p-7 mt-4 text-[15px] text-ink-2 leading-relaxed max-w-3xl">{trust.close}</p>
       </section>
       <ClosingCta title={closing.title} />

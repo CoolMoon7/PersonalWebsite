@@ -16,7 +16,7 @@ export function SectionHead({
   children?: React.ReactNode;
 }) {
   return (
-    <div id={id} className="scroll-mt-24 flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+    <div id={id} className="reveal scroll-mt-24 flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
       <div>
         <div className="eyebrow mb-3 flex items-center gap-2">
           <span className="text-accent">{index}</span>

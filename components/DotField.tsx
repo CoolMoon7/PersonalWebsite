@@ -45,6 +45,19 @@ export default function DotField() {
       const now = performance.now();
       trail = trail.filter((p) => now - p.t < TRAIL_LIFE);
       ctx.clearRect(0, 0, w, h);
+      if (strength < 0.01 && trail.length === 0) {
+        // Resting state: one path, one fill. Much cheaper than per-dot colour maths.
+        ctx.fillStyle = `rgb(${BASE[0]},${BASE[1]},${BASE[2]})`;
+        ctx.beginPath();
+        for (let y = GAP / 2; y < h + GAP; y += GAP) {
+          for (let x = GAP / 2; x < w + GAP; x += GAP) {
+            ctx.moveTo(x + 0.8, y);
+            ctx.arc(x, y, 0.8, 0, Math.PI * 2);
+          }
+        }
+        ctx.fill();
+        return;
+      }
       for (let y = GAP / 2; y < h + GAP; y += GAP) {
         for (let x = GAP / 2; x < w + GAP; x += GAP) {
           const dx = cur.x - x, dy = cur.y - y;
