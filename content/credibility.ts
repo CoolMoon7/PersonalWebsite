@@ -23,8 +23,8 @@ export const systems: Mark[] = [
   { name: "Applied Epic", file: "applied-epic", h: 28 },
   { name: "HawkSoft", file: "hawksoft", h: 34 },
   { name: "EZLynx", file: "ezlynx", h: 50 },
-  { name: "Momentum AMP", file: "momentum-amp", h: 34 },
-  { name: "QQCatalyst", file: "qqcatalyst", h: 34 },
+  { name: "Momentum AMP", file: "momentum-amp", h: 44 },
+  { name: "QQCatalyst", file: "qqcatalyst", h: 38 },
 ];
 
 /** Tools I have actually built with, by Logo key. */
