@@ -28,7 +28,7 @@ export const systems: Mark[] = [
 ];
 
 /** Tools I have actually built with, by Logo key. */
-export const builtWith = ["claude", "mcp", "python", "supabase", "postgres", "hubspot", "zapier", "gmail", "react", "clay"];
+export const builtWith = ["claude", "mcp", "openclaw", "hermes", "python", "supabase", "postgres", "hubspot", "zapier", "gmail", "react", "clay"];
 
 export type Case = {
   org: string;
