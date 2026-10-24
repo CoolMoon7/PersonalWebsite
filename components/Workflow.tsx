@@ -4,8 +4,6 @@ import type { Workflow as WF, WFNode } from "@/data/systems";
 const MAX_W = 1060; // fits the 6xl container without horizontal scroll
 const ROW_H = 100;
 const NODE_H = 60;
-let COL_W = 196;
-let NODE_W = 172;
 const STEP = 0.55; // seconds between columns lighting up
 
 const kindLabel: Record<WFNode["kind"], string> = {
@@ -16,16 +14,18 @@ const kindLabel: Record<WFNode["kind"], string> = {
   output: "output",
 };
 
-function pos(n: WFNode) {
+function pos(n: WFNode, COL_W: number) {
+  const NODE_W = COL_W - 18;
   return {
     x: n.col * COL_W + (COL_W - NODE_W) / 2,
     y: n.row * ROW_H + (ROW_H - NODE_H) / 2,
   };
 }
 
-function edgePath(a: WFNode, b: WFNode, loop?: boolean, height?: number) {
-  const pa = pos(a);
-  const pb = pos(b);
+function edgePath(a: WFNode, b: WFNode, COL_W: number, loop?: boolean, height?: number) {
+  const NODE_W = COL_W - 18;
+  const pa = pos(a, COL_W);
+  const pb = pos(b, COL_W);
   if (loop) {
     // feedback edge: leave from the bottom of `a`, run under the graph, enter the bottom of `b`
     const x1 = pa.x + NODE_W / 2;
@@ -58,8 +58,8 @@ export default function Workflow({
 }) {
   const byId = Object.fromEntries(wf.nodes.map((n) => [n.id, n]));
   const cols = Math.max(...wf.nodes.map((n) => n.col)) + 1;
-  COL_W = Math.min(196, Math.floor(MAX_W / cols));
-  NODE_W = COL_W - 18;
+  const COL_W = Math.min(196, Math.floor(MAX_W / cols));
+  const NODE_W = COL_W - 18;
   const rows = Math.max(...wf.nodes.map((n) => n.row)) + 1;
   const hasLoop = wf.edges.some((e) => e.loop);
   const W = cols * COL_W;
@@ -91,7 +91,7 @@ export default function Workflow({
             {wf.edges.map((e, i) => {
               const a = byId[e.from];
               const b = byId[e.to];
-              const d = edgePath(a, b, e.loop, H);
+              const d = edgePath(a, b, COL_W, e.loop, H);
               const begin = `${(a.col * STEP).toFixed(2)}s`;
               return (
                 <g key={i}>
@@ -117,8 +117,8 @@ export default function Workflow({
                     />
                   </circle>
                   {e.label && (() => {
-                    const pa = pos(a);
-                    const pb = pos(b);
+                    const pa = pos(a, COL_W);
+                    const pb = pos(b, COL_W);
                     const lx = e.loop ? (pa.x + pb.x + NODE_W) / 2 : (pa.x + NODE_W + pb.x) / 2;
                     const ly = e.loop ? H - 14 : (pa.y + pb.y + NODE_H) / 2 - 8;
                     return (
@@ -140,7 +140,7 @@ export default function Workflow({
           </svg>
 
           {wf.nodes.map((n) => {
-            const p = pos(n);
+            const p = pos(n, COL_W);
             return (
               <div
                 key={n.id}
