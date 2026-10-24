@@ -5,26 +5,26 @@
  * Only list a system under `systems` if it can really be supported. Logos are trademarks of their owners.
  */
 
-export type Mark = { name: string; file: string; /** Use this path instead of public/logos/<file>. */ src?: string };
+export type Mark = { name: string; file: string; /** Display height in px, to balance wide and stacked logos. */ h?: number; /** Use this path instead of public/logos/<file>. */ src?: string };
 
 /** Where I've studied, built and worked. */
 export const worked: Mark[] = [
-  { name: "Duke University", file: "duke" },
-  { name: "Duke Innovation & Entrepreneurship", file: "duke-ie" },
-  { name: "DukeEngage", file: "dukeengage" },
-  { name: "Innovation Collab", file: "innovation-collab" },
-  { name: "Swoop Tutors", file: "swoop-tutors" },
-  { name: "Dignity Properties", file: "dignity-properties" },
+  { name: "Duke University", file: "duke", h: 40 },
+  { name: "Duke Innovation & Entrepreneurship", file: "duke-ie", h: 36 },
+  { name: "DukeEngage", file: "dukeengage", h: 28 },
+  { name: "Innovation Collab", file: "innovation-collab", h: 40 },
+  { name: "Swoop Tutors", file: "swoop-tutors", h: 32 },
+  { name: "Dignity Properties", file: "dignity-properties", h: 74 },
 ];
 
 /** Management systems I work around. Named because the agency has to tell me which one it runs. */
 export const systems: Mark[] = [
-  { name: "AMS360", file: "ams360" },
-  { name: "Applied Epic", file: "applied-epic" },
-  { name: "HawkSoft", file: "hawksoft" },
-  { name: "EZLynx", file: "ezlynx" },
-  { name: "Momentum AMP", file: "momentum-amp" },
-  { name: "QQCatalyst", file: "qqcatalyst" },
+  { name: "AMS360", file: "ams360", h: 38 },
+  { name: "Applied Epic", file: "applied-epic", h: 28 },
+  { name: "HawkSoft", file: "hawksoft", h: 34 },
+  { name: "EZLynx", file: "ezlynx", h: 50 },
+  { name: "Momentum AMP", file: "momentum-amp", h: 34 },
+  { name: "QQCatalyst", file: "qqcatalyst", h: 34 },
 ];
 
 /** Tools I have actually built with, by Logo key. */

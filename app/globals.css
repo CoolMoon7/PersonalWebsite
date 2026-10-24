@@ -213,7 +213,7 @@ a.panel, .panel[data-hover] { transition: border-color 0.15s, box-shadow 0.15s; 
 
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { width: auto; flex-wrap: wrap; }
-  .marquee-copy[aria-hidden] { display: none; }
+  .marquee-copy[aria-hidden], .marquee-copy li[aria-hidden] { display: none; }
   .reveal { animation: none !important; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }

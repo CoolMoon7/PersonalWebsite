@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import Logo from "@/components/Logo";
+import Logo, { logoTitle } from "@/components/Logo";
 import { cases, builtWith, systems, worked, type Mark } from "@/content/credibility";
 
 const EXTS = ["svg", "png", "webp"];
@@ -14,14 +14,14 @@ function find(m: Mark): string | null {
   return null;
 }
 
-export function MarkItem({ m, h = 28 }: { m: Mark; h?: number }) {
+export function MarkItem({ m, h = m.h ?? 28 }: { m: Mark; h?: number }) {
   const src = find(m);
   return src ? (
     // Local logo files of unknown size; next/image adds nothing here.
     // eslint-disable-next-line @next/next/no-img-element
-    <img src={src} alt={m.name} height={h} width={h * 4} style={{ height: h, width: "auto", maxWidth: 160 }} className="logo-mono object-contain" loading="lazy" />
+    <img src={src} alt={m.name} height={h} width={h * 4} style={{ height: h, width: "auto", maxWidth: 160 }} className="mix-blend-multiply object-contain" loading="lazy" />
   ) : (
-    <span className="logo-mono font-semibold tracking-[-0.03em] text-ink-2 whitespace-nowrap" style={{ fontSize: h * 0.62 }}>
+    <span className="font-semibold tracking-[-0.03em] text-ink-2 whitespace-nowrap" style={{ fontSize: h * 0.62 }}>
       {m.name}
     </span>
   );
@@ -29,10 +29,11 @@ export function MarkItem({ m, h = 28 }: { m: Mark; h?: number }) {
 
 /** A slow-moving row of marks. Still and wrapped under reduced motion. */
 export function MarkMarquee({ items = worked }: { items?: Mark[] }) {
+  items = items.filter((m) => find(m));
   const row = (hidden: boolean) => (
     <ul className="marquee-copy flex items-center gap-12 sm:gap-16 pr-12 sm:pr-16 shrink-0" aria-hidden={hidden || undefined}>
-      {items.map((m) => (
-        <li key={m.name} className="flex items-center h-12">
+      {[...items, ...items].map((m, i) => (
+        <li key={`${m.name}-${i}`} className="flex items-center h-16" aria-hidden={i >= items.length || undefined}>
           <MarkItem m={m} />
         </li>
       ))}
@@ -57,8 +58,8 @@ export function SystemsStrip() {
           <div className="font-mono text-[11px] text-muted">I work around yours</div>
         </div>
         <ul className="flex flex-wrap items-center gap-x-8 gap-y-4">
-          {systems.map((m) => (
-            <li key={m.name}><MarkItem m={m} h={26} /></li>
+          {systems.filter((m) => find(m)).map((m) => (
+            <li key={m.name}><MarkItem m={m} /></li>
           ))}
         </ul>
       </div>
@@ -70,7 +71,7 @@ export function SystemsStrip() {
         <ul className="flex flex-wrap items-center gap-x-6 gap-y-3">
           {builtWith.map((k) => (
             <li key={k} className="flex items-center gap-2 text-[14px] text-ink-2">
-              <Logo name={k} size={18} /> {k === "mcp" ? "MCP" : k.charAt(0).toUpperCase() + k.slice(1)}
+              <Logo name={k} size={18} /> {k === "mcp" ? "MCP" : logoTitle(k)}
             </li>
           ))}
         </ul>
@@ -92,7 +93,7 @@ export function CaseStudies() {
               <h3 className="text-[20px] font-semibold tracking-[-0.025em]">{c.org}</h3>
               <p className="font-mono text-[11.5px] text-muted mt-1">{c.role} · {c.period}</p>
             </div>
-            <div className="flex-none h-10 flex items-center"><MarkItem m={c.mark} h={34} /></div>
+            <div className="flex-none flex items-center"><MarkItem m={c.mark} h={Math.min((c.mark.h ?? 28) + 8, 64)} /></div>
           </header>
 
           <div className="eyebrow mt-5">The problem</div>
