@@ -5,7 +5,8 @@ import { useEffect, useRef } from "react";
 const GAP = 22;
 const RADIUS = 520; // cursor influence radius (px)
 const PULL = 4; // max shift toward the cursor (px)
-const BASE = [214, 214, 220]; // resting dot color
+const BASE = [190, 190, 202]; // resting dot color
+const DOT_R = 1; // resting dot radius (px)
 const HOT = [140, 140, 150]; // dot color right under the cursor
 const TRAIL_R = 90; // trail width (px)
 const TRAIL_LIFE = 900; // ms a trail point lasts
@@ -51,8 +52,8 @@ export default function DotField() {
         ctx.beginPath();
         for (let y = GAP / 2; y < h + GAP; y += GAP) {
           for (let x = GAP / 2; x < w + GAP; x += GAP) {
-            ctx.moveTo(x + 0.8, y);
-            ctx.arc(x, y, 0.8, 0, Math.PI * 2);
+            ctx.moveTo(x + DOT_R, y);
+            ctx.arc(x, y, DOT_R, 0, Math.PI * 2);
           }
         }
         ctx.fill();
@@ -81,7 +82,7 @@ export default function DotField() {
           c = c.map(Math.round);
           ctx.fillStyle = `rgb(${c[0]},${c[1]},${c[2]})`;
           ctx.beginPath();
-          ctx.arc(px, py, 0.8 + 0.4 * t, 0, Math.PI * 2);
+          ctx.arc(px, py, DOT_R + 0.4 * t, 0, Math.PI * 2);
           ctx.fill();
         }
       }
