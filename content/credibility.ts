@@ -36,7 +36,10 @@ export type Case = {
   role: string;
   period: string;
   problem: string;
+  /** The pipeline, as short steps. */
   flow: string[];
+  /** What I built, as short lines. */
+  did: string[];
   stats: { v: string; l: string }[];
   result: string;
   tools: string[];
@@ -49,11 +52,17 @@ export const cases: Case[] = [
     role: "GTM engineering intern · sole engineer",
     period: "Aug – Dec 2025",
     problem: "No outbound motion. Leads in spreadsheets, replies tracked by hand.",
-    flow: ["Clay", "Clean", "Score", "HubSpot + Zapier", "Dashboard", "Custom CRM"],
+    flow: ["Clay", "Clean", "Score", "Draft + send", "A/B test", "CRM", "Dashboard"],
+    did: [
+      "Automated email outreach and drafting, sequenced through HubSpot and Zapier",
+      "A/B tests on subject lines and send timing, 100 sends per variant per week",
+      "CRM workflows and lifecycle stages, then a migration to a custom CRM",
+      "Data integration: Clay, SQL and pandas cleaning, ICP scoring across 10,000+ records",
+    ],
     stats: [
-      { v: "10,000+", l: "records cleaned" },
       { v: "5,000+", l: "prospects sequenced" },
-      { v: "15%", l: "cold reply rate" },
+      { v: "15% / 40%", l: "cold / warm reply" },
+      { v: "3,000", l: "accounts qualified" },
       { v: "50", l: "calls booked" },
     ],
     result: "The reply dashboard changed who the team targeted. The custom CRM is still in use.",
@@ -63,14 +72,24 @@ export const cases: Case[] = [
     org: "Dignity Properties",
     mark: worked[5],
     role: "Builder",
-    period: "Project",
-    problem: "Off-market deals sourced by hand, with context lost between runs.",
-    flow: ["Source", "Qualify", "Remember"],
+    period: "Ongoing",
+    problem: "Business work spread across email and several platforms.",
+    // TODO(Cole): confirm everything listed here is live before launch. I only wrote what you told me.
+    flow: ["Source", "Qualify", "Draft", "Workflows", "Assistant"],
+    did: [
+      "An agentic system that drafts email responses",
+      "Workflows set up inside their existing systems",
+      "A personal AI assistant for property management and other business functions",
+      "Platform connections, including GoHighLevel",
+      "Agents that source and qualify off-market properties, with a persistent memory of properties, owners and decisions",
+    ],
     stats: [
+      { v: "Agentic", l: "email drafting" },
       { v: "MCP", l: "tool layer" },
       { v: "Supabase", l: "persistent memory" },
+      { v: "GoHighLevel", l: "connected" },
     ],
-    result: "Agents source and qualify properties. Every run starts from the properties, owners and decisions the firm already has.",
+    result: "One assistant that works across the firm's tools and starts each task from what it already knows.",
     tools: ["claude", "mcp", "supabase", "python"],
   },
 ];

@@ -109,12 +109,21 @@ export function CaseStudies() {
             ))}
           </ol>
 
+          <ul className="mt-4 space-y-1.5">
+            {c.did.map((d) => (
+              <li key={d} className="flex gap-2.5 text-[14px] text-ink-2 leading-snug">
+                <span className="text-accent font-mono text-[12px] pt-0.5" aria-hidden>+</span>
+                {d}
+              </li>
+            ))}
+          </ul>
+
           <div className="eyebrow mt-5">The result</div>
           <dl className="mt-2 grid grid-cols-2 gap-px bg-line border border-line rounded-xl overflow-hidden">
             {c.stats.map((s) => (
               <div key={s.l} className="bg-white px-3.5 py-3">
                 <dt className="sr-only">{s.l}</dt>
-                <dd className="text-[22px] sm:text-[26px] font-semibold tracking-[-0.04em] leading-none">{s.v}</dd>
+                <dd className={`font-semibold tracking-[-0.04em] leading-none ${s.v.length > 9 ? "text-[18px] sm:text-[20px]" : "text-[22px] sm:text-[26px]"}`}>{s.v}</dd>
                 <div className="font-mono text-[10.5px] text-muted mt-1.5" aria-hidden>{s.l}</div>
               </div>
             ))}
