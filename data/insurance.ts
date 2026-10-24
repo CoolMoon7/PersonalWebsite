@@ -199,7 +199,7 @@ export const system: {
     tag: "COI · due today",
   },
   report: {
-    title: "Friday, 8am: the COI desk, in numbers.",
+    title: "Friday, 8am: certificates, in numbers.",
     body:
       "One email. Certificates drafted, approved and sent, which requests the policy could not support, and which issued certificates need redoing because a policy renewed.",
     logTitle: "weekly report · example",

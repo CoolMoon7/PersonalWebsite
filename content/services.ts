@@ -62,7 +62,7 @@ export const services: Service[] = [
     name: "The COI desk",
     problem: "Certificate requests eat the service team's day.",
     does:
-      "I draft every certificate from the policy for a licensed person to approve, chase missing information, reissue on renewal, and file everything.",
+      "I set up certificate drafting around the tools you already have, for a licensed person to approve. It chases missing information, reissues on renewal, and files everything. Where nothing fits, I build the missing piece.",
     href: "/services/coi-desk",
   },
   {

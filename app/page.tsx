@@ -6,7 +6,6 @@ import Hero from "@/components/Hero";
 import ServiceMap from "@/components/ServiceMap";
 import Tiers from "@/components/Tiers";
 import { EngagementFlow, QuoteFlow, ReportMock, Limits } from "@/components/visuals";
-import { system } from "@/data/insurance";
 import { about, closing } from "@/data/home";
 import { pageMeta, jsonLd } from "@/lib/meta";
 
@@ -55,24 +54,8 @@ export default function Home() {
         <Limits />
       </section>
 
-      <section id="coi" className={SECTION}>
-        <SectionHead index="07" kicker="Flagship" title="The COI desk, end to end.">The first workflow I built.</SectionHead>
-        <div className="panel p-5 sm:p-7">
-          <ol className="grid grid-cols-2 md:grid-cols-6 gap-3">
-            {system.agents.map((a) => (
-              <li key={a.k} className={`rounded-[10px] border px-3 py-3 ${a.kind === "gate" ? "border-accent/50 border-dashed" : "border-line-2"}`}>
-                <div className="font-mono text-[10.5px] text-muted">{a.k}</div>
-                <div className="text-[15px] font-semibold tracking-[-0.02em] mt-1">{a.title}</div>
-                {a.kind === "gate" && <div className="font-mono text-[10.5px] text-accent mt-1">a person</div>}
-              </li>
-            ))}
-          </ol>
-          <Link href="/services/coi-desk" className="btn btn-ghost mt-5">Watch it work</Link>
-        </div>
-      </section>
-
       <section id="about" className={SECTION}>
-        <SectionHead index="08" kicker="Who" title="Cole Bonawitz.">
+        <SectionHead index="07" kicker="Who" title="Cole Bonawitz.">
           <Link href="/about" className="underline underline-offset-4">More about me</Link>
         </SectionHead>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-line border border-line rounded-2xl overflow-hidden">
@@ -87,7 +70,7 @@ export default function Home() {
       </section>
 
       <section id="faq" className={SECTION}>
-        <SectionHead index="09" kicker="FAQ" title="Quick answers." />
+        <SectionHead index="08" kicker="FAQ" title="Quick answers." />
         <Faq />
       </section>
 

@@ -18,7 +18,6 @@ const modes = {
     links: [
       { label: "Services", href: "/services" },
       { label: "How it works", href: "/how-it-works" },
-      { label: "The COI desk", href: "/services/coi-desk" },
       { label: "Trust", href: "/trust" },
       { label: "About", href: "/about" },
     ],

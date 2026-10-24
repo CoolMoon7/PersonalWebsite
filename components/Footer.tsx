@@ -32,7 +32,6 @@ export default function Footer() {
             <>
               <Link href="/services" className="hover:text-foreground">services</Link>
               <Link href="/how-it-works" className="hover:text-foreground">how it works</Link>
-              <Link href="/services/coi-desk" className="hover:text-foreground">the COI desk</Link>
               <Link href="/audit" className="hover:text-foreground">audit</Link>
               <Link href="/trust" className="hover:text-foreground">trust</Link>
               <Link href="/about" className="hover:text-foreground">about</Link>

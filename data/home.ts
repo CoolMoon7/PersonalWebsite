@@ -68,9 +68,6 @@ export const cadence = [
   { when: "Any time", what: "On-call support when your staff get stuck." },
 ];
 
-export const coiIntro =
-  "The certificate desk is the first workflow I built end to end. It shows how everything else works: agents prepare, a person approves.";
-
 export const timeline = [
   { when: "Week 1", what: "Audit and plan" },
   { when: "Weeks 1 to 2", what: "First quick win live" },
