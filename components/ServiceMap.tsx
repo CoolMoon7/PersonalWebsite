@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Icon from "@/components/Icon";
 import { serviceBySlug } from "@/content/services";
 import { stages, layers, short } from "@/content/map";
@@ -26,6 +26,12 @@ function Tile({ slug, active, onPick }: { slug: string; active: boolean; onPick:
 export default function ServiceMap({ initial = "coi-desk" }: { initial?: string }) {
   const [slug, setSlug] = useState(initial);
   const panel = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    // Hero chips ask the map to open a service.
+    const on = (e: Event) => setSlug((e as CustomEvent<string>).detail);
+    window.addEventListener("pick-service", on);
+    return () => window.removeEventListener("pick-service", on);
+  }, []);
   const pick = (x: string) => {
     setSlug(x);
     // On phones the detail sits far below the tiles, so bring it into view.

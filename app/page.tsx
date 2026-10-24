@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { SectionHead } from "@/components/ui";
-import { CtaPair, ClosingCta, Faq } from "@/components/sections";
+import { ClosingCta, Faq } from "@/components/sections";
+import Hero from "@/components/Hero";
 import ServiceMap from "@/components/ServiceMap";
 import Tiers from "@/components/Tiers";
-import { VerbLine, ProblemStrip, EngagementFlow, QuoteFlow, ReportMock, Limits } from "@/components/visuals";
+import { EngagementFlow, QuoteFlow, ReportMock, Limits } from "@/components/visuals";
 import { system } from "@/data/insurance";
-import { hero, about, closing } from "@/data/home";
+import { about, closing } from "@/data/home";
 import { pageMeta, jsonLd } from "@/lib/meta";
 
 export const metadata: Metadata = pageMeta({
@@ -23,40 +23,7 @@ export default function Home() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd()) }} />
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 pt-10 sm:pt-16">
-        <div className="rise eyebrow mb-6">{hero.eyebrow}</div>
-        <h1 className="rise text-[40px] leading-[1.02] sm:text-[60px] lg:text-[76px] font-semibold tracking-[-0.05em] max-w-4xl">
-          {hero.line1}
-          <br />
-          <span className="text-faint">{hero.line2}</span>
-        </h1>
-        <p className="rise mt-6 text-[18px] sm:text-[21px] text-ink-2 leading-snug max-w-2xl">
-          I run every AI tool your agency uses. You get a report every Friday.
-        </p>
-        <div className="rise mt-8 flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-7">
-          <Image
-            src="/images/coletalking.png"
-            alt="Cole Bonawitz"
-            width={160}
-            height={160}
-            priority
-            className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover object-top border border-line flex-none"
-          />
-          <div>
-            <CtaPair />
-            <p className="font-mono text-[11.5px] text-muted mt-3">{hero.byline}</p>
-          </div>
-        </div>
-        <div className="rise mt-12">
-          <VerbLine />
-        </div>
-      </section>
-
-      <section id="problem" className={`${SECTION} !mt-14`}>
-        <div className="eyebrow mb-3">Why agencies call me</div>
-        <ProblemStrip />
-        <p className="text-[17px] sm:text-[19px] font-medium tracking-[-0.02em] mt-5">Everyone is selling you a tool. Nobody owns the result. That&apos;s the job I take on.</p>
-      </section>
+      <Hero />
 
       <section id="map" className={SECTION}>
         <SectionHead index="01" kicker="What I do" title="Where I work in your agency.">Tap anything to see what I do.</SectionHead>
