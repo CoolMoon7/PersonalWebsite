@@ -27,13 +27,11 @@ const tiles: Record<string, { title: string; letter: string; color: string }> = 
   zerobounce: { title: "ZeroBounce", letter: "Z", color: "#1f6feb" },
   neverbounce: { title: "NeverBounce", letter: "N", color: "#16a34a" },
   slack: { title: "Slack", letter: "S", color: "#611f69" },
-  openclaw: { title: "OpenClaw", letter: "O", color: "#dc2626" },
-  hermes: { title: "Hermes Agent", letter: "H", color: "#4f46e5" },
 }
 
 const img: Record<string, string> = {
   clay: "Clay", apollo: "Apollo", openai: "OpenAI", linkedin: "LinkedIn",
-  higgsfield: "Higgsfield", instantly: "Instantly",
+  higgsfield: "Higgsfield", instantly: "Instantly", openclaw: "OpenClaw", hermes: "Hermes Agent",
 };
 
 /** Generic glyphs for steps that aren't a vendor (agents, CSVs, people, gates...). */
@@ -101,7 +99,7 @@ export default function Logo({
         width={size}
         height={size}
         loading="lazy"
-        className={`rounded-[4px] ${mono ? "logo-mono" : ""} ${className}`}
+        className={`rounded-[4px] mix-blend-multiply ${mono ? "logo-mono" : ""} ${className}`}
       />
     );
   }
