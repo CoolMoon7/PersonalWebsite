@@ -3,11 +3,12 @@ import Link from "next/link";
 import { SectionHead } from "@/components/ui";
 import { ClosingCta, Faq } from "@/components/sections";
 import Hero from "@/components/Hero";
+import AboutCard from "@/components/AboutCard";
 import { MarkMarquee, SystemsStrip, CaseStudies } from "@/components/Marks";
 import ServiceMap from "@/components/ServiceMap";
 import Tiers from "@/components/Tiers";
 import { EngagementFlow, QuoteFlow, ReportMock, Limits } from "@/components/visuals";
-import { about, closing } from "@/data/home";
+import { closing } from "@/data/home";
 import { pageMeta, jsonLd } from "@/lib/meta";
 
 export const metadata: Metadata = pageMeta({
@@ -71,18 +72,10 @@ export default function Home() {
       </section>
 
       <section id="about" className={SECTION}>
-        <SectionHead index="09" kicker="Who" title="Cole Bonawitz.">
+        <SectionHead index="09" kicker="Who" title="Engineer by training, founder by habit.">
           <Link href="/about" className="underline underline-offset-4">More about me</Link>
         </SectionHead>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-line border border-line rounded-2xl overflow-hidden">
-          {about.stats.map((f) => (
-            <div key={f.v} className="bg-white p-4 sm:p-5">
-              <div className="text-[26px] sm:text-[32px] font-semibold tracking-[-0.04em] leading-none">{f.v}</div>
-              <div className="text-[13px] text-muted leading-relaxed mt-3">{f.d}</div>
-            </div>
-          ))}
-        </div>
-        <p className="text-[15px] text-muted mt-4 max-w-3xl">Duke CS student in Durham. Starting with Triangle agencies, and I&apos;ll tell you when something isn&apos;t a fit.</p>
+        <AboutCard />
       </section>
 
       <section id="faq" className={SECTION}>
