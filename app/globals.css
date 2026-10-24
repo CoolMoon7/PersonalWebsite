@@ -50,8 +50,8 @@ body {
   inset: 0;
   width: 100%;
   height: 100%;
-  mask-image: radial-gradient(ellipse 60% 62% at 50% 40%, #000 30%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 60% 62% at 50% 40%, #000 30%, transparent 100%);
+  mask-image: radial-gradient(ellipse 90% 90% at 50% 40%, #000 40%, rgba(0, 0, 0, 0.6) 100%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 90% at 50% 40%, #000 40%, rgba(0, 0, 0, 0.6) 100%);
 }
 .bg-field::after {
   /* a slow scanning beam, very faint */
