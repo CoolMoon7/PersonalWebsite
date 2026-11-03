@@ -4,7 +4,6 @@ import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import StickyCta from "@/components/StickyCta";
 import DotField from "@/components/DotField";
 import { site } from "@/data/site";
 
@@ -29,14 +28,13 @@ export const viewport: Viewport = { themeColor: "#ffffff" };
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
-      <body className="min-h-screen antialiased pb-16 md:pb-0">
+      <body className="min-h-screen antialiased">
         <div className="bg-field" aria-hidden>
           <DotField />
         </div>
         <Nav />
         <main>{children}</main>
         <Footer />
-        <StickyCta />
       </body>
     </html>
   );

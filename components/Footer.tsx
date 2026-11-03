@@ -15,7 +15,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 flex flex-col sm:flex-row gap-6 sm:items-center justify-between">
         <div className="flex items-center gap-3">
           <Image src="/images/logo.png" alt="" width={20} height={20} className="w-5 h-5" />
-          <span className="font-mono text-[12px] text-muted">© {new Date().getFullYear()} Cole Bonawitz · {mode === "insurance" ? "AI for independent insurance agencies · Durham, NC" : "colebonawitz.com"}</span>
+          <span className="font-mono text-[12px] text-muted">© {new Date().getFullYear()} Cole Bonawitz · colebonawitz.com</span>
         </div>
         <div className="flex flex-wrap gap-x-5 gap-y-2 font-mono text-[12px] text-muted">
           {mode === "fde" ? (
@@ -23,19 +23,11 @@ export default function Footer() {
               <Link href="/fde#deployments" className="hover:text-foreground">deployments</Link>
               <Link href="/fde#about" className="hover:text-foreground">about</Link>
             </>
-          ) : mode === "gtm" ? (
-            <>
-              <Link href="/gtm#systems" className="hover:text-foreground">systems</Link>
-              <Link href="/writing" className="hover:text-foreground">writing</Link>
-            </>
           ) : (
             <>
-              <Link href="/services" className="hover:text-foreground">services</Link>
-              <Link href="/how-it-works" className="hover:text-foreground">how it works</Link>
-              <Link href="/audit" className="hover:text-foreground">audit</Link>
-              <Link href="/trust" className="hover:text-foreground">trust</Link>
-              <Link href="/about" className="hover:text-foreground">about</Link>
-              <Link href="/contact" className="hover:text-foreground">contact</Link>
+              <Link href="/#hyperflow" className="hover:text-foreground">hyperflow</Link>
+              <Link href="/#systems" className="hover:text-foreground">systems</Link>
+              <Link href="/writing" className="hover:text-foreground">writing</Link>
             </>
           )}
           <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-foreground">linkedin</a>

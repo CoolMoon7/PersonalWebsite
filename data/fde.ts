@@ -85,7 +85,7 @@ export const deployments: Deployment[] = [
       { value: "7", label: "golden evals" },
       { value: "0", label: "sends without a human" },
     ],
-    link: { href: "/", label: "See the product page" },
+    link: { href: "https://www.gohyperflow.com", label: "See Hyperflow" },
   },
   {
     id: "dignity",

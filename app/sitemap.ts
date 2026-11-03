@@ -3,12 +3,9 @@ import { site } from "@/data/site";
 import { systems } from "@/data/systems";
 import { getPosts } from "@/lib/posts";
 
-const insurancePaths = ["", "/services", "/how-it-works", "/audit", "/trust", "/about", "/contact"];
-
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
-    ...insurancePaths.map((p) => ({ url: `${site.url}${p}` })),
-    { url: `${site.url}/gtm` },
+    { url: site.url },
     { url: `${site.url}/fde` },
     { url: `${site.url}/writing` },
     ...systems.map((s) => ({ url: `${site.url}/systems/${s.slug}` })),

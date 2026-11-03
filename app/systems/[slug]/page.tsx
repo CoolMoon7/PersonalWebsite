@@ -64,7 +64,7 @@ export default async function SystemPage({ params }: { params: Promise<{ slug: s
 
   return (
     <article className="max-w-6xl mx-auto px-4 sm:px-6 pt-10 sm:pt-14">
-      <Link href="/gtm#systems" className="font-mono text-[12px] text-muted hover:text-foreground">
+      <Link href="/#systems" className="font-mono text-[12px] text-muted hover:text-foreground">
         ← all systems
       </Link>
 

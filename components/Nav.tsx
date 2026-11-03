@@ -6,33 +6,19 @@ import { usePathname } from "next/navigation";
 import { site, siteMode } from "@/data/site";
 import { fde } from "@/data/fde";
 
-/** Each audience gets its own links, résumé and contact, so the three sites never cross-link. */
+/** Each audience gets its own links, résumé and contact, so the two sites never cross-link. */
 const modes = {
-  insurance: {
+  personal: {
     home: "/",
     resume: site.resume,
-    tag: "/ ai for insurance agencies",
-    contact: "/contact?intent=audit",
-    cta: "Book an AI audit",
-    socials: false,
-    links: [
-      { label: "Services", href: "/services" },
-      { label: "How it works", href: "/how-it-works" },
-      { label: "Trust", href: "/trust" },
-      { label: "About", href: "/about" },
-    ],
-  },
-  gtm: {
-    home: "/gtm",
-    resume: site.resume,
     tag: "/ gtm engineer",
-    contact: "/gtm#contact",
+    contact: "/#contact",
     cta: "Get in touch",
     socials: true,
     links: [
-      { label: "Systems", href: "/gtm#systems" },
-      { label: "About", href: "/gtm#about" },
-      { label: "Method", href: "/gtm#method" },
+      { label: "Hyperflow", href: "/#hyperflow" },
+      { label: "Systems", href: "/#systems" },
+      { label: "About", href: "/#about" },
       { label: "Writing", href: "/writing" },
     ],
   },

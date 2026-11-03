@@ -1,10 +1,10 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Your agency's AI department. Cole Bonawitz, Durham, NC";
+export const alt = "Cole Bonawitz, GTM engineer: I build the systems that get startups customers";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const steps = ["Choose", "Connect", "Run", "Keep current"];
+const steps = ["Clay", "Enrich", "Score", "Sequence", "Meetings"];
 
 export default function OG() {
   return new ImageResponse(
@@ -28,14 +28,14 @@ export default function OG() {
           colebonawitz.com
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ fontSize: 84, fontWeight: 700, letterSpacing: -3, color: "#0a0a0a", lineHeight: 1.02 }}>
-            Your agency&apos;s
+          <div style={{ fontSize: 72, fontWeight: 700, letterSpacing: -3, color: "#0a0a0a", lineHeight: 1.02 }}>
+            I build the systems
           </div>
-          <div style={{ fontSize: 84, fontWeight: 700, letterSpacing: -3, color: "#a1a1aa", lineHeight: 1.02 }}>
-            AI department.
+          <div style={{ fontSize: 72, fontWeight: 700, letterSpacing: -3, color: "#a1a1aa", lineHeight: 1.02 }}>
+            that get startups customers.
           </div>
           <div style={{ fontSize: 30, color: "#3f3f46", marginTop: 28 }}>
-            Cole Bonawitz · Durham, NC
+            Cole Bonawitz · GTM engineer · Duke CS
           </div>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
