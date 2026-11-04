@@ -7,8 +7,10 @@ export function SectionHead({
   index,
   title,
   kicker,
+  icon,
   children,
 }: {
+  icon?: { src: string; bg?: string; pad?: boolean };
   id?: string;
   index: string;
   title: string;
@@ -23,7 +25,18 @@ export function SectionHead({
           <span className="w-6 h-px bg-line-2" />
           {kicker}
         </div>
-        <h2 className="text-[24px] sm:text-[30px] font-semibold tracking-[-0.03em] leading-[1.15]">{title}</h2>
+        <div className="flex items-center gap-3.5">
+          {icon && (
+            <span
+              className="icon-tile flex-none grid place-items-center w-11 h-11 sm:w-12 sm:h-12 rounded-[22%] overflow-hidden border border-black/[0.08]"
+              style={{ background: icon.bg ?? "#fff" }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={icon.src} alt="" className={icon.pad ? "w-[70%] h-[70%] object-contain" : "w-full h-full object-cover"} />
+            </span>
+          )}
+          <h2 className="text-[24px] sm:text-[30px] font-semibold tracking-[-0.03em] leading-[1.15]">{title}</h2>
+        </div>
       </div>
       {children && <div className="text-[15px] text-muted max-w-md md:text-right">{children}</div>}
     </div>

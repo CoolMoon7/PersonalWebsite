@@ -27,6 +27,8 @@ const setup = [
   { k: "Post and promote", who: "Instagram · Meta Ads", icons: ["instagram", "meta"], v: "Reels go out on Instagram and TikTok. Ads run on hard caps and pause above 2× target CPA." },
   { k: "Score and repeat", who: "Python", icons: ["python"], v: "Every reel is scored against the account's median, and the winners shape the next brief." },
 ];
+const swoop = systems.find((x) => x.slug === "swoop-outbound")!;
+const swoopFunnel = swoop.funnel ?? [];
 const more = deployments.filter((d) => ["cole-os", "dignity", "uganda", "hackduke"].includes(d.id));
 
 const SECTION = "scroll-mt-24 max-w-6xl mx-auto px-4 sm:px-6 mt-28";
@@ -103,7 +105,7 @@ export default function Home() {
 
       {/* ---------------- Hyperflow ---------------- */}
       <section className={SECTION}>
-        <SectionHead id="hyperflow" index="01" kicker="Now building" title="Hyperflow.">
+        <SectionHead id="hyperflow" index="01" kicker="Now building" title="Hyperflow." icon={{ src: "/images/hyperflow-icon.png" }}>
           A company I&apos;m building and selling myself, from the product to the first customer calls.
         </SectionHead>
         <div className="panel overflow-hidden">
@@ -149,7 +151,7 @@ export default function Home() {
 
       {/* ---------------- Momnt ---------------- */}
       <section className={SECTION}>
-        <SectionHead id="momnt" index="02" kicker="Co-founded" title="Momnt.">
+        <SectionHead id="momnt" index="02" kicker="Co-founded" title="Momnt." icon={{ src: "/images/momnt-icon.jpg" }}>
           A wristband and iOS app that cut screen time.
         </SectionHead>
         <div className="reveal grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto] gap-5 md:gap-10 items-end mb-6">
@@ -208,7 +210,7 @@ export default function Home() {
 
       {/* ---------------- RiZE Maps ---------------- */}
       <section className={SECTION}>
-        <SectionHead id="rize" index="03" kicker="Founded" title="RiZE Maps.">
+        <SectionHead id="rize" index="03" kicker="Founded" title="RiZE Maps." icon={{ src: "/images/rize-icon.png", pad: true }}>
           3D Formula 1 track art. I started it in high school and run the whole thing: product, shop, content and ads.
         </SectionHead>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
@@ -257,9 +259,72 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ---------------- Swoop Tutors ---------------- */}
+      <section className={SECTION}>
+        <SectionHead id="swoop" index="04" kicker="GTM engineering intern" title="Swoop Tutors." icon={{ src: "/images/swoop-owl.png", bg: "#eef6fb", pad: true }}>
+          The only engineer at a 4-person startup. I built its whole outbound system.
+        </SectionHead>
+        <div className="reveal grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto] gap-5 md:gap-10 items-end mb-6">
+          <p className="text-[15px] text-ink-2 leading-relaxed max-w-2xl">
+            Swoop had leads in spreadsheets and no idea which segments replied. I built the pipeline from raw company data to
+            booked calls: Clay sourcing, Python cleaning, an ICP scorer, HubSpot sync and A/B-tested sequences, with a
+            dashboard that fed what converted back into scoring.
+          </p>
+          <dl className="flex gap-6 sm:gap-8">
+            {swoop.metrics.map((m) => (
+              <div key={m.label}>
+                <dt className="text-[18px] font-semibold tracking-[-0.03em] tabular-nums leading-none">{m.value}</dt>
+                <dd className="font-mono text-[10.5px] text-muted mt-1.5 whitespace-nowrap">{m.label}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+        <div className="reveal">
+          <Workflow wf={swoop.workflow} title="~/swoop/outbound-engine — the GTM system" />
+        </div>
+        <div className="mt-4 grid grid-cols-1 lg:grid-cols-2 gap-4">
+          {/* Funnel */}
+          <div className="reveal panel p-5 sm:p-6">
+            <div className="eyebrow mb-4">The funnel it ran</div>
+            <ol className="space-y-2.5">
+              {swoopFunnel.map((f, i) => (
+                <li key={f.label}>
+                  <div className="flex items-baseline justify-between gap-3 text-[13px]">
+                    <span className="text-ink-2">{f.label}</span>
+                    <span className="font-mono text-[12px] tabular-nums">{f.display ?? f.value}</span>
+                  </div>
+                  <div className="mt-1 h-2 rounded-full bg-surface overflow-hidden">
+                    <div
+                      className="funnel-bar h-full rounded-full"
+                      style={{ width: `${Math.max(3, Math.sqrt(f.value / swoopFunnel[0].value) * 100)}%`, "--d": `${i * 0.12}s`, background: `color-mix(in oklab, var(--color-accent) ${100 - i * 11}%, #a5b4fc)` } as React.CSSProperties}
+                    />
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+          {/* Run log */}
+          <div className="reveal rounded-[14px] p-5 sm:p-6 font-mono text-[11.5px] leading-[1.9] text-[#a1a1aa] overflow-hidden" style={{ background: "#0a0a0a" }}>
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-[#e4e4e7]">agents · weekly run</span>
+              <span className="flex items-center gap-1.5 text-[#71717a]"><span className="live-dot" /> shipped</span>
+            </div>
+            {swoop.log.map((l, i) => (
+              <div key={i} className={`log-line whitespace-nowrap overflow-hidden text-ellipsis ${l.startsWith("✓") ? "text-[#4ade80]" : ""}`} style={{ "--d": `${i * 0.35}s` } as React.CSSProperties}>
+                {l}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-3">
+          <StackRow stack={swoop.stack} />
+          <Link href={`/systems/${swoop.slug}`} className={`${LINK} text-[13.5px]`}>How it was built →</Link>
+        </div>
+      </section>
+
       {/* ---------------- Personal setup ---------------- */}
       <section className={SECTION}>
-        <SectionHead id="setup" index="04" kicker="My setup" title="The bots that run RiZE's content.">
+        <SectionHead id="setup" index="05" kicker="My setup" title="The bots that run RiZE's content.">
           RiZE&apos;s content runs on agents I set up myself. I review what they make and approve the spend.
         </SectionHead>
         <div className="panel p-5 sm:p-8">
@@ -289,7 +354,7 @@ export default function Home() {
 
       {/* ---------------- Agentic systems ---------------- */}
       <section className={SECTION}>
-        <SectionHead id="agents" index="05" kicker="Agentic systems" title="How I build agents that can be trusted with real work.">
+        <SectionHead id="agents" index="06" kicker="Agentic systems" title="How I build agents that can be trusted with real work.">
           The certificate agent inside Hyperflow, running. The same patterns show up in every agent I&apos;ve shipped.
         </SectionHead>
         <div className="reveal">
@@ -309,7 +374,7 @@ export default function Home() {
 
       {/* ---------------- Systems ---------------- */}
       <section className={SECTION}>
-        <SectionHead id="systems" index="06" kicker={`Systems · ${String(systems.length).padStart(2, "0")}`} title="Growth systems I've built and run.">
+        <SectionHead id="systems" index="07" kicker={`Systems · ${String(systems.length).padStart(2, "0")}`} title="Growth systems I've built and run.">
           Outbound, enrichment, content and retention, across edtech, DTC, hospitality and consumer hardware.
         </SectionHead>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -321,7 +386,7 @@ export default function Home() {
 
       {/* ---------------- More projects ---------------- */}
       <section className={SECTION}>
-        <SectionHead id="projects" index="07" kicker="More projects" title="Agents, data and hardware.">
+        <SectionHead id="projects" index="08" kicker="More projects" title="Agents, data and hardware.">
           Everything else I&apos;ve shipped, from a 20-agent operating system to a device in four hospitals.
         </SectionHead>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -352,7 +417,7 @@ export default function Home() {
 
       {/* ---------------- About ---------------- */}
       <section className={SECTION}>
-        <SectionHead id="about" index="08" kicker="About" title="Engineer by training, founder by habit." />
+        <SectionHead id="about" index="09" kicker="About" title="Engineer by training, founder by habit." />
         <div className="grid grid-cols-1 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-6">
           <div className="panel overflow-hidden relative aspect-[4/5] md:aspect-auto md:min-h-[480px]">
             <Image
@@ -403,7 +468,7 @@ export default function Home() {
       {/* ---------------- Writing ---------------- */}
       {posts.length > 0 && (
         <section className={SECTION}>
-          <SectionHead index="09" kicker="Writing" title="Notes on modern outbound.">
+          <SectionHead index="10" kicker="Writing" title="Notes on modern outbound.">
             <Link href="/writing" className={LINK}>All writing →</Link>
           </SectionHead>
           <div className="border-t border-line">

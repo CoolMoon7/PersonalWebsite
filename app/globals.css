@@ -252,3 +252,9 @@ a.panel, .panel[data-hover] { transition: border-color 0.15s, box-shadow 0.15s; 
 .tf-wire-on { stroke: var(--color-accent); stroke-width: 1.5; stroke-dasharray: 4 5; animation: dash 0.9s linear infinite; transition: stroke 0.5s; }
 .tf-glow { box-shadow: 0 0 0 4px rgba(47, 91, 255, 0.08), 0 12px 26px -14px rgba(47, 91, 255, 0.55); }
 .tf-in { animation: rise 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+/* Swoop funnel and run log */
+@supports (animation-timeline: view()) {
+  .funnel-bar { animation: grow-x both cubic-bezier(0.2, 0.7, 0.2, 1); animation-timeline: view(); animation-range: entry 10% cover 40%; transform-origin: left; }
+  .log-line { animation: rise both linear; animation-timeline: view(); animation-range: entry 0% entry 60%; }
+}
+@keyframes grow-x { from { transform: scaleX(0); } to { transform: scaleX(1); } }
