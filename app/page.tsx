@@ -18,12 +18,6 @@ import { getPosts, formatDate } from "@/lib/posts";
 /** Projects that are not growth systems; the growth ones have their own pages under /systems. */
 const momnt = deployments.find((d) => d.id === "momnt")!;
 const appStore = "https://apps.apple.com/us/app/momnt/id6752358840";
-const momntBuild = [
-  { k: "band", v: "Designed the wristband around a single NFC tag, so starting a focus session is one tap with no pairing or battery." },
-  { k: "ios app", v: "Built the iOS app on Apple's Screen Time APIs: pick the distracting apps once, and they stay blocked while Momnt Mode runs." },
-  { k: "data", v: "Logged every session to Firestore, and Python surveyed anyone inactive for 7+ days. Fixes tested on a 50-user cohort drove 85% two-month retention." },
-  { k: "launch", v: "300+ face-to-face interviews, a 200-user campus pilot, then 300+ units sold and $9K+ in revenue." },
-];
 /** The shop photo shows up once public/images/rize-shop.jpg exists. */
 const rizeShop = fs.existsSync(path.join(process.cwd(), "public/images/rize-shop.jpg")) ? "/images/rize-shop.jpg" : null;
 const setup = [
@@ -156,62 +150,60 @@ export default function Home() {
       {/* ---------------- Momnt ---------------- */}
       <section className={SECTION}>
         <SectionHead id="momnt" index="02" kicker="Co-founded" title="Momnt.">
-          A wristband and iOS app that cut screen time. I co-founded it, built the app and the band, and sold the first 300 units.
+          A wristband and iOS app that cut screen time.
         </SectionHead>
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] gap-6 items-start">
+        <div className="reveal grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto] gap-5 md:gap-10 items-end mb-6">
+          <p className="text-[15px] text-ink-2 leading-relaxed max-w-2xl">
+            The band carries an NFC tag. Tap it to your phone and the iOS app blocks the apps you picked until the timer ends.
+            I built the app and the band, ran 300+ customer interviews, and logged every session so a Python loop could
+            re-engage anyone who went quiet.
+          </p>
+          <dl className="flex gap-6 sm:gap-8">
+            {momnt.metrics.map((m) => (
+              <div key={m.label}>
+                <dt className="text-[18px] font-semibold tracking-[-0.03em] tabular-nums leading-none">{m.value}</dt>
+                <dd className="font-mono text-[10.5px] text-muted mt-1.5 whitespace-nowrap">{m.label}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,8fr)_minmax(0,4fr)] gap-5 items-start">
           <BrowserShot href="https://www.getmomnt.com" src="/images/momnt-site.png" host="getmomnt.com" alt="The getmomnt.com homepage: Reclaim Your Time, the wristband that reduces screen time" />
-          <div className="reveal">
-            <p className="text-[15.5px] text-ink-2 leading-relaxed">
-              Momnt is two products that only work together. The band carries an NFC tag; tapping it to your phone starts
-              Momnt Mode, and the iOS app blocks the apps you picked until the timer ends or you tap again.
-            </p>
-            <ul className="mt-5 space-y-3">
-              {momntBuild.map((t) => (
-                <li key={t.k} className="flex gap-3 text-[14px] text-ink-2 leading-relaxed">
-                  <span className="font-mono text-[11px] text-accent pt-1 w-14 flex-none">{t.k}</span>
-                  <span>{t.v}</span>
-                </li>
-              ))}
-            </ul>
-            <div className="grid grid-cols-4 gap-px bg-line border border-line rounded-xl overflow-hidden mt-6">
-              {momnt.metrics.map((m) => (
-                <div key={m.label} className="bg-white p-3">
-                  <div className="text-[19px] font-semibold tracking-[-0.03em] tabular-nums leading-none">{m.value}</div>
-                  <div className="font-mono text-[10px] text-muted mt-1.5 leading-tight">{m.label}</div>
+
+          {/* App Store listing, styled like the real one */}
+          <a href={appStore} target="_blank" rel="noopener noreferrer" className="shot group panel p-4 flex flex-col" aria-label="Momnt on the App Store">
+            <div className="flex items-center gap-3">
+              <Image src="/images/momnt-icon.jpg" alt="" width={112} height={112} className="w-14 h-14 rounded-[22%] border border-line flex-none" />
+              <div className="min-w-0 flex-1">
+                <div className="text-[16px] font-semibold tracking-[-0.01em] leading-tight">momnt.</div>
+                <div className="text-[12.5px] text-muted leading-tight">Live in the Moment</div>
+                <div className="text-[11px] text-faint mt-0.5">★★★★★ 13</div>
+              </div>
+              <span className="flex-none rounded-full bg-surface px-3.5 h-7 inline-flex items-center text-[13px] font-semibold text-accent group-hover:bg-accent group-hover:text-white transition-colors">
+                Get
+              </span>
+            </div>
+            <div className="mt-2.5 flex items-center gap-2 text-[11px] text-muted">
+              <span>Health &amp; Fitness</span>
+              <span className="text-line-2">|</span>
+              <span>Cole Bonawitz</span>
+              <span className="ml-auto font-mono text-faint group-hover:text-accent transition-colors">App Store ↗</span>
+            </div>
+            <div className="mt-3 grid grid-cols-3 gap-1.5">
+              {[1, 2, 3].map((n, i) => (
+                <div key={n} className="relative aspect-[600/1299] ">
+                  <Image
+                    src={`/images/momnt-app-${n}.jpg`}
+                    alt={["Take control of your time", "Screen time in a band: the Momnt Mode timer", "Block distractions: pick the apps to block"][i]}
+                    fill
+                    sizes="120px"
+                    className="object-contain object-top rounded-lg"
+                  />
                 </div>
               ))}
             </div>
-          </div>
+          </a>
         </div>
-
-        {/* App Store listing */}
-        <a href={appStore} target="_blank" rel="noopener noreferrer" className="shot group mt-6 block panel p-5 sm:p-7">
-          <div className="flex items-center gap-4">
-            <Image src="/images/momnt-icon.jpg" alt="Momnt app icon" width={128} height={128} className="w-16 h-16 sm:w-20 sm:h-20 rounded-[22%] border border-line" />
-            <div className="min-w-0">
-              <div className="text-[20px] sm:text-[24px] font-semibold tracking-[-0.02em]">momnt.</div>
-              <div className="text-[14px] text-muted">Live in the Moment</div>
-              <div className="font-mono text-[11px] text-faint mt-1">★★★★★ 13 · Health &amp; Fitness · Cole Bonawitz</div>
-            </div>
-            <span className="ml-auto flex-none rounded-full bg-surface border border-line px-4 h-9 inline-flex items-center text-[14px] font-semibold text-accent group-hover:bg-accent group-hover:text-white transition-colors">
-              App Store ↗
-            </span>
-          </div>
-          <div className="mt-6 grid grid-cols-3 gap-3 sm:gap-4 max-w-xl mx-auto">
-            {[1, 2, 3].map((n, i) => (
-              <Image
-                key={n}
-                src={`/images/momnt-app-${n}.jpg`}
-                alt={["Take control of your time", "Screen time in a band: Momnt Mode timer", "Block distractions: pick the apps to block"][i]}
-                width={600}
-                height={1299}
-                sizes="(max-width: 768px) 33vw, 340px"
-                className="w-full h-auto rounded-2xl border border-line transition-transform duration-500 group-hover:-translate-y-1"
-                style={{ transitionDelay: `${i * 60}ms` }}
-              />
-            ))}
-          </div>
-        </a>
       </section>
 
       {/* ---------------- RiZE Maps ---------------- */}
@@ -366,7 +358,7 @@ export default function Home() {
               alt="Cole Bonawitz speaking at an event"
               fill
               sizes="(max-width: 768px) 100vw, 40vw"
-              className="object-cover object-top"
+              className="object-contain object-top rounded-lg"
             />
             <span className="absolute left-3 bottom-3 chip !bg-white/90 backdrop-blur">Chattanooga, TN → Durham, NC</span>
           </div>
