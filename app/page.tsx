@@ -212,15 +212,17 @@ export default function Home() {
           3D Formula 1 track art. I started it in high school and run the whole thing: product, shop, content and ads.
         </SectionHead>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
-          <div className="lg:col-span-4 rounded-[14px] p-6 sm:p-7 flex flex-col justify-between text-white" style={{ background: "#0a0a0a" }}>
-            <span className="font-mono text-[11px] text-[#a1a1aa]">Revenue to date</span>
-            <div className="mt-6">
+          <div className="lg:col-span-4 relative overflow-hidden rounded-[14px] p-6 sm:p-7 flex flex-col justify-between text-white min-h-[340px]" style={{ background: "#0a0a0a" }}>
+            <Image src="/images/rize-suzuka.jpg" alt="" fill sizes="(max-width: 1024px) 100vw, 380px" className="object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/55 to-black/85" aria-hidden />
+            <span className="relative font-mono text-[11px] text-[#d4d4d8]">Revenue to date</span>
+            <div className="relative mt-6">
               <div className="text-[48px] sm:text-[56px] font-semibold tracking-[-0.045em] leading-none tabular-nums">$135K</div>
-              <div className="mt-3 text-[14px] text-[#a1a1aa] leading-relaxed">3M+ organic impressions · 7,900+ Instagram followers · 200+ reviews</div>
+              <div className="mt-3 text-[14px] text-[#d4d4d8] leading-relaxed">3M+ organic impressions · 7,900+ Instagram followers · 200+ reviews</div>
             </div>
-            <div className="mt-8 flex flex-wrap gap-2">
+            <div className="relative mt-8 flex flex-wrap gap-2">
               <a href="https://www.rizemap.com" target="_blank" rel="noopener noreferrer" className="btn !bg-white !text-black">rizemap.com <Arrow /></a>
-              <a href="https://www.instagram.com/rizemaps/reels/" target="_blank" rel="noopener noreferrer" className="btn border border-[#3f3f46] !text-white hover:border-[#71717a]">
+              <a href="https://www.instagram.com/rizemaps/reels/" target="_blank" rel="noopener noreferrer" className="btn border border-white/30 bg-black/30 backdrop-blur !text-white hover:border-white/60">
                 <Logo name="instagram" size={15} /> @rizemaps
               </a>
             </div>
