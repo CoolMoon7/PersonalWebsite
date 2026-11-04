@@ -167,8 +167,8 @@ export default function Home() {
             ))}
           </dl>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,8fr)_minmax(0,4fr)] gap-5 items-start">
-          <BrowserShot href="https://www.getmomnt.com" src="/images/momnt-site.png" host="getmomnt.com" alt="The getmomnt.com homepage: Reclaim Your Time, the wristband that reduces screen time" />
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,8fr)_minmax(0,4fr)] gap-5 items-stretch">
+          <BrowserShot fill href="https://www.getmomnt.com" src="/images/momnt-site.png" host="getmomnt.com" alt="The getmomnt.com homepage: Reclaim Your Time, the wristband that reduces screen time" />
 
           {/* App Store listing, styled like the real one */}
           <a href={appStore} target="_blank" rel="noopener noreferrer" className="shot group panel p-4 flex flex-col" aria-label="Momnt on the App Store">
