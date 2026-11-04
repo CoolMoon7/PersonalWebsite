@@ -238,8 +238,8 @@ export default function Home() {
           </div>
           {rizeShop && (
             <a href="https://www.rizemap.com" target="_blank" rel="noopener noreferrer" className="lg:col-span-7 shot group relative block rounded-xl overflow-hidden border border-line-2 min-h-[300px]">
-              <Image src={rizeShop} alt="The RiZE Maps shop" fill sizes="(max-width: 1024px) 100vw, 660px" className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
-              <span className="absolute left-3 bottom-3 chip !bg-white/90 backdrop-blur">The shop ↗</span>
+              <Image src={rizeShop} alt="The RiZE Maps print farm: a wall of 3D printers and filament spools" fill sizes="(max-width: 1024px) 100vw, 660px" className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+              <span className="absolute left-3 bottom-3 chip !bg-white/90 backdrop-blur">The print farm ↗</span>
             </a>
           )}
           <a href="https://www.instagram.com/rizemaps/reels/" target="_blank" rel="noopener noreferrer" className={`${rizeShop ? "lg:col-span-5" : "lg:col-span-12"} shot group panel p-5 sm:p-6 flex flex-col`}>
