@@ -23,7 +23,7 @@ export function SectionHead({
           <span className="w-6 h-px bg-line-2" />
           {kicker}
         </div>
-        <h2 className="text-[28px] sm:text-[34px] font-semibold tracking-[-0.03em] leading-[1.1]">{title}</h2>
+        <h2 className="text-[24px] sm:text-[30px] font-semibold tracking-[-0.03em] leading-[1.15]">{title}</h2>
       </div>
       {children && <div className="text-[15px] text-muted max-w-md md:text-right">{children}</div>}
     </div>

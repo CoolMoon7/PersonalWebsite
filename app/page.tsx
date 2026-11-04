@@ -1,3 +1,5 @@
+import fs from "node:fs";
+import path from "node:path";
 import Image from "next/image";
 import Link from "next/link";
 import Workflow from "@/components/Workflow";
@@ -8,7 +10,7 @@ import { MarkMarquee } from "@/components/Marks";
 import { SectionHead, SystemCard, StackRow, Arrow } from "@/components/ui";
 import { systems } from "@/data/systems";
 import { site, hyperflow } from "@/data/site";
-import { proof, now, facts, skills, automations, principles } from "@/data/home";
+import { now, facts, skills, principles } from "@/data/home";
 import { deployments, flagship } from "@/data/fde";
 import { getPosts, formatDate } from "@/lib/posts";
 
@@ -21,6 +23,15 @@ const momntBuild = [
   { k: "ios app", v: "Built the iOS app on Apple's Screen Time APIs: pick the distracting apps once, and they stay blocked while Momnt Mode runs." },
   { k: "data", v: "Logged every session to Firestore, and Python surveyed anyone inactive for 7+ days. Fixes tested on a 50-user cohort drove 85% two-month retention." },
   { k: "launch", v: "300+ face-to-face interviews, a 200-user campus pilot, then 300+ units sold and $9K+ in revenue." },
+];
+/** The shop photo shows up once public/images/rize-shop.jpg exists. */
+const rizeShop = fs.existsSync(path.join(process.cwd(), "public/images/rize-shop.jpg")) ? "/images/rize-shop.jpg" : null;
+const setup = [
+  { k: "Find what's working", who: "Grok bots", icons: ["grok"], v: "Grok bots watch F1 news, race weekends and trending formats, and pitch ideas each day." },
+  { k: "Write and design", who: "Meta Muse", icons: ["meta-ai"], v: "Meta Muse turns the best ideas into scripts, captions and image concepts using real product photos." },
+  { k: "Make the video", who: "Higgsfield", icons: ["higgsfield"], v: "Image-to-video briefs become reels. They're built from real products, never invented ones." },
+  { k: "Post and promote", who: "Instagram · Meta Ads", icons: ["instagram", "meta"], v: "Reels go out on Instagram and TikTok. Ads run on hard caps and pause above 2× target CPA." },
+  { k: "Score and repeat", who: "Python", icons: ["python"], v: "Every reel is scored against the account's median, and the winners shape the next brief." },
 ];
 const more = deployments.filter((d) => ["cole-os", "dignity", "uganda", "hackduke"].includes(d.id));
 
@@ -49,53 +60,45 @@ export default function Home() {
   return (
     <>
       {/* ---------------- Hero ---------------- */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 pt-14 sm:pt-20">
-        <div>
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="rise flex flex-wrap items-center justify-center gap-3 mb-7">
-              <span className="chip">
-                <span className="live-dot" /> Shipping now · Hyperflow, Cole OS
-              </span>
-            </div>
-            <h1
-              className="rise text-[40px] leading-[1.03] sm:text-[56px] lg:text-[72px] font-semibold tracking-[-0.045em]"
-              style={{ "--rd": "0.05s" } as React.CSSProperties}
-            >
-              Agents and automations,
-              <br />
-              <span className="text-faint">built and running.</span>
-            </h1>
-            <p className="rise mt-6 text-[16.5px] sm:text-[17.5px] text-ink-2 leading-relaxed max-w-xl mx-auto" style={{ "--rd": "0.12s" } as React.CSSProperties}>
-              Outbound engines, enrichment pipelines, a content engine, inbox agents and a 20-agent operating system.
-              I build them with Claude Code, MCP, Clay and Python, put the rules in code and a person at the approval
-              step, and most of them are still running.
-            </p>
-            <div className="rise mt-6 flex items-center justify-center gap-3 text-left" style={{ "--rd": "0.16s" } as React.CSSProperties}>
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 pt-10 sm:pt-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-8 items-center">
+          <div>
+            <div className="rise flex items-center gap-4">
               <Image
                 src="/images/coletalking.png"
                 alt="Cole Bonawitz"
-                width={80}
-                height={80}
+                width={160}
+                height={160}
                 priority
-                className="w-11 h-11 rounded-full object-cover object-top border border-line flex-none"
+                className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover object-top border border-line"
               />
-              <div className="text-[13.5px] leading-tight">
-                <div className="font-medium">Cole Bonawitz</div>
-                <div className="text-muted">Duke CS &apos;28 · building <a href="#hyperflow" className={LINK}>Hyperflow</a></div>
+              <div className="leading-tight">
+                <div className="text-[16px] font-semibold tracking-[-0.01em]">Cole Bonawitz</div>
+                <div className="text-[13.5px] text-muted mt-0.5">Duke CS &apos;28 · building Hyperflow</div>
+                <span className="chip mt-2"><span className="live-dot" /> Shipping now</span>
               </div>
             </div>
-            <div className="rise mt-8 flex flex-wrap justify-center gap-3" style={{ "--rd": "0.2s" } as React.CSSProperties}>
+            <h1
+              className="rise mt-8 text-[36px] leading-[1.06] sm:text-[46px] lg:text-[52px] font-semibold tracking-[-0.04em] max-w-xl"
+              style={{ "--rd": "0.05s" } as React.CSSProperties}
+            >
+              I build the agents that run the work.
+            </h1>
+            <p className="rise mt-5 text-[16px] text-ink-2 leading-relaxed max-w-lg" style={{ "--rd": "0.12s" } as React.CSSProperties}>
+              Inbox agents, outbound engines, content bots and the memory layer they share, built with Claude Code,
+              MCP and Python. The rules live in code, and a person approves anything that leaves.
+            </p>
+            <div className="rise mt-7 flex flex-wrap gap-2.5" style={{ "--rd": "0.18s" } as React.CSSProperties}>
               <a href="#hyperflow" className="btn btn-dark">
                 See the work <Arrow />
               </a>
               <Socials />
             </div>
           </div>
+          <div className="rise" style={{ "--rd": "0.22s" } as React.CSSProperties}>
+            <ToolField />
+          </div>
         </div>
-      </section>
-      <section aria-label="Tools I build with" className="rise mt-12 sm:mt-14" style={{ "--rd": "0.24s" } as React.CSSProperties}>
-        <div className="eyebrow text-center mb-3">What I build with, this year</div>
-        <ToolField />
       </section>
 
       {/* ---------------- Where ---------------- */}
@@ -113,7 +116,7 @@ export default function Home() {
           <div className="p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-8">
             <div className="flex flex-col">
               <span className="chip self-start"><span className="live-dot" /> Live demo · sample data</span>
-              <h3 className="text-[24px] sm:text-[28px] font-semibold tracking-[-0.03em] leading-tight mt-5">{now.title}</h3>
+              <h3 className="text-[21px] sm:text-[24px] font-semibold tracking-[-0.025em] leading-tight mt-5">{now.title}</h3>
               <p className="text-[15.5px] text-muted leading-relaxed mt-3">{now.body}</p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <a href={hyperflow.demo} target="_blank" rel="noopener noreferrer" className="btn btn-dark">
@@ -194,7 +197,7 @@ export default function Home() {
               App Store ↗
             </span>
           </div>
-          <div className="mt-6 grid grid-cols-3 gap-3 sm:gap-5 max-w-3xl mx-auto">
+          <div className="mt-6 grid grid-cols-3 gap-3 sm:gap-4 max-w-xl mx-auto">
             {[1, 2, 3].map((n, i) => (
               <Image
                 key={n}
@@ -211,39 +214,88 @@ export default function Home() {
         </a>
       </section>
 
-      {/* ---------------- Automation range ---------------- */}
+      {/* ---------------- RiZE Maps ---------------- */}
       <section className={SECTION}>
-        <SectionHead id="automations" index="03" kicker="What I've automated" title="Nine kinds of work, handed to systems.">
-          Each one ran inside a real business. Click through for how it was built.
+        <SectionHead id="rize" index="03" kicker="Founded" title="RiZE Maps.">
+          3D Formula 1 track art. I started it in high school and run the whole thing: product, shop, content and ads.
         </SectionHead>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-line border border-line rounded-2xl overflow-hidden">
-          {automations.map((a) => {
-            const external = a.href.startsWith("http");
-            return (
-              <a
-                key={a.k}
-                href={a.href}
-                {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                className="reveal group bg-white p-5 sm:p-6 flex flex-col gap-3 hover:bg-surface transition-colors"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-[11px] text-faint">{a.where}</span>
-                  <span className="font-mono text-[11px] text-faint group-hover:text-accent transition-colors">→</span>
-                </div>
-                <h3 className="text-[16.5px] font-semibold tracking-[-0.02em]">{a.k}</h3>
-                <p className="text-[14px] text-muted leading-relaxed">{a.what}</p>
-                <div className="mt-auto pt-1">
-                  <StackRow stack={a.stack} />
-                </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+          <div className="lg:col-span-4 rounded-[14px] p-6 sm:p-7 flex flex-col justify-between text-white" style={{ background: "#0a0a0a" }}>
+            <span className="font-mono text-[11px] text-[#a1a1aa]">Revenue to date</span>
+            <div className="mt-6">
+              <div className="text-[48px] sm:text-[56px] font-semibold tracking-[-0.045em] leading-none tabular-nums">$135K</div>
+              <div className="mt-3 text-[14px] text-[#a1a1aa] leading-relaxed">3M+ organic impressions · 7,900+ Instagram followers · 200+ reviews</div>
+            </div>
+            <div className="mt-8 flex flex-wrap gap-2">
+              <a href="https://www.rizemap.com" target="_blank" rel="noopener noreferrer" className="btn !bg-white !text-black">rizemap.com <Arrow /></a>
+              <a href="https://www.instagram.com/rizemaps/reels/" target="_blank" rel="noopener noreferrer" className="btn border border-[#3f3f46] !text-white hover:border-[#71717a]">
+                <Logo name="instagram" size={15} /> @rizemaps
               </a>
-            );
-          })}
+            </div>
+          </div>
+          <div className="lg:col-span-8">
+            <BrowserShot href="https://www.rizemap.com" src="/images/rize-site.png" host="rizemap.com" alt="The rizemap.com homepage: framed 3D F1 track maps" />
+          </div>
+          {rizeShop && (
+            <a href="https://www.rizemap.com" target="_blank" rel="noopener noreferrer" className="lg:col-span-7 shot group relative block rounded-xl overflow-hidden border border-line-2 min-h-[300px]">
+              <Image src={rizeShop} alt="The RiZE Maps shop" fill sizes="(max-width: 1024px) 100vw, 660px" className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+              <span className="absolute left-3 bottom-3 chip !bg-white/90 backdrop-blur">The shop ↗</span>
+            </a>
+          )}
+          <a href="https://www.instagram.com/rizemaps/reels/" target="_blank" rel="noopener noreferrer" className={`${rizeShop ? "lg:col-span-5" : "lg:col-span-12"} shot group panel p-5 sm:p-6 flex flex-col`}>
+            <div className="flex items-center gap-3">
+              <span className="w-11 h-11 rounded-full bg-black grid place-items-center text-white font-bold text-[14px]">RM</span>
+              <div>
+                <div className="font-semibold text-[15px]">rizemaps</div>
+                <div className="font-mono text-[11px] text-muted">7,956 followers · Authentic F1 art</div>
+              </div>
+              <span className="ml-auto flex items-center gap-2 text-[13px] text-muted">Watch the reels <Logo name="instagram" size={20} /></span>
+            </div>
+            <div className="mt-5 grid grid-cols-3 gap-px bg-line border border-line rounded-xl overflow-hidden">
+              {[["7,956", "followers"], ["3M+", "organic impressions"], ["200+", "5-star reviews"]].map(([v, l]) => (
+                <div key={l} className="bg-white p-3.5">
+                  <div className="text-[20px] font-semibold tracking-[-0.03em] tabular-nums">{v}</div>
+                  <div className="font-mono text-[10.5px] text-muted mt-1">{l}</div>
+                </div>
+              ))}
+            </div>
+          </a>
+        </div>
+      </section>
+
+      {/* ---------------- Personal setup ---------------- */}
+      <section className={SECTION}>
+        <SectionHead id="setup" index="04" kicker="My setup" title="The bots that run RiZE's content.">
+          RiZE&apos;s content runs on agents I set up myself. I review what they make and approve the spend.
+        </SectionHead>
+        <div className="panel p-5 sm:p-8">
+          <ol className="grid grid-cols-1 md:grid-cols-5 gap-3 relative">
+            {setup.map((st, i) => (
+              <li key={st.k} className="reveal relative rounded-xl border border-line bg-surface/50 p-4 flex flex-col gap-3">
+                <div className="flex items-center gap-2">
+                  {st.icons.map((ic) => (
+                    <span key={ic} className="icon-tile grid place-items-center w-10 h-10 rounded-[22%] bg-white border border-black/[0.06]" style={{ "--fd": `${i * -0.6}s` } as React.CSSProperties}>
+                      <Logo name={ic} size={22} />
+                    </span>
+                  ))}
+                </div>
+                <div className="font-mono text-[10.5px] text-faint">{String(i + 1).padStart(2, "0")} · {st.who}</div>
+                <h3 className="text-[15px] font-semibold tracking-[-0.01em]">{st.k}</h3>
+                <p className="text-[13.5px] text-muted leading-relaxed">{st.v}</p>
+                {i < setup.length - 1 && <span className="hidden md:block absolute -right-[11px] top-1/2 -translate-y-1/2 z-10 text-faint text-[14px]">→</span>}
+              </li>
+            ))}
+          </ol>
+          <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-line pt-5 font-mono text-[11.5px] text-muted">
+            <span>Behind it: Obsidian notes, Claude Code and Codex, and Cole OS keeping every agent in scope and on budget.</span>
+            <Link href="/systems/rize-growth" className={LINK}>How the content engine works →</Link>
+          </div>
         </div>
       </section>
 
       {/* ---------------- Agentic systems ---------------- */}
       <section className={SECTION}>
-        <SectionHead id="agents" index="04" kicker="Agentic systems" title="How I build agents that can be trusted with real work.">
+        <SectionHead id="agents" index="05" kicker="Agentic systems" title="How I build agents that can be trusted with real work.">
           The certificate agent inside Hyperflow, running. The same patterns show up in every agent I&apos;ve shipped.
         </SectionHead>
         <div className="reveal">
@@ -257,22 +309,6 @@ export default function Home() {
               <p className="text-[13.5px] text-muted leading-relaxed">{p.v}</p>
               <span className="mt-auto pt-2 font-mono text-[11px] text-accent">{p.proof}</span>
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ---------------- Proof ---------------- */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-20">
-        <SectionHead index="05" kicker="Results" title="What the systems produced.">
-          Every number comes from a system on this page. Click one to see how it was built.
-        </SectionHead>
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-px bg-line border border-line rounded-2xl overflow-hidden">
-          {proof.map((t) => (
-            <Link key={t.label} href={`/systems/${t.source}`} className="group bg-white p-5 sm:p-7 hover:bg-surface transition-colors">
-              <div className="text-[30px] sm:text-[44px] font-semibold tracking-[-0.04em] tabular-nums leading-none">{t.value}</div>
-              <div className="text-[14px] text-ink-2 mt-3">{t.label}</div>
-              <div className="font-mono text-[11px] text-faint mt-2 group-hover:text-accent transition-colors">↳ {t.source}</div>
-            </Link>
           ))}
         </div>
       </section>
@@ -397,7 +433,7 @@ export default function Home() {
           <div className="absolute inset-0 -z-0 opacity-60 [background-image:radial-gradient(circle_at_1px_1px,#d4d4d8_1px,transparent_0)] [background-size:18px_18px] [mask-image:radial-gradient(ellipse_at_center,#000,transparent_70%)]" />
           <div className="relative">
             <span className="chip mb-6"><span className="live-dot" /> Replies within 24h</span>
-            <h2 className="text-[32px] sm:text-[48px] font-semibold tracking-[-0.04em] leading-[1.05] max-w-2xl mx-auto">
+            <h2 className="text-[28px] sm:text-[38px] font-semibold tracking-[-0.035em] leading-[1.1] max-w-2xl mx-auto">
               Want the details on any of this?
               <br />
               <span className="text-faint">Ask me how it works.</span>
