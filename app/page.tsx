@@ -15,6 +15,13 @@ import { getPosts, formatDate } from "@/lib/posts";
 
 /** Projects that are not growth systems; the growth ones have their own pages under /systems. */
 const momnt = deployments.find((d) => d.id === "momnt")!;
+const appStore = "https://apps.apple.com/us/app/momnt/id6752358840";
+const momntBuild = [
+  { k: "band", v: "Designed the wristband around a single NFC tag, so starting a focus session is one tap with no pairing or battery." },
+  { k: "ios app", v: "Built the iOS app on Apple's Screen Time APIs: pick the distracting apps once, and they stay blocked while Momnt Mode runs." },
+  { k: "data", v: "Logged every session to Firestore, and Python surveyed anyone inactive for 7+ days. Fixes tested on a 50-user cohort drove 85% two-month retention." },
+  { k: "launch", v: "300+ face-to-face interviews, a 200-user campus pilot, then 300+ units sold and $9K+ in revenue." },
+];
 const more = deployments.filter((d) => ["cole-os", "dignity", "uganda", "hackduke"].includes(d.id));
 
 const SECTION = "scroll-mt-24 max-w-6xl mx-auto px-4 sm:px-6 mt-28";
@@ -78,7 +85,7 @@ export default function Home() {
               </div>
             </div>
             <div className="rise mt-8 flex flex-wrap gap-3" style={{ "--rd": "0.2s" } as React.CSSProperties}>
-              <a href="#automations" className="btn btn-dark">
+              <a href="#hyperflow" className="btn btn-dark">
                 See the work <Arrow />
               </a>
               <Socials />
@@ -96,75 +103,9 @@ export default function Home() {
         <MarkMarquee />
       </section>
 
-      {/* ---------------- Automation range ---------------- */}
-      <section className={SECTION}>
-        <SectionHead id="automations" index="01" kicker="What I've automated" title="Nine kinds of work, handed to systems.">
-          Each one ran inside a real business. Click through for how it was built.
-        </SectionHead>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-line border border-line rounded-2xl overflow-hidden">
-          {automations.map((a) => {
-            const external = a.href.startsWith("http");
-            return (
-              <a
-                key={a.k}
-                href={a.href}
-                {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                className="reveal group bg-white p-5 sm:p-6 flex flex-col gap-3 hover:bg-surface transition-colors"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-[11px] text-faint">{a.where}</span>
-                  <span className="font-mono text-[11px] text-faint group-hover:text-accent transition-colors">→</span>
-                </div>
-                <h3 className="text-[16.5px] font-semibold tracking-[-0.02em]">{a.k}</h3>
-                <p className="text-[14px] text-muted leading-relaxed">{a.what}</p>
-                <div className="mt-auto pt-1">
-                  <StackRow stack={a.stack} />
-                </div>
-              </a>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* ---------------- Agentic systems ---------------- */}
-      <section className={SECTION}>
-        <SectionHead id="agents" index="02" kicker="Agentic systems" title="How I build agents that can be trusted with real work.">
-          The certificate agent inside Hyperflow, running. The same patterns show up in every agent I&apos;ve shipped.
-        </SectionHead>
-        <div className="reveal">
-          <Workflow wf={flagship} title="~/hyperflow/coi-agent — independent insurance agency" />
-        </div>
-        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4">
-          {principles.map((p, i) => (
-            <div key={p.k} className="reveal panel p-5 flex flex-col gap-2">
-              <span className="font-mono text-[11px] text-faint">{String(i + 1).padStart(2, "0")}</span>
-              <h3 className="text-[15px] font-semibold tracking-[-0.01em] leading-snug">{p.k}</h3>
-              <p className="text-[13.5px] text-muted leading-relaxed">{p.v}</p>
-              <span className="mt-auto pt-2 font-mono text-[11px] text-accent">{p.proof}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ---------------- Proof ---------------- */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-20">
-        <SectionHead index="03" kicker="Results" title="What the systems produced.">
-          Every number comes from a system on this page. Click one to see how it was built.
-        </SectionHead>
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-px bg-line border border-line rounded-2xl overflow-hidden">
-          {proof.map((t) => (
-            <Link key={t.label} href={`/systems/${t.source}`} className="group bg-white p-5 sm:p-7 hover:bg-surface transition-colors">
-              <div className="text-[30px] sm:text-[44px] font-semibold tracking-[-0.04em] tabular-nums leading-none">{t.value}</div>
-              <div className="text-[14px] text-ink-2 mt-3">{t.label}</div>
-              <div className="font-mono text-[11px] text-faint mt-2 group-hover:text-accent transition-colors">↳ {t.source}</div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
       {/* ---------------- Hyperflow ---------------- */}
       <section className={SECTION}>
-        <SectionHead id="hyperflow" index="04" kicker="Now building" title="Hyperflow.">
+        <SectionHead id="hyperflow" index="01" kicker="Now building" title="Hyperflow.">
           A company I&apos;m building and selling myself, from the product to the first customer calls.
         </SectionHead>
         <div className="panel overflow-hidden">
@@ -210,29 +151,128 @@ export default function Home() {
 
       {/* ---------------- Momnt ---------------- */}
       <section className={SECTION}>
-        <SectionHead id="momnt" index="05" kicker="Co-founded" title="Momnt.">
-          A wristband that cuts screen time. I ran product and growth, from the first interview to units shipped.
+        <SectionHead id="momnt" index="02" kicker="Co-founded" title="Momnt.">
+          A wristband and iOS app that cut screen time. I co-founded it, built the app and the band, and sold the first 300 units.
         </SectionHead>
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] gap-6 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] gap-6 items-start">
           <BrowserShot href="https://www.getmomnt.com" src="/images/momnt-site.png" host="getmomnt.com" alt="The getmomnt.com homepage: Reclaim Your Time, the wristband that reduces screen time" />
           <div className="reveal">
             <p className="text-[15.5px] text-ink-2 leading-relaxed">
-              An NFC wearable and iOS app. I ran 300+ face-to-face interviews, turned a 200-user campus pilot into 300+ units sold,
-              and built the usage tracking and Python re-engagement loop behind the retention numbers.
+              Momnt is two products that only work together. The band carries an NFC tag; tapping it to your phone starts
+              Momnt Mode, and the iOS app blocks the apps you picked until the timer ends or you tap again.
             </p>
-            <div className="grid grid-cols-2 gap-px bg-line border border-line rounded-xl overflow-hidden mt-6">
+            <ul className="mt-5 space-y-3">
+              {momntBuild.map((t) => (
+                <li key={t.k} className="flex gap-3 text-[14px] text-ink-2 leading-relaxed">
+                  <span className="font-mono text-[11px] text-accent pt-1 w-14 flex-none">{t.k}</span>
+                  <span>{t.v}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="grid grid-cols-4 gap-px bg-line border border-line rounded-xl overflow-hidden mt-6">
               {momnt.metrics.map((m) => (
-                <div key={m.label} className="bg-white p-4">
-                  <div className="text-[26px] font-semibold tracking-[-0.03em] tabular-nums leading-none">{m.value}</div>
-                  <div className="font-mono text-[11px] text-muted mt-2">{m.label}</div>
+                <div key={m.label} className="bg-white p-3">
+                  <div className="text-[19px] font-semibold tracking-[-0.03em] tabular-nums leading-none">{m.value}</div>
+                  <div className="font-mono text-[10px] text-muted mt-1.5 leading-tight">{m.label}</div>
                 </div>
               ))}
             </div>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <a href="https://www.getmomnt.com" target="_blank" rel="noopener noreferrer" className="btn btn-dark">getmomnt.com <Arrow /></a>
-              <Link href="/systems/momnt-retention" className="btn btn-ghost">The retention system</Link>
-            </div>
           </div>
+        </div>
+
+        {/* App Store listing */}
+        <a href={appStore} target="_blank" rel="noopener noreferrer" className="shot group mt-6 block panel p-5 sm:p-7">
+          <div className="flex items-center gap-4">
+            <Image src="/images/momnt-icon.jpg" alt="Momnt app icon" width={128} height={128} className="w-16 h-16 sm:w-20 sm:h-20 rounded-[22%] border border-line" />
+            <div className="min-w-0">
+              <div className="text-[20px] sm:text-[24px] font-semibold tracking-[-0.02em]">momnt.</div>
+              <div className="text-[14px] text-muted">Live in the Moment</div>
+              <div className="font-mono text-[11px] text-faint mt-1">★★★★★ 13 · Health &amp; Fitness · Cole Bonawitz</div>
+            </div>
+            <span className="ml-auto flex-none rounded-full bg-surface border border-line px-4 h-9 inline-flex items-center text-[14px] font-semibold text-accent group-hover:bg-accent group-hover:text-white transition-colors">
+              App Store ↗
+            </span>
+          </div>
+          <div className="mt-6 grid grid-cols-3 gap-3 sm:gap-5 max-w-3xl mx-auto">
+            {[1, 2, 3].map((n, i) => (
+              <Image
+                key={n}
+                src={`/images/momnt-app-${n}.jpg`}
+                alt={["Take control of your time", "Screen time in a band: Momnt Mode timer", "Block distractions: pick the apps to block"][i]}
+                width={600}
+                height={1299}
+                sizes="(max-width: 768px) 33vw, 340px"
+                className="w-full h-auto rounded-2xl border border-line transition-transform duration-500 group-hover:-translate-y-1"
+                style={{ transitionDelay: `${i * 60}ms` }}
+              />
+            ))}
+          </div>
+        </a>
+      </section>
+
+      {/* ---------------- Automation range ---------------- */}
+      <section className={SECTION}>
+        <SectionHead id="automations" index="03" kicker="What I've automated" title="Nine kinds of work, handed to systems.">
+          Each one ran inside a real business. Click through for how it was built.
+        </SectionHead>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-line border border-line rounded-2xl overflow-hidden">
+          {automations.map((a) => {
+            const external = a.href.startsWith("http");
+            return (
+              <a
+                key={a.k}
+                href={a.href}
+                {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                className="reveal group bg-white p-5 sm:p-6 flex flex-col gap-3 hover:bg-surface transition-colors"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-[11px] text-faint">{a.where}</span>
+                  <span className="font-mono text-[11px] text-faint group-hover:text-accent transition-colors">→</span>
+                </div>
+                <h3 className="text-[16.5px] font-semibold tracking-[-0.02em]">{a.k}</h3>
+                <p className="text-[14px] text-muted leading-relaxed">{a.what}</p>
+                <div className="mt-auto pt-1">
+                  <StackRow stack={a.stack} />
+                </div>
+              </a>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* ---------------- Agentic systems ---------------- */}
+      <section className={SECTION}>
+        <SectionHead id="agents" index="04" kicker="Agentic systems" title="How I build agents that can be trusted with real work.">
+          The certificate agent inside Hyperflow, running. The same patterns show up in every agent I&apos;ve shipped.
+        </SectionHead>
+        <div className="reveal">
+          <Workflow wf={flagship} title="~/hyperflow/coi-agent — independent insurance agency" />
+        </div>
+        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4">
+          {principles.map((p, i) => (
+            <div key={p.k} className="reveal panel p-5 flex flex-col gap-2">
+              <span className="font-mono text-[11px] text-faint">{String(i + 1).padStart(2, "0")}</span>
+              <h3 className="text-[15px] font-semibold tracking-[-0.01em] leading-snug">{p.k}</h3>
+              <p className="text-[13.5px] text-muted leading-relaxed">{p.v}</p>
+              <span className="mt-auto pt-2 font-mono text-[11px] text-accent">{p.proof}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ---------------- Proof ---------------- */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-20">
+        <SectionHead index="05" kicker="Results" title="What the systems produced.">
+          Every number comes from a system on this page. Click one to see how it was built.
+        </SectionHead>
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-px bg-line border border-line rounded-2xl overflow-hidden">
+          {proof.map((t) => (
+            <Link key={t.label} href={`/systems/${t.source}`} className="group bg-white p-5 sm:p-7 hover:bg-surface transition-colors">
+              <div className="text-[30px] sm:text-[44px] font-semibold tracking-[-0.04em] tabular-nums leading-none">{t.value}</div>
+              <div className="text-[14px] text-ink-2 mt-3">{t.label}</div>
+              <div className="font-mono text-[11px] text-faint mt-2 group-hover:text-accent transition-colors">↳ {t.source}</div>
+            </Link>
+          ))}
         </div>
       </section>
 
