@@ -10,8 +10,8 @@ import Logo from "@/components/Logo";
 const tools: { k: string; label: string; x: number; y: number }[] = [
   { k: "claude", label: "Claude Code", x: 50, y: 9 },
   { k: "codex", label: "Codex", x: 77, y: 14 },
-  { k: "grok", label: "Grok bots", x: 91, y: 37 },
-  { k: "meta-ai", label: "Meta Muse", x: 91, y: 63 },
+  { k: "grok", label: "Grok Bot", x: 91, y: 37 },
+  { k: "hermes", label: "Hermes", x: 91, y: 63 },
   { k: "higgsfield", label: "Higgsfield", x: 77, y: 86 },
   { k: "instagram", label: "Instagram", x: 50, y: 91 },
   { k: "supabase", label: "Supabase", x: 23, y: 86 },
@@ -21,16 +21,16 @@ const tools: { k: string; label: string; x: number; y: number }[] = [
   { k: "mcp", label: "MCP", x: 33, y: 24 },
   { k: "obsidian", label: "Obsidian", x: 67, y: 24 },
   { k: "hubspot", label: "HubSpot", x: 33, y: 76 },
-  { k: "fastapi", label: "FastAPI", x: 67, y: 76 },
+  { k: "openclaw", label: "OpenClaw", x: 67, y: 76 },
 ];
 
 const agents: { name: string; org: string; task: string; uses: string[] }[] = [
-  { name: "Certificate agent", org: "Hyperflow", task: "Reads the request, matches the policy, drafts the COI", uses: ["claude", "mcp", "fastapi", "python"] },
-  { name: "Content engine", org: "RiZE Maps", task: "Finds trends, writes scripts, makes and scores reels", uses: ["grok", "meta-ai", "higgsfield", "instagram"] },
+  { name: "Certificate agent", org: "Hyperflow", task: "Reads the request, matches the policy, drafts the COI", uses: ["openclaw", "claude", "mcp", "python"] },
+  { name: "Content engine", org: "RiZE Maps", task: "Finds trends, writes scripts, makes and scores reels", uses: ["grok", "higgsfield", "instagram", "python"] },
   { name: "Outbound engine", org: "Swoop Tutors", task: "Scores 10k companies, enriches, syncs, sequences", uses: ["clay", "python", "hubspot"] },
   { name: "Deal sourcing agent", org: "Dignity Properties", task: "Sources off-market deals, remembers every owner", uses: ["claude", "mcp", "supabase"] },
   { name: "Founder outreach", org: "Personal", task: "Researches each startup, writes one why-now line", uses: ["claude", "apollo", "clay", "hubspot"] },
-  { name: "Cole OS", org: "20 agents", task: "One memory vault, scopes and spend caps for each agent", uses: ["codex", "claude", "obsidian", "supabase"] },
+  { name: "Cole OS", org: "20 agents", task: "One memory vault, scopes and spend caps for each agent", uses: ["hermes", "codex", "obsidian", "supabase"] },
 ];
 
 export default function ToolField() {

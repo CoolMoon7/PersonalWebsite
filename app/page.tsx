@@ -21,8 +21,7 @@ const appStore = "https://apps.apple.com/us/app/momnt/id6752358840";
 /** The shop photo shows up once public/images/rize-shop.jpg exists. */
 const rizeShop = fs.existsSync(path.join(process.cwd(), "public/images/rize-shop.jpg")) ? "/images/rize-shop.jpg" : null;
 const setup = [
-  { k: "Find what's working", who: "Grok bots", icons: ["grok"], v: "Grok bots watch F1 news, race weekends and trending formats, and pitch ideas each day." },
-  { k: "Write and design", who: "Meta Muse", icons: ["meta-ai"], v: "Meta Muse turns the best ideas into scripts, captions and image concepts using real product photos." },
+  { k: "Find and write", who: "Grok Bot", icons: ["grok"], v: "Grok Bot watches F1 news, race weekends and trending formats, then writes the scripts and captions." },
   { k: "Make the video", who: "Higgsfield", icons: ["higgsfield"], v: "Image-to-video briefs become reels. They're built from real products, never invented ones." },
   { k: "Post and promote", who: "Instagram · Meta Ads", icons: ["instagram", "meta"], v: "Reels go out on Instagram and TikTok. Ads run on hard caps and pause above 2× target CPA." },
   { k: "Score and repeat", who: "Python", icons: ["python"], v: "Every reel is scored against the account's median, and the winners shape the next brief." },
@@ -328,7 +327,7 @@ export default function Home() {
           RiZE&apos;s content runs on agents I set up myself. I review what they make and approve the spend.
         </SectionHead>
         <div className="panel p-5 sm:p-8">
-          <ol className="grid grid-cols-1 md:grid-cols-5 gap-3 relative">
+          <ol className="grid grid-cols-1 md:grid-cols-4 gap-3 relative">
             {setup.map((st, i) => (
               <li key={st.k} className="reveal relative rounded-xl border border-line bg-surface/50 p-4 flex flex-col gap-3">
                 <div className="flex items-center gap-2">
@@ -425,7 +424,7 @@ export default function Home() {
               alt="Cole Bonawitz speaking at an event"
               fill
               sizes="(max-width: 768px) 100vw, 40vw"
-              className="object-contain object-top rounded-lg"
+              className="object-cover object-[45%_20%]"
             />
             <span className="absolute left-3 bottom-3 chip !bg-white/90 backdrop-blur">Chattanooga, TN → Durham, NC</span>
           </div>

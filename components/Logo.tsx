@@ -33,7 +33,7 @@ const tiles: Record<string, { title: string; letter: string; color: string }> = 
 const img: Record<string, string> = {
   clay: "Clay", apollo: "Apollo", openai: "OpenAI", linkedin: "LinkedIn",
   higgsfield: "Higgsfield", instantly: "Instantly", openclaw: "OpenClaw", hermes: "Hermes Agent",
-  grok: "Grok bots", chatgpt: "ChatGPT", codex: "Codex", "meta-ai": "Meta Muse",
+  grok: "Grok Bot", chatgpt: "ChatGPT", codex: "Codex", "meta-ai": "Meta Muse",
 };
 
 /** Generic glyphs for steps that aren't a vendor (agents, CSVs, people, gates...). */
