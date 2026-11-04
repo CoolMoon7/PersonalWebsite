@@ -77,7 +77,7 @@ export default function Home() {
               className="rise mt-8 text-[36px] leading-[1.06] sm:text-[46px] lg:text-[52px] font-semibold tracking-[-0.04em] max-w-xl"
               style={{ "--rd": "0.05s" } as React.CSSProperties}
             >
-              I build the agents that run the work.
+              I ship agents to production.
             </h1>
             <p className="rise mt-5 text-[16px] text-ink-2 leading-relaxed max-w-lg" style={{ "--rd": "0.12s" } as React.CSSProperties}>
               Inbox agents, outbound engines, content bots and the memory layer they share, built with Claude Code,
