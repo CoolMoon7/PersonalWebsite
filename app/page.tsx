@@ -1,21 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import Workflow from "@/components/Workflow";
-import Logo, { logoTitle } from "@/components/Logo";
+import Logo from "@/components/Logo";
+import ToolField from "@/components/ToolField";
+import BrowserShot from "@/components/BrowserShot";
 import { MarkMarquee } from "@/components/Marks";
 import { SectionHead, SystemCard, StackRow, Arrow } from "@/components/ui";
 import { systems } from "@/data/systems";
 import { site, hyperflow } from "@/data/site";
-import { proof, now, facts, skills } from "@/data/home";
-import { deployments } from "@/data/fde";
+import { proof, now, facts, skills, automations, principles } from "@/data/home";
+import { deployments, flagship } from "@/data/fde";
 import { getPosts, formatDate } from "@/lib/posts";
 
-const rail = [
-  "clay", "apollo", "firecrawl", "hubspot", "zapier", "supabase", "claude", "hermes", "openai", "python",
-  "pandas", "postgres", "instantly", "meta", "tiktok", "shopify", "react", "github",
-];
 
 /** Projects that are not growth systems; the growth ones have their own pages under /systems. */
+const momnt = deployments.find((d) => d.id === "momnt")!;
 const more = deployments.filter((d) => ["cole-os", "dignity", "uganda", "hackduke"].includes(d.id));
 
 const SECTION = "scroll-mt-24 max-w-6xl mx-auto px-4 sm:px-6 mt-28";
@@ -38,71 +37,55 @@ function Socials() {
 }
 
 export default function Home() {
-  const flagship = systems[0];
   const posts = getPosts().slice(0, 3);
 
   return (
     <>
       {/* ---------------- Hero ---------------- */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 pt-16 sm:pt-24">
-        <div className="rise flex flex-wrap items-center gap-3 mb-8">
-          <span className="chip">
-            <span className="live-dot" /> Portfolio · GTM engineering, growth and AI agents
-          </span>
-          <span className="chip hidden sm:inline-flex">Duke CS · &apos;28</span>
-        </div>
-
-        <h1
-          className="rise text-[42px] leading-[1.02] sm:text-[64px] lg:text-[76px] font-semibold tracking-[-0.045em] max-w-4xl"
-          style={{ "--rd": "0.05s" } as React.CSSProperties}
-        >
-          Things I&apos;ve built
-          <br />
-          <span className="text-faint">to grow companies.</span>
-        </h1>
-
-        <div className="rise mt-7 flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-7" style={{ "--rd": "0.12s" } as React.CSSProperties}>
-          <Image
-            src="/images/coletalking.png"
-            alt="Cole Bonawitz"
-            width={160}
-            height={160}
-            priority
-            className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover object-top border border-line flex-none"
-          />
-          <p className="text-[17px] sm:text-[18px] text-ink-2 leading-relaxed max-w-2xl">
-            I&apos;m Cole, a GTM engineer and Duke CS student. I wire{" "}
-            <strong className="font-medium text-foreground">Clay</strong>,{" "}
-            <strong className="font-medium text-foreground">Python</strong> and{" "}
-            <strong className="font-medium text-foreground">AI agents</strong>{" "}
-            into outbound and growth systems that find the right buyers, reach them at the right moment and measure what turns into meetings. I&apos;ve run them for a
-            4-person startup, my own DTC brand, and now{" "}
-            <a href="#hyperflow" className={LINK}>Hyperflow</a>, the company I&apos;m building.
-          </p>
-        </div>
-
-        <div className="rise mt-8 flex flex-wrap gap-3" style={{ "--rd": "0.18s" } as React.CSSProperties}>
-          <a href="#hyperflow" className="btn btn-dark">
-            See the work <Arrow />
-          </a>
-          <Socials />
-        </div>
-
-        {/* Flagship system, running */}
-        <div className="rise mt-14 sm:mt-16" style={{ "--rd": "0.26s" } as React.CSSProperties}>
-          <Workflow wf={flagship.workflow} title={`~/systems/${flagship.slug} — ${flagship.client.toLowerCase()}`} />
-          <div className="mt-3 flex flex-wrap items-center justify-between gap-3 font-mono text-[11.5px] text-muted px-1">
-            <span>
-              Live diagram of the outbound engine I built at Swoop Tutors.{" "}
-              <Link href={`/systems/${flagship.slug}`} className={LINK}>
-                Open the system →
-              </Link>
-            </span>
-            <span className="flex gap-4">
-              <span><span className="text-foreground">10k</span> in</span>
-              <span><span className="text-foreground">3k</span> qualified</span>
-              <span><span className="text-foreground">50</span> meetings</span>
-            </span>
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 pt-14 sm:pt-20">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] gap-10 lg:gap-12 items-center">
+          <div>
+            <div className="rise flex flex-wrap items-center gap-3 mb-7">
+              <span className="chip">
+                <span className="live-dot" /> Shipping now · Hyperflow, Cole OS
+              </span>
+            </div>
+            <h1
+              className="rise text-[40px] leading-[1.03] sm:text-[56px] lg:text-[60px] font-semibold tracking-[-0.045em]"
+              style={{ "--rd": "0.05s" } as React.CSSProperties}
+            >
+              Agents and automations,
+              <br />
+              <span className="text-faint">built and running.</span>
+            </h1>
+            <p className="rise mt-6 text-[16.5px] sm:text-[17.5px] text-ink-2 leading-relaxed max-w-xl" style={{ "--rd": "0.12s" } as React.CSSProperties}>
+              Outbound engines, enrichment pipelines, a content engine, inbox agents and a 20-agent operating system.
+              I build them with Claude Code, MCP, Clay and Python, put the rules in code and a person at the approval
+              step, and most of them are still running.
+            </p>
+            <div className="rise mt-6 flex items-center gap-3" style={{ "--rd": "0.16s" } as React.CSSProperties}>
+              <Image
+                src="/images/coletalking.png"
+                alt="Cole Bonawitz"
+                width={80}
+                height={80}
+                priority
+                className="w-11 h-11 rounded-full object-cover object-top border border-line flex-none"
+              />
+              <div className="text-[13.5px] leading-tight">
+                <div className="font-medium">Cole Bonawitz</div>
+                <div className="text-muted">Duke CS &apos;28 · building <a href="#hyperflow" className={LINK}>Hyperflow</a></div>
+              </div>
+            </div>
+            <div className="rise mt-8 flex flex-wrap gap-3" style={{ "--rd": "0.2s" } as React.CSSProperties}>
+              <a href="#automations" className="btn btn-dark">
+                See the work <Arrow />
+              </a>
+              <Socials />
+            </div>
+          </div>
+          <div className="rise" style={{ "--rd": "0.24s" } as React.CSSProperties}>
+            <ToolField />
           </div>
         </div>
       </section>
@@ -113,9 +96,59 @@ export default function Home() {
         <MarkMarquee />
       </section>
 
+      {/* ---------------- Automation range ---------------- */}
+      <section className={SECTION}>
+        <SectionHead id="automations" index="01" kicker="What I've automated" title="Nine kinds of work, handed to systems.">
+          Each one ran inside a real business. Click through for how it was built.
+        </SectionHead>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-line border border-line rounded-2xl overflow-hidden">
+          {automations.map((a) => {
+            const external = a.href.startsWith("http");
+            return (
+              <a
+                key={a.k}
+                href={a.href}
+                {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                className="reveal group bg-white p-5 sm:p-6 flex flex-col gap-3 hover:bg-surface transition-colors"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-[11px] text-faint">{a.where}</span>
+                  <span className="font-mono text-[11px] text-faint group-hover:text-accent transition-colors">→</span>
+                </div>
+                <h3 className="text-[16.5px] font-semibold tracking-[-0.02em]">{a.k}</h3>
+                <p className="text-[14px] text-muted leading-relaxed">{a.what}</p>
+                <div className="mt-auto pt-1">
+                  <StackRow stack={a.stack} />
+                </div>
+              </a>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* ---------------- Agentic systems ---------------- */}
+      <section className={SECTION}>
+        <SectionHead id="agents" index="02" kicker="Agentic systems" title="How I build agents that can be trusted with real work.">
+          The certificate agent inside Hyperflow, running. The same patterns show up in every agent I&apos;ve shipped.
+        </SectionHead>
+        <div className="reveal">
+          <Workflow wf={flagship} title="~/hyperflow/coi-agent — independent insurance agency" />
+        </div>
+        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4">
+          {principles.map((p, i) => (
+            <div key={p.k} className="reveal panel p-5 flex flex-col gap-2">
+              <span className="font-mono text-[11px] text-faint">{String(i + 1).padStart(2, "0")}</span>
+              <h3 className="text-[15px] font-semibold tracking-[-0.01em] leading-snug">{p.k}</h3>
+              <p className="text-[13.5px] text-muted leading-relaxed">{p.v}</p>
+              <span className="mt-auto pt-2 font-mono text-[11px] text-accent">{p.proof}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* ---------------- Proof ---------------- */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-20">
-        <SectionHead index="01" kicker="Results" title="What the systems produced.">
+        <SectionHead index="03" kicker="Results" title="What the systems produced.">
           Every number comes from a system on this page. Click one to see how it was built.
         </SectionHead>
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-px bg-line border border-line rounded-2xl overflow-hidden">
@@ -131,7 +164,7 @@ export default function Home() {
 
       {/* ---------------- Hyperflow ---------------- */}
       <section className={SECTION}>
-        <SectionHead id="hyperflow" index="02" kicker="Now building" title="Hyperflow.">
+        <SectionHead id="hyperflow" index="04" kicker="Now building" title="Hyperflow.">
           A company I&apos;m building and selling myself, from the product to the first customer calls.
         </SectionHead>
         <div className="panel overflow-hidden">
@@ -168,28 +201,44 @@ export default function Home() {
               ))}
             </div>
           </div>
-          <a
-            href={hyperflow.demo}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block border-t border-line bg-surface/60 px-4 pt-4 sm:px-8 sm:pt-8"
-            aria-label="Open the Hyperflow demo"
-          >
-            <Image
-              src="/images/hyperflow-demo.png"
-              alt="The Hyperflow service desk: an inbox of agency requests and a drafted certificate with its policy checks"
-              width={1440}
-              height={900}
-              sizes="(max-width: 1152px) 100vw, 1088px"
-              className="w-full h-auto rounded-t-xl border border-b-0 border-line-2 shadow-[0_18px_50px_-24px_rgba(24,24,40,0.35)]"
-            />
-          </a>
+          <div className="border-t border-line bg-surface/60 p-4 sm:p-8 grid grid-cols-1 md:grid-cols-2 gap-5">
+            <BrowserShot href={hyperflow.site} src="/images/hyperflow-site.png" host="gohyperflow.com" alt="The gohyperflow.com homepage" dark />
+            <BrowserShot href={hyperflow.demo} src="/images/hyperflow-demo.png" host="demo.gohyperflow.com" alt="The Hyperflow service desk demo: an inbox of agency requests and a drafted certificate" />
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------- Momnt ---------------- */}
+      <section className={SECTION}>
+        <SectionHead id="momnt" index="05" kicker="Co-founded" title="Momnt.">
+          A wristband that cuts screen time. I ran product and growth, from the first interview to units shipped.
+        </SectionHead>
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] gap-6 items-center">
+          <BrowserShot href="https://www.getmomnt.com" src="/images/momnt-site.png" host="getmomnt.com" alt="The getmomnt.com homepage: Reclaim Your Time, the wristband that reduces screen time" />
+          <div className="reveal">
+            <p className="text-[15.5px] text-ink-2 leading-relaxed">
+              An NFC wearable and iOS app. I ran 300+ face-to-face interviews, turned a 200-user campus pilot into 300+ units sold,
+              and built the usage tracking and Python re-engagement loop behind the retention numbers.
+            </p>
+            <div className="grid grid-cols-2 gap-px bg-line border border-line rounded-xl overflow-hidden mt-6">
+              {momnt.metrics.map((m) => (
+                <div key={m.label} className="bg-white p-4">
+                  <div className="text-[26px] font-semibold tracking-[-0.03em] tabular-nums leading-none">{m.value}</div>
+                  <div className="font-mono text-[11px] text-muted mt-2">{m.label}</div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a href="https://www.getmomnt.com" target="_blank" rel="noopener noreferrer" className="btn btn-dark">getmomnt.com <Arrow /></a>
+              <Link href="/systems/momnt-retention" className="btn btn-ghost">The retention system</Link>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* ---------------- Systems ---------------- */}
       <section className={SECTION}>
-        <SectionHead id="systems" index="03" kicker={`Systems · ${String(systems.length).padStart(2, "0")}`} title="Growth systems I've built and run.">
+        <SectionHead id="systems" index="06" kicker={`Systems · ${String(systems.length).padStart(2, "0")}`} title="Growth systems I've built and run.">
           Outbound, enrichment, content and retention, across edtech, DTC, hospitality and consumer hardware.
         </SectionHead>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -201,7 +250,7 @@ export default function Home() {
 
       {/* ---------------- More projects ---------------- */}
       <section className={SECTION}>
-        <SectionHead id="projects" index="04" kicker="More projects" title="Agents, data and hardware.">
+        <SectionHead id="projects" index="07" kicker="More projects" title="Agents, data and hardware.">
           Everything else I&apos;ve shipped, from a 20-agent operating system to a device in four hospitals.
         </SectionHead>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -230,26 +279,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---------------- Stack rail ---------------- */}
-      <section className="mt-24 border-y border-line bg-white/60">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 flex flex-col md:flex-row md:items-center gap-4">
-          <span className="eyebrow flex-none md:w-40">Tools I build with</span>
-          <div className="marquee overflow-hidden flex-1">
-            <div className="marquee-track flex w-max gap-8">
-              {[...rail, ...rail].map((k, i) => (
-                <span key={i} className="flex items-center gap-2 text-[13px] text-muted hover:text-foreground transition-colors" aria-hidden={i >= rail.length}>
-                  <Logo name={k} size={18} mono />
-                  {logoTitle(k)}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ---------------- About ---------------- */}
       <section className={SECTION}>
-        <SectionHead id="about" index="05" kicker="About" title="Engineer by training, founder by habit." />
+        <SectionHead id="about" index="08" kicker="About" title="Engineer by training, founder by habit." />
         <div className="grid grid-cols-1 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-6">
           <div className="panel overflow-hidden relative aspect-[4/5] md:aspect-auto md:min-h-[480px]">
             <Image
@@ -300,7 +332,7 @@ export default function Home() {
       {/* ---------------- Writing ---------------- */}
       {posts.length > 0 && (
         <section className={SECTION}>
-          <SectionHead index="06" kicker="Writing" title="Notes on modern outbound.">
+          <SectionHead index="09" kicker="Writing" title="Notes on modern outbound.">
             <Link href="/writing" className={LINK}>All writing →</Link>
           </SectionHead>
           <div className="border-t border-line">
