@@ -30,10 +30,12 @@ const tiles: Record<string, { title: string; letter: string; color: string }> = 
   slack: { title: "Slack", letter: "S", color: "#611f69" },
 }
 
+const svgLogos = new Set(["grok", "meta-ai"]);
+
 const img: Record<string, string> = {
   clay: "Clay", apollo: "Apollo", openai: "OpenAI", linkedin: "LinkedIn",
   higgsfield: "Higgsfield", instantly: "Instantly", openclaw: "OpenClaw", hermes: "Hermes Agent",
-  grok: "Grok", chatgpt: "ChatGPT", codex: "Codex", "meta-ai": "Meta Muse",
+  grok: "Grok bots", chatgpt: "ChatGPT", codex: "Codex", "meta-ai": "Meta Muse",
 };
 
 /** Generic glyphs for steps that aren't a vendor (agents, CSVs, people, gates...). */
@@ -96,7 +98,7 @@ export default function Logo({
       // Tiny local favicons; next/image adds nothing at this size.
       // eslint-disable-next-line @next/next/no-img-element
       <img
-        src={`/logos/${name}.png`}
+        src={`/logos/${name}.${svgLogos.has(name) ? "svg" : "png"}`}
         alt={img[name]}
         width={size}
         height={size}

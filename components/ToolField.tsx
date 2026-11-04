@@ -10,7 +10,7 @@ import Logo from "@/components/Logo";
 const tools: { k: string; label: string; x: number; y: number }[] = [
   { k: "claude", label: "Claude Code", x: 50, y: 9 },
   { k: "codex", label: "Codex", x: 77, y: 14 },
-  { k: "grok", label: "Grok", x: 91, y: 37 },
+  { k: "grok", label: "Grok bots", x: 91, y: 37 },
   { k: "meta-ai", label: "Meta Muse", x: 91, y: 63 },
   { k: "higgsfield", label: "Higgsfield", x: 77, y: 86 },
   { k: "instagram", label: "Instagram", x: 50, y: 91 },

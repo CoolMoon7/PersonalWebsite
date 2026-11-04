@@ -28,7 +28,7 @@ export function SectionHead({
         <div className="flex items-center gap-3.5">
           {icon && (
             <span
-              className="icon-tile flex-none grid place-items-center w-11 h-11 sm:w-12 sm:h-12 rounded-[22%] overflow-hidden border border-black/[0.08]"
+              className="flex-none grid place-items-center w-12 h-12 sm:w-14 sm:h-14 rounded-[22%] overflow-hidden border border-black/[0.08] shadow-[0_8px_20px_-12px_rgba(24,24,40,0.35)]"
               style={{ background: icon.bg ?? "#fff" }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
