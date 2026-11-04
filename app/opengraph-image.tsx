@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Cole Bonawitz, GTM engineer: I build the systems that get startups customers";
+export const alt = "Cole Bonawitz, GTM engineer: Things I&apos;ve built that get startups customers";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -29,10 +29,10 @@ export default function OG() {
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ fontSize: 72, fontWeight: 700, letterSpacing: -3, color: "#0a0a0a", lineHeight: 1.02 }}>
-            I build the systems
+            Things I&apos;ve built
           </div>
           <div style={{ fontSize: 72, fontWeight: 700, letterSpacing: -3, color: "#a1a1aa", lineHeight: 1.02 }}>
-            that get startups customers.
+            to grow companies.
           </div>
           <div style={{ fontSize: 30, color: "#3f3f46", marginTop: 28 }}>
             Cole Bonawitz · GTM engineer · Duke CS

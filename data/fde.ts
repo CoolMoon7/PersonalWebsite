@@ -92,7 +92,7 @@ export const deployments: Deployment[] = [
     name: "Off-market deal sourcing agent",
     org: "Dignity Properties",
     role: "Builder",
-    period: "Project",
+    period: "Ongoing",
     status: "Shipped",
     oneLiner:
       "An agentic system for a real estate firm that automates off-market deal sourcing and remembers every property, owner and past decision.",

@@ -1,5 +1,5 @@
 /**
- * Copy for the homepage: Cole's personal site for startup founders.
+ * Copy for the homepage: Cole's portfolio of what he has built.
  * Every number traces to the GTM résumé (public/Cole_Bonawitz_Resume.pdf) or to a system in data/systems.ts.
  */
 
@@ -29,34 +29,6 @@ export const now = {
     "Used what owners said on those calls to change what the product leads with",
   ],
 };
-
-/** What a founder gets in the first month. */
-export const firstMonth = [
-  {
-    when: "Week 1",
-    title: "Learn how you sell",
-    body: "Sit in on sales calls, read your closed-won deals and write down who actually buys.",
-    out: "An ICP you can score against",
-  },
-  {
-    when: "Week 2",
-    title: "Build the data",
-    body: "Clay tables, enrichment and scoring, then clean the CRM so every account has one record.",
-    out: "A scored list of accounts",
-  },
-  {
-    when: "Week 3",
-    title: "Launch outbound",
-    body: "Sequences triggered by real signals, A/B tested one variable at a time, with a human approving drafts.",
-    out: "First sequences live",
-  },
-  {
-    when: "Week 4",
-    title: "Measure and repeat",
-    body: "A reply and meeting dashboard by segment, so we know what to double down on.",
-    out: "A weekly report and next plan",
-  },
-];
 
 export const facts = [
   ["Education", "Duke CS · 3.95 GPA"],

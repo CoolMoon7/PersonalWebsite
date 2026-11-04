@@ -18,6 +18,7 @@ const modes = {
     links: [
       { label: "Hyperflow", href: "/#hyperflow" },
       { label: "Systems", href: "/#systems" },
+      { label: "Projects", href: "/#projects" },
       { label: "About", href: "/#about" },
       { label: "Writing", href: "/writing" },
     ],

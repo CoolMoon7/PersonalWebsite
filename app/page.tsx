@@ -3,16 +3,20 @@ import Link from "next/link";
 import Workflow from "@/components/Workflow";
 import Logo, { logoTitle } from "@/components/Logo";
 import { MarkMarquee } from "@/components/Marks";
-import { SectionHead, SystemCard, Arrow } from "@/components/ui";
+import { SectionHead, SystemCard, StackRow, Arrow } from "@/components/ui";
 import { systems } from "@/data/systems";
 import { site, hyperflow } from "@/data/site";
-import { proof, now, firstMonth, facts, skills } from "@/data/home";
+import { proof, now, facts, skills } from "@/data/home";
+import { deployments } from "@/data/fde";
 import { getPosts, formatDate } from "@/lib/posts";
 
 const rail = [
   "clay", "apollo", "firecrawl", "hubspot", "zapier", "supabase", "claude", "hermes", "openai", "python",
   "pandas", "postgres", "instantly", "meta", "tiktok", "shopify", "react", "github",
 ];
+
+/** Projects that are not growth systems; the growth ones have their own pages under /systems. */
+const more = deployments.filter((d) => ["cole-os", "dignity", "uganda", "hackduke"].includes(d.id));
 
 const SECTION = "scroll-mt-24 max-w-6xl mx-auto px-4 sm:px-6 mt-28";
 const LINK = "text-foreground underline underline-offset-4 decoration-line-2 hover:decoration-foreground";
@@ -43,7 +47,7 @@ export default function Home() {
       <section className="max-w-6xl mx-auto px-4 sm:px-6 pt-16 sm:pt-24">
         <div className="rise flex flex-wrap items-center gap-3 mb-8">
           <span className="chip">
-            <span className="live-dot" /> Looking for a Summer 2027 GTM or growth internship
+            <span className="live-dot" /> Portfolio · GTM engineering, growth and AI agents
           </span>
           <span className="chip hidden sm:inline-flex">Duke CS · &apos;28</span>
         </div>
@@ -52,9 +56,9 @@ export default function Home() {
           className="rise text-[42px] leading-[1.02] sm:text-[64px] lg:text-[76px] font-semibold tracking-[-0.045em] max-w-4xl"
           style={{ "--rd": "0.05s" } as React.CSSProperties}
         >
-          I build the systems
+          Things I&apos;ve built
           <br />
-          <span className="text-faint">that get startups customers.</span>
+          <span className="text-faint">to grow companies.</span>
         </h1>
 
         <div className="rise mt-7 flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-7" style={{ "--rd": "0.12s" } as React.CSSProperties}>
@@ -78,10 +82,9 @@ export default function Home() {
         </div>
 
         <div className="rise mt-8 flex flex-wrap gap-3" style={{ "--rd": "0.18s" } as React.CSSProperties}>
-          <a href="#contact" className="btn btn-dark">
-            Let&apos;s talk <Arrow />
+          <a href="#hyperflow" className="btn btn-dark">
+            See the work <Arrow />
           </a>
-          <a href="#systems" className="btn btn-ghost">See what I&apos;ve built</a>
           <Socials />
         </div>
 
@@ -193,40 +196,38 @@ export default function Home() {
           {systems.map((s, i) => (
             <SystemCard key={s.slug} sys={s} i={i} />
           ))}
-          <a href="#contact" className="panel border-dashed p-6 flex flex-col justify-center items-start gap-3 hover:border-[#a1a1aa] transition-colors min-h-[260px]">
-            <span className="eyebrow">Open slot · Summer 2027</span>
-            <h3 className="text-[20px] font-semibold tracking-[-0.02em]">Your startup could be next.</h3>
-            <p className="text-[14.5px] text-muted leading-relaxed max-w-md">
-              Tell me who you sell to and what you&apos;ve tried. I&apos;ll come back with the first system I&apos;d build
-              and how I&apos;d measure it.
-            </p>
-            <span className="btn btn-ghost mt-1">Get in touch <Arrow /></span>
-          </a>
         </div>
       </section>
 
-      {/* ---------------- First month ---------------- */}
+      {/* ---------------- More projects ---------------- */}
       <section className={SECTION}>
-        <SectionHead id="first-month" index="04" kicker="How I'd start" title="My first month at your startup.">
-          The same loop behind every system above, on your customers.
+        <SectionHead id="projects" index="04" kicker="More projects" title="Agents, data and hardware.">
+          Everything else I&apos;ve shipped, from a 20-agent operating system to a device in four hospitals.
         </SectionHead>
-        <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-line border border-line rounded-2xl overflow-hidden">
-          {firstMonth.map((p, i) => (
-            <li key={p.when} className="bg-white p-5 sm:p-6 flex flex-col">
-              <div className="flex items-center justify-between mb-6">
-                <span className="font-mono text-[11px] text-accent">{p.when}</span>
-                {i < firstMonth.length - 1 && <span className="hidden lg:block font-mono text-faint text-[12px]">→</span>}
-                {i === firstMonth.length - 1 && <span className="hidden lg:block font-mono text-faint text-[12px]">↺</span>}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {more.map((d) => (
+            <article key={d.id} className="panel p-5 sm:p-6 flex flex-col gap-4">
+              <div className="flex flex-wrap items-center gap-2 font-mono text-[11.5px] text-muted">
+                <span>{d.org}</span>
+                <span className="text-faint">·</span>
+                <span>{d.period}</span>
               </div>
-              <h3 className="text-[16px] font-semibold tracking-[-0.01em]">{p.title}</h3>
-              <p className="text-[14px] text-muted leading-relaxed mt-2">{p.body}</p>
-              <div className="mt-auto pt-5 font-mono text-[11px] text-ink-2">
-                <span className="text-faint">out · </span>
-                {p.out}
+              <div>
+                <h3 className="text-[18px] font-semibold tracking-[-0.02em]">{d.name}</h3>
+                <p className="text-[14.5px] text-muted leading-relaxed mt-2">{d.oneLiner}</p>
               </div>
-            </li>
+              <div className="grid grid-cols-2 gap-px bg-line rounded-xl overflow-hidden border border-line mt-auto">
+                {d.metrics.slice(0, 2).map((m) => (
+                  <div key={m.label} className="bg-white px-3 py-3">
+                    <div className="text-[17px] font-semibold tracking-[-0.02em] tabular-nums">{m.value}</div>
+                    <div className="font-mono text-[10.5px] text-muted mt-0.5 leading-tight">{m.label}</div>
+                  </div>
+                ))}
+              </div>
+              <StackRow stack={d.stack} />
+            </article>
           ))}
-        </ol>
+        </div>
       </section>
 
       {/* ---------------- Stack rail ---------------- */}
@@ -270,8 +271,7 @@ export default function Home() {
               </p>
               <p>
                 I do my best work at early-stage startups, where one person can own the pipeline end to end: write the
-                Python, build the Clay table and get on the sales call. That&apos;s the internship I&apos;m looking for next
-                summer.
+                Python, build the Clay table and get on the sales call. That&apos;s the work I like most.
               </p>
             </div>
             <dl className="grid grid-cols-2 gap-px bg-line border border-line rounded-xl overflow-hidden mt-8">
@@ -325,17 +325,16 @@ export default function Home() {
           <div className="relative">
             <span className="chip mb-6"><span className="live-dot" /> Replies within 24h</span>
             <h2 className="text-[32px] sm:text-[48px] font-semibold tracking-[-0.04em] leading-[1.05] max-w-2xl mx-auto">
-              Building a startup?
+              Want the details on any of this?
               <br />
-              <span className="text-faint">Let&apos;s get it customers.</span>
+              <span className="text-faint">Ask me how it works.</span>
             </h2>
             <p className="text-[16px] text-muted mt-5 max-w-lg mx-auto leading-relaxed">
-              I&apos;m looking for a Summer 2027 GTM engineering or growth internship at an early-stage startup. If
-              you&apos;re a founder, I&apos;d love 15 minutes to hear what you&apos;re building, even if you aren&apos;t
-              hiring yet.
+              I&apos;m happy to walk through how any of these systems were built, what worked and what didn&apos;t. I&apos;m
+              also open to Summer 2027 GTM engineering and growth internships.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <a href={`mailto:${site.email}?subject=Summer%202027%20GTM%20internship`} className="btn btn-dark">
+              <a href={`mailto:${site.email}?subject=Hello%20from%20colebonawitz.com`} className="btn btn-dark">
                 {site.email} <Arrow />
               </a>
               <Socials />
