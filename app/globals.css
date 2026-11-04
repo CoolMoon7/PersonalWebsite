@@ -236,13 +236,15 @@ a.panel, .panel[data-hover] { transition: border-color 0.15s, box-shadow 0.15s; 
 }
 @keyframes strip { from { background-position: -40% 0; } to { background-position: 140% 0; } }
 
-/* ---------- Hero tool field ---------- */
-.tf-float { animation: tf-float var(--fl, 7s) ease-in-out infinite; animation-delay: var(--fd, 0s); }
-@keyframes tf-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-7px); }
+/* ---------- Hero icon wall ---------- */
+.icon-tile {
+  box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset, 0 10px 24px -14px rgba(24,24,40,0.35), 0 2px 4px -2px rgba(24,24,40,0.08);
+  animation: tile-bob var(--fl, 6s) ease-in-out infinite; animation-delay: var(--fd, 0s);
+  transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
-.tf-wire { stroke: #d4d4d8; stroke-width: 1; stroke-dasharray: 3 5; animation: dash 1.6s linear infinite; }
-.tf-in { animation: rise 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.icon-tile:hover { transform: scale(1.1) translateY(-3px); }
+@keyframes tile-bob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -5px; } }
+.marquee-rev { animation-direction: reverse; }
+.icon-wall .marquee { mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
 .shot { transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.5s; box-shadow: 0 24px 60px -30px rgba(24,24,40,0.45); transform: perspective(1400px) rotateX(0deg); }
 .shot:hover { transform: perspective(1400px) rotateX(2deg) translateY(-4px); box-shadow: 0 36px 80px -30px rgba(24,24,40,0.55); }

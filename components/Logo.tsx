@@ -3,7 +3,7 @@ import {
   siReact, siN8n, siPandas, siGooglesheets, siInstagram, siFirebase, siGmail, siEtsy,
   siSqlite, siGithub, siGoogleads, siTypescript, siNextdotjs, siVercel, siAirtable,
   siX, siGooglemaps, siPerplexity, siNotion, siCalendly, siCrunchbase, siGoogledocs,
-  siFastapi, siSupabase, siDocker, siArduino, siGithubactions, siPytest, siModelcontextprotocol, siSwift,
+  siFastapi, siSupabase, siDocker, siArduino, siGithubactions, siPytest, siModelcontextprotocol, siSwift, siCursor, siObsidian, siGooglegemini, siGithubcopilot,
 } from "simple-icons";
 
 type SimpleIcon = { title: string; hex: string; path: string };
@@ -18,6 +18,7 @@ const si: Record<string, SimpleIcon> = {
   crunchbase: siCrunchbase, docs: siGoogledocs,
   fastapi: siFastapi, supabase: siSupabase, docker: siDocker, arduino: siArduino,
   actions: siGithubactions, pytest: siPytest, mcp: siModelcontextprotocol, swift: siSwift,
+  cursor: siCursor, obsidian: siObsidian, gemini: siGooglegemini, copilot: siGithubcopilot,
 };
 
 /** Services without a bundled mark: a lettered tile in the brand colour, always labelled in text. */
@@ -32,6 +33,7 @@ const tiles: Record<string, { title: string; letter: string; color: string }> = 
 const img: Record<string, string> = {
   clay: "Clay", apollo: "Apollo", openai: "OpenAI", linkedin: "LinkedIn",
   higgsfield: "Higgsfield", instantly: "Instantly", openclaw: "OpenClaw", hermes: "Hermes Agent",
+  grok: "Grok", chatgpt: "ChatGPT", codex: "Codex", "meta-ai": "Meta Muse",
 };
 
 /** Generic glyphs for steps that aren't a vendor (agents, CSVs, people, gates...). */

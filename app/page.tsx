@@ -50,27 +50,27 @@ export default function Home() {
     <>
       {/* ---------------- Hero ---------------- */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 pt-14 sm:pt-20">
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] gap-10 lg:gap-12 items-center">
-          <div>
-            <div className="rise flex flex-wrap items-center gap-3 mb-7">
+        <div>
+          <div className="max-w-3xl mx-auto text-center">
+            <div className="rise flex flex-wrap items-center justify-center gap-3 mb-7">
               <span className="chip">
                 <span className="live-dot" /> Shipping now · Hyperflow, Cole OS
               </span>
             </div>
             <h1
-              className="rise text-[40px] leading-[1.03] sm:text-[56px] lg:text-[60px] font-semibold tracking-[-0.045em]"
+              className="rise text-[40px] leading-[1.03] sm:text-[56px] lg:text-[72px] font-semibold tracking-[-0.045em]"
               style={{ "--rd": "0.05s" } as React.CSSProperties}
             >
               Agents and automations,
               <br />
               <span className="text-faint">built and running.</span>
             </h1>
-            <p className="rise mt-6 text-[16.5px] sm:text-[17.5px] text-ink-2 leading-relaxed max-w-xl" style={{ "--rd": "0.12s" } as React.CSSProperties}>
+            <p className="rise mt-6 text-[16.5px] sm:text-[17.5px] text-ink-2 leading-relaxed max-w-xl mx-auto" style={{ "--rd": "0.12s" } as React.CSSProperties}>
               Outbound engines, enrichment pipelines, a content engine, inbox agents and a 20-agent operating system.
               I build them with Claude Code, MCP, Clay and Python, put the rules in code and a person at the approval
               step, and most of them are still running.
             </p>
-            <div className="rise mt-6 flex items-center gap-3" style={{ "--rd": "0.16s" } as React.CSSProperties}>
+            <div className="rise mt-6 flex items-center justify-center gap-3 text-left" style={{ "--rd": "0.16s" } as React.CSSProperties}>
               <Image
                 src="/images/coletalking.png"
                 alt="Cole Bonawitz"
@@ -84,17 +84,18 @@ export default function Home() {
                 <div className="text-muted">Duke CS &apos;28 · building <a href="#hyperflow" className={LINK}>Hyperflow</a></div>
               </div>
             </div>
-            <div className="rise mt-8 flex flex-wrap gap-3" style={{ "--rd": "0.2s" } as React.CSSProperties}>
+            <div className="rise mt-8 flex flex-wrap justify-center gap-3" style={{ "--rd": "0.2s" } as React.CSSProperties}>
               <a href="#hyperflow" className="btn btn-dark">
                 See the work <Arrow />
               </a>
               <Socials />
             </div>
           </div>
-          <div className="rise" style={{ "--rd": "0.24s" } as React.CSSProperties}>
-            <ToolField />
-          </div>
         </div>
+      </section>
+      <section aria-label="Tools I build with" className="rise mt-12 sm:mt-14" style={{ "--rd": "0.24s" } as React.CSSProperties}>
+        <div className="eyebrow text-center mb-3">What I build with, this year</div>
+        <ToolField />
       </section>
 
       {/* ---------------- Where ---------------- */}
